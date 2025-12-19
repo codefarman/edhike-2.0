@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Study Abroad Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --item-h: 32px; } /* default item height (reduced slightly) */
+    * { font-family: 'Poppins', sans-serif; box-sizing: border-box; }
+    body { margin:0; padding:0; background:#f3f4f6; }
+    /* container sizes - keep compact to avoid large vertical sliding in iframe */
+    .main-container { width:862px; height:630px; max-width:100vw; max-height:100vh; overflow:hidden; }
+    .form-container { width:440px; height:630px; max-width:100vw; max-height:100vh; overflow:auto; padding:12px; -webkit-overflow-scrolling:touch; position:relative; }
+
+    .label-text { font-size:10px; font-weight:500; color:#374151; }
+    .input-text { font-size:11px; color:#111827; }
+    .footerQuote { font-size:10px; font-weight:500; line-height:1.2; }
+    /* reduced heights for compact appearance */
+    .input-box { width:100%; height:30px; border:1px solid #000; padding:0 8px; display:flex; align-items:center; background:white; font-size:11px; }
+    .input-box-half { width:100%; height:30px; border:1px solid #000; padding:0 8px; display:flex; align-items:center; background:white; font-size:11px; }
+    /* dropdowns */
+    .dropdown-panel { overflow-y:auto; border:1px solid #000; border-top:none; background:white; /* fixed pixel max-height (kept same as earlier 3*36 ~=108px) */ max-height:108px; -ms-overflow-style:auto; scrollbar-width:auto; }
+    /* compact item spacing and smaller font */
+    .dropdown-item { height:var(--item-h); display:flex; align-items:center; padding:0 8px; font-size:11px; border-bottom:1px solid #efefef; cursor:pointer; background:white; line-height:1; }
+    .dropdown-item:hover { background-color:#f5f5f5; }
+    .row-2col { display:flex; gap:6px; } /* reduced gap between state and city panels */
+    .panel { position:absolute; z-index:50; width:100%; background:white; box-shadow:0 6px 18px rgba(0,0,0,0.08); border-radius:4px; overflow:hidden; }
+    .panel .search-input { padding:6px 8px; border:none; border-bottom:1px solid #eee; outline:none; width:100%; height:30px; font-size:11px; }
+    .panel--below { top: calc(100% + 4px); bottom:auto; }
+    /* OLD: .dropdown-panel used calc(var(--item-h) * 3) - replaced with fixed max-height to allow more rows when item height reduced */
+    /* visual hint when panel is in 'other' mode */
+    .city-search--other { border-bottom:2px dashed #0b5fff !important; }
+
+    /* spinner (hidden by default) */
+    .spinner {
+      width:22px; height:22px; border-radius:50%; border:3px solid rgba(255,255,255,0.25); border-top-color:#fff; animation:spin 0.9s linear infinite; display:inline-block; vertical-align:middle;
+    }
+    @keyframes spin { to { transform:rotate(360deg);} }
+
+    /* Loading overlay shown inside form container during submit */
+    #loadingOverlay {
+      display:none; position:absolute; inset:0; background:rgba(255,255,255,0.6); z-index:80; align-items:center; justify-content:center;
+    }
+    #loadingBox { background:transparent; padding:8px 12px; border-radius:8px; display:flex; align-items:center; gap:8px; backdrop-filter: blur(2px); }
+
+    /* message boxes */
+    #successMessage, #errorMessage { font-size:11px; }
+
+    /* Mobile adjustments */
+    @media (max-width:420px),(max-height:520px) {
+      :root{ --item-h:22px; } /* much smaller item height so more rows fit within same panel height */
+      .main-container{ width:100vw; height:100vh; }
+      /* make form container take viewport but not cause extra sliding — keep internal paddings small */
+      .form-container{ width:100vw; height:100vh; padding:8px; overflow:auto; -webkit-overflow-scrolling:touch; }
+      .label-text{ font-size:9px; }
+      .input-text{ font-size:10px; }
+      .footerQuote { font-size:5px; font-weight:100;}
+      .input-box,.input-box-half{ height:26px; padding:0 6px; font-size:10px; }
+      .panel .search-input{ height:24px; font-size:10px; padding:4px 6px; }
+      /* keep panel max-height same numeric value (108px) — with var(--item-h)=22px you get ~4-5 rows */
+      .dropdown-item{ padding:0 6px; font-size:10px; }
+      button#submitBtn{ height:32px; font-size:11px; padding:6px; }
+      .row-2col { gap:4px; } /* even tighter on mobile */
+      /* footer quote smaller on mobile */
+      #footerQuote { font-size:12px; line-height:1.1; }
+    }
+
+    /* small visual tweak so panels are visually tighter (reduced border bottom thickness) */
+    .dropdown-item { border-bottom-width:1px; padding-top:4px; padding-bottom:4px; }
+
+    /* ensure buttons are compact */
+    button, select, input { -webkit-tap-highlight-color: transparent; }
+
+  </style>
+</head>
+<body class="flex items-center justify-center" style="height:100vh;">
+  <div class="main-container bg-white shadow-lg mx-auto flex">
+    <div class="image-placeholder hidden md:flex" style="width:422px;height:630px;background:linear-gradient(135deg,#f5f7ff,#e8edff);align-items:center;justify-content:center;">
+      <div class="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
+        <span class="text-gray-400 text-sm">Image Placeholder</span>
+      </div>
+    </div>
+
+    <div class="form-container bg-white">
+      <form id="studyAbroadForm" autocomplete="off">
+        <div class="text-center text-sm font-semibold text-gray-800 mb-2">Study Abroad</div>
+
+        <div class="mb-2">
+          <label class="label-text block mb-0.5">Preferred Destination *</label>
+          <select name="destination" class="input-text input-box rounded focus:outline-none" required>
+            <option value="">Select</option>
+            <option value="United State">United States</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Canada">Canada</option>
+            <option value="Germany">Germany</option>
+            <option value="Ireland">Ireland</option>
+            <option value="France">France</option>
+            <option value="Australia">Australia</option>
+            <option value="New Zealand">New Zealand</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="Poland">Poland</option>
+            <option value="Switzerland">Switzerland</option>
+            <option value="Cyprus">Cyprus</option>
+            <option value="Spain">Spain</option>
+            <option value="Grenada">Grenada</option>
+            <option value="United Arab Emirates">United Arab Emirates</option>
+          </select>
+        </div>
+
+        <div class="row-2col mb-2">
+          <div style="flex:1">
+            <label class="label-text block mb-0.5">Preferred Intake year *</label>
+            <select name="intakeYear" class="input-text input-box-half rounded focus:outline-none" required>
+              <option value="">Select</option><option>2026</option><option>2027</option>
+            </select>
+          </div>
+          <div style="flex:1">
+            <label class="label-text block mb-0.5">Preferred Intake month *</label>
+            <select name="intakeMonth" class="input-text input-box-half rounded focus:outline-none" required>
+              <option value="">Select</option>
+              <option>January</option><option>February</option><option>March</option><option>April</option>
+              <option>May</option><option>June</option><option>July</option><option>August</option>
+              <option>September</option><option>October</option><option>November</option><option>December</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-2">
+          <label class="label-text block mb-0.5">Aspiring for? *</label>
+          <select name="aspiringFor" class="input-text input-box rounded focus:outline-none" required>
+            <option value="">Select</option><option>Under Graduate</option><option>Post Graduate</option>
+          </select>
+        </div>
+
+        <div class="mb-2">
+          <label class="label-text block mb-0.5">Name *</label>
+          <input type="text" name="name" class="input-text input-box rounded focus:outline-none" required />
+        </div>
+
+        <div class="mb-2">
+          <label class="label-text block mb-0.5">Phone Number *</label>
+          <input type="tel" name="phone" id="phoneInput" class="input-text input-box rounded focus:outline-none" required maxlength="10" pattern="^[6-9]\d{9}$" oninput="validatePhoneInput(this)" />
+        </div>
+
+        <div class="mb-2">
+          <label class="label-text block mb-0.5">Email *</label>
+          <input type="email" name="email" id="emailInput" class="input-text input-box rounded focus:outline-none" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$" oninput="validateEmailInput(this)" />
+        </div>
+
+        <div class="row-2col mb-2">
+          <div style="flex:1" class="relative">
+            <label class="label-text block mb-0.5">State *</label>
+            <button type="button" id="stateTrigger" class="input-text input-box-half rounded text-left flex items-center justify-between">
+              <span id="stateLabel">Select State</span>
+              <svg class="w-3 h-3 text-gray-400 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+
+            <div id="statePanel" class="panel panel--below hidden" aria-hidden="true">
+              <input type="text" id="stateSearchInput" placeholder="Search..." class="search-input" style="font-size:11px" />
+              <div id="stateList" class="dropdown-panel"></div>
+            </div>
+            <input type="hidden" name="state" id="stateValue" required>
+          </div>
+
+          <div style="flex:1" class="relative">
+            <label class="label-text block mb-0.5">City *</label>
+            <button type="button" id="cityTrigger" class="input-text input-box-half rounded text-left flex items-center justify-between opacity-50" disabled>
+              <span id="cityLabel">Select City</span>
+              <svg class="w-3 h-3 text-gray-400 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+
+            <div id="cityPanel" class="panel panel--below hidden" aria-hidden="true">
+              <!-- we reuse the search input for both search and manual-other typing -->
+              <input type="text" id="citySearchInput" placeholder="Search..." class="search-input" style="font-size:11px" />
+              <div id="cityList" class="dropdown-panel"></div>
+            </div>
+
+            <input type="hidden" name="city" id="cityValue" required>
+            <!-- otherCity merged into citySearchInput -->
+          </div>
+        </div>
+
+        <!-- small inline message containers (error used for validations/parent errors) -->
+        <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-2 py-1 rounded text-[10px] mb-2"></div>
+
+        <!-- Submit button -->
+        <button id="submitBtn" type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded mt-2" style="height:34px;font-size:12px">Submit</button>
+
+        <!-- Loading overlay (shows spinner while waiting for submit to complete) -->
+        <div id="loadingOverlay" class="hidden">
+          <div id="loadingBox">
+            <div class="spinner" aria-hidden="true"></div>
+            <div style="font-size:13px;color:#111827;font-weight:600">Submitting...</div>
+          </div>
+        </div>
+
+        <!-- Footer CTA -->
+        <div id="formFooter" class=" mb-1 pt-6 rounded text-center" style="background: linear-gradient(90deg,#f8fafc,#ffffff); ">
+          <div id="footerQuote" class=" footerQuote" style="min-height:15px"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<script>
+
+const STATE_LIST = [
+      "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+      "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+      "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+      "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+      "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
+      "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu",
+      "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
+    ];
+
+
+    const STATE_CITY_MAP = {
+      "Andhra Pradesh": [
+        "Alluri Sitharama Raju", "Anakapalli", "Anantapur", "Annamayya", "Bapatla", "Chittoor",
+        "East Godavari", "Eluru", "Guntur", "Kakinada", "Konaseema", "Krishna", "Kurnool",
+        "Manyam", "Nandyal", "Nellore", "Palnadu", "Prakasam", "Srikakulam", "Tirupati",
+        "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"
+      ],
+
+      "Arunachal Pradesh": [
+        "Tawang", "West Kameng", "East Kameng", "Pakke Kessang", "Papum Pare", "Kurung Kumey",
+        "Kra Daadi", "Lower Subansiri", "Upper Subansiri", "West Siang", "East Siang",
+        "Upper Siang", "Lower Siang", "Shi Yomi", "Leparada", "Lepa Rada", "Namsai",
+        "Tirap", "Changlang", "Longding", "Lohit", "Anjaw", "Dibang Valley",
+        "Lower Dibang Valley", "Siang"
+      ],
+
+      "Assam": [
+        "Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo", "Chirang",
+        "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Goalpara", "Golaghat", "Hailakandi",
+        "Hojai", "Jorhat", "Kamrup", "Kamrup Metropolitan", "Karbi Anglong", "Karimganj",
+        "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Sivasagar",
+        "Sonitpur", "South Salmara", "Tinsukia", "Udalguri", "West Karbi Anglong"
+      ],
+
+      "Bihar": [
+        "Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur",
+        "Buxar", "Darbhanga", "East Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad",
+        "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura",
+        "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnia",
+        "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi",
+        "Siwan", "Supaul", "Vaishali", "West Champaran"
+      ],
+
+      "Chhattisgarh": [
+        "Balod", "Baloda Bazar", "Balrampur", "Bastar", "Bemetara", "Bijapur",
+        "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Gariaband", "Gaurela-Pendra-Marwahi",
+        "Janjgir-Champa", "Jashpur", "Kabirdham", "Kanker", "Kondagaon", "Korba", "Koriya",
+        "Mahasamund", "Mungeli", "Narayanpur", "Raigarh", "Raipur", "Rajnandgaon", "Sukma",
+        "Surajpur", "Surguja"
+      ],
+
+      "Goa": ["North Goa", "South Goa"],
+
+      "Gujarat": [
+        "Ahmedabad", "Amreli", "Anand", "Aravalli", "Banaskantha", "Bharuch", "Bhavnagar",
+        "Botad", "Chhota Udaipur", "Dahod", "Dang", "Devbhoomi Dwarka", "Gandhinagar",
+        "Gir Somnath", "Jamnagar", "Junagadh", "Kheda", "Kutch", "Mahisagar", "Mehsana",
+        "Morbi", "Narmada", "Navsari", "Panchmahal", "Patan", "Porbandar", "Rajkot",
+        "Sabarkantha", "Surat", "Surendranagar", "Tapi", "Vadodara", "Valsad"
+      ],
+
+      "Haryana": [
+        "Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram",
+        "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh",
+        "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat",
+        "Yamunanagar"
+      ],
+
+      "Himachal Pradesh": [
+        "Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti",
+        "Mandi", "Shimla", "Sirmaur", "Solan", "Una"
+      ],
+
+      "Jharkhand": [
+        "Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa",
+        "Giridih", "Godda", "Gumla", "Hazaribagh", "Jamtara", "Khunti", "Koderma", "Latehar",
+        "Lohardaga", "Pakur", "Palamu", "Ramgarh", "Ranchi", "Sahebganj", "Saraikela",
+        "Simdega", "West Singhbhum"
+      ],
+
+      "Karnataka": [
+        "Bagalkot", "Bangalore Rural", "Bangalore Urban", "Belgaum", "Bellary",
+        "Bidar", "Chamarajanagar", "Chikballapur", "Chikkamagaluru", "Chitradurga",
+        "Dakshina Kannada", "Davanagere", "Dharwad", "Gadag", "Gulbarga", "Hassan",
+        "Haveri", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysore", "Raichur", "Ramanagara",
+        "Shimoga", "Tumkur", "Udupi", "Uttara Kannada", "Vijayapura", "Yadgir"
+      ],
+
+      "Kerala": [
+        "Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam",
+        "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", "Thiruvananthapuram",
+        "Thrissur", "Wayanad"
+      ],
+
+      "Madhya Pradesh": [
+        "Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Barwani",
+        "Betul", "Bhind", "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara",
+        "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda",
+        "Hoshangabad", "Indore", "Jabalpur", "Jhabua", "Katni", "Khandwa", "Khargone",
+        "Mandla", "Mandsaur", "Morena", "Narsinghpur", "Neemuch", "Panna", "Raisen",
+        "Rajgarh", "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Seoni", "Shahdol",
+        "Shajapur", "Sheopur", "Shivpuri", "Sidhi", "Singrauli", "Tikamgarh",
+        "Ujjain", "Umaria", "Vidisha"
+      ],
+
+      "Maharashtra": [
+        "Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Bhandara", "Buldhana",
+        "Chandrapur", "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna",
+        "Kolhapur", "Latur", "Mumbai City", "Mumbai Suburban", "Nagpur", "Nanded",
+        "Nandurbar", "Nashik", "Osmanabad", "Palghar", "Parbhani", "Pune", "Raigad",
+        "Ratnagiri", "Sangli", "Satara", "Sindhudurg", "Solapur", "Thane", "Wardha",
+        "Washim", "Yavatmal"
+      ],
+
+      "Manipur": [
+        "Bishnupur", "Chandel", "Churachandpur", "Imphal East", "Imphal West", "Jiribam",
+        "Kakching", "Kamjong", "Kangpokpi", "Noney", "Pherzawl", "Senapati", "Tamenglong",
+        "Thoubal", "Tengnoupal", "Ukhrul"
+      ],
+
+      "Meghalaya": [
+        "East Garo Hills", "East Jaintia Hills", "East Khasi Hills", "North Garo Hills",
+        "Ri Bhoi", "South Garo Hills", "South West Garo Hills", "South West Khasi Hills",
+        "West Garo Hills", "West Jaintia Hills", "West Khasi Hills"
+      ],
+
+      "Mizoram": [
+        "Aizawl", "Champhai", "Hnahthial", "Khawzawl", "Kolasib", "Lawngtlai",
+        "Lunglei", "Mamit", "Saiha", "Saitual", "Serchhip"
+      ],
+
+      "Nagaland": [
+        "Chümoukedima", "Dimapur", "Kiphire", "Kohima", "Longleng", "Mokokchung",
+        "Mon", "Niuland", "Noklak", "Peren", "Phek", "Tuensang", "Wokha", "Zunheboto"
+      ],
+
+      "Odisha": [
+        "Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Boudh", "Cuttack",
+        "Deogarh", "Dhenkanal", "Gajapati", "Ganjam", "Jagatsinghpur", "Jajpur",
+        "Jharsuguda", "Kalahandi", "Kandhamal", "Kendrapara", "Kendujhar", "Khordha",
+        "Koraput", "Malkangiri", "Mayurbhanj", "Nabarangpur", "Nayagarh", "Nuapada",
+        "Puri", "Rayagada", "Sambalpur", "Subarnapur", "Sundargarh"
+      ],
+
+      "Punjab": [
+        "Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka",
+        "Ferozepur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana",
+        "Mansa", "Moga", "Mohali", "Muktsar", "Pathankot", "Patiala", "Rupnagar",
+        "Sangrur", "Shaheed Bhagat Singh Nagar", "Tarn Taran"
+      ],
+
+      "Rajasthan": [
+        "Ajmer", "Alwar", "Banswara", "Baran", "Barmer", "Bharatpur", "Bhilwara", "Bikaner",
+        "Bundi", "Chittorgarh", "Churu", "Dausa", "Dholpur", "Dungarpur", "Hanumangarh",
+        "Jaipur", "Jaisalmer", "Jalore", "Jhalawar", "Jhunjhunu", "Jodhpur", "Karauli",
+        "Kota", "Nagaur", "Pali", "Pratapgarh", "Rajsamand", "Sawai Madhopur", "Sikar",
+        "Sirohi", "Tonk", "Udaipur"
+      ],
+
+      "Sikkim": ["Gangtok", "Gyalshing", "Mangan", "Namchi", "Soreng"],
+
+      "Tamil Nadu": [
+        "Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri",
+        "Dindigul", "Erode", "Kallakurichi", "Kanchipuram", "Kanniyakumari", "Karur",
+        "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam", "Namakkal",
+        "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet",
+        "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Theni", "Thiruvallur",
+        "Thiruvarur", "Thoothukkudi", "Tiruchirappalli", "Tirunelveli",
+        "Tirupathur", "Tiruppur", "Tiruvannamalai", "Vellore", "Viluppuram",
+        "Virudhunagar"
+      ],
+
+      "Telangana": [
+        "Adilabad", "Bhadradri Kothagudem", "Hanamkonda", "Hyderabad", "Jagtial",
+        "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy",
+        "Karimnagar", "Khammam", "Komaram Bheem", "Mahabubabad", "Mahabubnagar",
+        "Mancherial", "Medak", "Medchal–Malkajgiri", "Mulugu", "Nagarkurnool",
+        "Nalgonda", "Narayanpet", "Nirmal", "Nizamabad", "Peddapalli", "Rajanna",
+        "Rangareddy", "Sangareddy", "Siddipet", "Suryapet", "Vikarabad", "Wanaparthy",
+        "Warangal", "Yadadri Bhuvanagiri"
+      ],
+
+      "Tripura": [
+        "Dhalai", "Gomati", "Khowai", "North Tripura", "Sepahijala", "South Tripura",
+        "Unakoti", "West Tripura"
+      ],
+
+      "Uttar Pradesh": [
+        "Agra", "Aligarh", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya", "Ayodhya",
+        "Azamgarh", "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki",
+        "Bareilly", "Basti", "Bhadohi", "Bijnor", "Budaun", "Bulandshahr", "Chandauli",
+        "Chitrakoot", "Deoria", "Etah", "Etawah", "Farrukhabad", "Fatehpur", "Firozabad",
+        "Gautam Buddha Nagar", "Ghaziabad", "Ghazipur", "Gonda", "Gorakhpur", "Hamirpur",
+        "Hapur", "Hardoi", "Hathras", "Jalaun", "Jaunpur", "Jhansi", "Kannauj", "Kanpur Dehat",
+        "Kanpur Nagar", "Kasganj", "Kaushambi", "Kheri", "Kushinagar", "Lalitpur", "Lucknow",
+        "Maharajganj", "Mahoba", "Mainpuri", "Mathura", "Mau", "Meerut", "Mirzapur",
+        "Moradabad", "Muzaffarnagar", "Pilibhit", "Prayagraj", "Raebareli", "Rampur",
+        "Saharanpur", "Sambhal", "Sant Kabir Nagar", "Shahjahanpur", "Shamli", "Shravasti",
+        "Siddharthnagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"
+      ],
+
+      "Uttarakhand": [
+        "Almora", "Bageshwar", "Chamoli", "Champawat", "Dehradun", "Haridwar", "Nainital",
+        "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar",
+        "Uttarkashi"
+      ],
+
+      "West Bengal": [
+        "Alipurduar", "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Darjeeling",
+        "Hooghly", "Howrah", "Jalpaiguri", "Jhargram", "Kalimpong", "Kolkata", "Malda",
+        "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Bardhaman",
+        "Paschim Medinipur", "Purba Bardhaman", "Purba Medinipur",
+        "Purulia", "South 24 Parganas", "Uttar Dinajpur"
+      ],
+
+      "Andaman and Nicobar Islands": [
+        "Nicobar", "North and Middle Andaman", "South Andaman"
+      ],
+
+      "Chandigarh": ["Chandigarh"],
+
+      "Dadra and Nagar Haveli and Daman and Diu": [
+        "Dadra and Nagar Haveli", "Daman", "Diu"
+      ],
+
+      "Delhi": [
+        "Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi",
+        "North West Delhi", "Shahdara", "South Delhi", "South East Delhi",
+        "South West Delhi", "West Delhi"
+      ],
+
+      "Jammu and Kashmir": [
+        "Anantnag", "Bandipora", "Baramulla", "Budgam", "Doda", "Ganderbal", "Jammu",
+        "Kathua", "Kishtwar", "Kulgam", "Kupwara", "Poonch", "Pulwama", "Rajouri",
+        "Ramban", "Reasi", "Samba", "Shopian", "Srinagar", "Udhampur"
+      ],
+
+      "Ladakh": ["Kargil", "Leh"],
+
+      "Lakshadweep": [
+        "Agatti", "Amini", "Andrott", "Bitra", "Chetlat", "Kadmat", "Kalpeni",
+        "Kavaratti", "Kiltan", "Minicoy"
+      ],
+
+      "Puducherry": [
+        "Pondicherry", "Karaikal", "Mahe", "Yanam"
+      ]
+    };
+
+/* -------- state -------- */
+let selectedState = '';
+let selectedCity = '';
+let lastCitySearchTerm = '';
+let cityOtherMode = false;
+
+document.addEventListener('DOMContentLoaded', () => {
+  initForm();
+
+  window.addEventListener('message', (ev) => {
+    if (!ev.data) return;
+    const d = ev.data;
+    if (d.type === 'insertSuccess') {
+      // hide spinner and silently reset the form (no success message displayed)
+      hideLoading();
+      resetFormUIAfterSubmit();
+    } else if (d.type === 'insertError') {
+      hideLoading();
+      showMessage('Failed to Submit the Form :  ' + (d.error || 'unknown'), 'error');
+    } else if (d.type === 'insertSuccessRedirect' && d.redirectUrl) {
+      try { if (window.top && window.top !== window) window.top.location.href = d.redirectUrl; else window.location.href = d.redirectUrl; } catch(e){ window.location.href = d.redirectUrl; }
+    }
+  });
+});
+
+function initForm() {
+  renderStates(STATE_LIST);
+
+  const stateTrigger = document.getElementById('stateTrigger');
+  const cityTrigger = document.getElementById('cityTrigger');
+  const statePanel = document.getElementById('statePanel');
+  const cityPanel = document.getElementById('cityPanel');
+
+  statePanel.classList.add('panel--below');
+  cityPanel.classList.add('panel--below');
+
+  stateTrigger.onclick = (e) => { e.preventDefault(); e.stopPropagation(); if (cityPanel) cityPanel.classList.add('hidden'); togglePanel(statePanel, 'stateSearchInput'); };
+  cityTrigger.onclick = (e) => { e.preventDefault(); e.stopPropagation(); if (!selectedState) { showMessage('Please select a state first', 'error'); return; } if (statePanel) statePanel.classList.add('hidden'); togglePanel(cityPanel, 'citySearchInput'); };
+
+  document.getElementById('stateSearchInput').oninput = (e) => {
+    const term = e.target.value.toLowerCase();
+    renderStates(STATE_LIST.filter(s => s.toLowerCase().includes(term)));
+  };
+
+  const citySearchInput = document.getElementById('citySearchInput');
+
+  citySearchInput.oninput = (e) => {
+    const term = e.target.value.trim();
+    lastCitySearchTerm = term;
+    const cities = STATE_CITY_MAP[selectedState] || [];
+    const filtered = term ? cities.filter(c => c.toLowerCase().includes(term.toLowerCase())) : cities.slice(0, 50);
+    renderCities(filtered, term);
+
+    if (cityOtherMode) {
+      citySearchInput.classList.add('city-search--other');
+    }
+  };
+
+  citySearchInput.onkeydown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const term = lastCitySearchTerm.trim();
+      const cities = STATE_CITY_MAP[selectedState] || [];
+      const filtered = term ? cities.filter(c => c.toLowerCase().includes(term.toLowerCase())) : [];
+      if (!cityOtherMode && filtered.length > 0) {
+        selectCity(filtered[0]);
+      } else if (term.length > 0) {
+        selectTypedCity(term);
+      } else {
+        renderCities(cities);
+      }
+    }
+  };
+
+  document.addEventListener('click', (e) => {
+    const path = e.composedPath ? e.composedPath() : (e.path || []);
+    const withinRelative = path.some(el => el && el.classList && el.classList.contains && el.classList.contains('relative'));
+    if (!withinRelative) {
+      document.getElementById('statePanel').classList.add('hidden');
+      document.getElementById('cityPanel').classList.add('hidden');
+    }
+  });
+
+  document.getElementById('studyAbroadForm').addEventListener('submit', async (ev) => { ev.preventDefault(); await handleSubmit(); });
+}
+
+function togglePanel(panelElement, focusInputId) {
+  if (!panelElement) return;
+  const isHidden = panelElement.classList.contains('hidden');
+  if (isHidden) {
+    panelElement.classList.remove('hidden');
+    panelElement.setAttribute('aria-hidden','false');
+    setTimeout(()=> { const inp = document.getElementById(focusInputId); if (inp) inp.focus(); }, 10);
+  } else {
+    panelElement.classList.add('hidden');
+    panelElement.setAttribute('aria-hidden','true');
+  }
+}
+
+function renderStates(list) {
+  const container = document.getElementById('stateList');
+  container.innerHTML = '';
+  list.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'dropdown-item';
+    d.textContent = s;
+    d.onclick = () => selectState(s);
+    container.appendChild(d);
+  });
+}
+
+function renderCities(list, typedTerm = '') {
+  const container = document.getElementById('cityList');
+  container.innerHTML = '';
+
+  const maxShow = 50;
+  (list || []).slice(0, maxShow).forEach(c => {
+    const d = document.createElement('div');
+    d.className = 'dropdown-item';
+    d.textContent = c;
+    d.onclick = () => selectCity(c);
+    container.appendChild(d);
+  });
+
+  // Append Other as the last option (distinct style)
+  const other = document.createElement('div');
+  other.className = 'dropdown-item font-semibold text-blue-600';
+  other.textContent = 'Other';
+  other.onclick = () => onOtherClicked();
+  container.appendChild(other);
+}
+
+function selectState(s) {
+  selectedState = s;
+  document.getElementById('stateLabel').textContent = s;
+  document.getElementById('stateValue').value = s;
+  document.getElementById('statePanel').classList.add('hidden');
+  document.getElementById('stateSearchInput').value = '';
+
+  selectedCity = ''; lastCitySearchTerm = '';
+  document.getElementById('cityLabel').textContent = 'Select City';
+  document.getElementById('cityValue').value = '';
+  const cityTrigger = document.getElementById('cityTrigger');
+  cityTrigger.disabled = false; cityTrigger.classList.remove('opacity-50');
+
+  cityOtherMode = false;
+  const cities = STATE_CITY_MAP[s] || [];
+  renderCities(cities.slice(0,50));
+  renderStates(STATE_LIST);
+}
+
+function selectCity(c) {
+  cityOtherMode = false;
+  const citySearchInput = document.getElementById('citySearchInput');
+  citySearchInput.classList.remove('city-search--other');
+  selectedCity = c;
+  document.getElementById('cityLabel').textContent = c;
+  document.getElementById('cityValue').value = c;
+  document.getElementById('cityPanel').classList.add('hidden');
+  document.getElementById('citySearchInput').value = '';
+  lastCitySearchTerm = '';
+}
+
+function onOtherClicked(){
+  cityOtherMode = true;
+  const citySearchInput = document.getElementById('citySearchInput');
+  citySearchInput.classList.add('city-search--other');
+  citySearchInput.value = '';
+  lastCitySearchTerm = '';
+  citySearchInput.placeholder = 'Type your city name and press Enter';
+  document.getElementById('cityPanel').classList.remove('hidden');
+  citySearchInput.focus();
+  document.getElementById('cityValue').value = '';
+  document.getElementById('cityLabel').textContent = 'Typing...';
+}
+
+function selectTypedCity(typed) {
+  if (!typed || typed.trim().length === 0) return;
+  cityOtherMode = false;
+  const citySearchInput = document.getElementById('citySearchInput');
+  citySearchInput.classList.remove('city-search--other');
+  selectedCity = typed;
+  document.getElementById('cityLabel').textContent = typed;
+  document.getElementById('cityValue').value = typed;
+  document.getElementById('cityPanel').classList.add('hidden');
+  citySearchInput.value = '';
+  lastCitySearchTerm = '';
+  citySearchInput.placeholder = 'Search...';
+}
+
+/* validation helpers */
+function validatePhoneInput(input) { input.value = input.value.replace(/\D/g, ""); }
+document.getElementById("phoneInput").addEventListener("invalid", function(e) { e.target.setCustomValidity("Please enter a valid 10-digit mobile number."); });
+document.getElementById("phoneInput").addEventListener("input", function(e) { e.target.setCustomValidity(""); });
+
+function validateEmailInput(input) { input.value = input.value.replace(/\s/g, ""); input.value = input.value.toLowerCase(); }
+document.getElementById("emailInput").addEventListener("invalid", function(e) { e.target.setCustomValidity("Please enter a valid email address."); });
+document.getElementById("emailInput").addEventListener("input", function(e) { e.target.setCustomValidity(""); });
+
+/* messages */
+function showMessage(msg, type) {
+  const e = document.getElementById('errorMessage');
+  if (type === 'error') {
+    e.textContent = msg; e.classList.remove('hidden'); e.scrollIntoView({block:'center',behavior:'smooth'});
+    setTimeout(()=>e.classList.add('hidden'),3500);
+  } else {
+    console.log(msg);
+  }
+}
+
+/* loading overlay controls */
+function showLoading() {
+  const overlay = document.getElementById('loadingOverlay');
+  overlay.style.display = 'flex';
+  overlay.classList.remove('hidden');
+}
+function hideLoading() {
+  const overlay = document.getElementById('loadingOverlay');
+  overlay.style.display = 'none';
+  overlay.classList.add('hidden');
+}
+
+/* submit */
+async function handleSubmit() {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true; btn.style.opacity = '0.6';
+
+  const form = document.getElementById('studyAbroadForm');
+
+  // city priority: chosen hidden value (from select/typed) or last typed if otherMode was left active
+  let city = document.getElementById('cityValue').value || '';
+  if (!city && cityOtherMode) {
+    city = (lastCitySearchTerm || '').trim();
+  }
+
+  const payload = {
+    name: form.elements['name'].value || '',
+    email: form.elements['email'].value || '',
+    phone: form.elements['phone'].value || '',
+    destination: form.elements['destination'].value || '',
+    intakeYear: form.elements['intakeYear'].value || '',
+    intakeMonth: form.elements['intakeMonth'].value || '',
+    aspiringFor: form.elements['aspiringFor'].value || '',
+    state: document.getElementById('stateValue').value || '',
+    city: city || '',
+    submittedAt: new Date().toISOString()
+  };
+
+  console.log('Prepared payload:', payload);
+
+  // show loading animation (instead of older immediate success message)
+  showLoading();
+
+  if (window.parent && window.parent !== window) {
+    try {
+      // signal parent that we are submitting
+      parent.postMessage({ type: 'formSubmit', payload: payload }, '*');
+      console.log('Sent payload to parent via postMessage.');
+
+      // keep spinner visible until parent sends insertSuccess or insertError message.
+      const fallback = setTimeout(() => {
+        hideLoading();
+        showMessage('No response from host — please try again.', 'error');
+        btn.disabled = false; btn.style.opacity = '';
+      }, 12000);
+
+      window.__formSubmitFallback = fallback;
+
+    } catch (err) {
+      console.warn('postMessage failed:', err);
+      hideLoading();
+      showMessage('Submission failed to send to parent.', 'error');
+      btn.disabled = false; btn.style.opacity = '';
+    }
+  } else {
+    // no parent — emulate local handling: hide loading after a short delay and silently reset (no success shown)
+    setTimeout(() => {
+      hideLoading();
+      resetFormUIAfterSubmit();
+      btn.disabled = false; btn.style.opacity = '';
+    }, 900);
+  }
+}
+
+/* reset */
+function resetFormUIAfterSubmit() {
+  const form = document.getElementById('studyAbroadForm');
+  form.reset();
+  selectedState = ''; selectedCity = ''; lastCitySearchTerm = ''; cityOtherMode = false;
+  document.getElementById('stateLabel').textContent = 'Select State';
+  document.getElementById('cityLabel').textContent = 'Select City';
+  document.getElementById('cityValue').value = '';
+  const citySearchInput = document.getElementById('citySearchInput');
+  citySearchInput.placeholder = 'Search...';
+  citySearchInput.classList.remove('city-search--other');
+  const cityTrigger = document.getElementById('cityTrigger');
+  cityTrigger.disabled = true; cityTrigger.classList.add('opacity-50');
+
+  // clear any fallback timer
+  if (window.__formSubmitFallback) {
+    try { clearTimeout(window.__formSubmitFallback); } catch(e){}
+    window.__formSubmitFallback = null;
+  }
+
+  // re-enable submit button
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = false; btn.style.opacity = '';
+}
+
+/* Footer quotes */
+(function initFooterQuotes(){
+  const quotes = [
+    'Take the first step — your global future starts here',
+    'Dream big. Study abroad. We\'ll handle the details.',
+    'Study destinations, scholarships & support — apply now!',
+    'Ready for a world-class education? Let’s get you there.',
+    'Fast-track your admission — free counselling inside!',
+    'One form. Endless possibilities. Submit & we\'ll help.'
+  ];
+  let idx = Math.floor(Math.random() * quotes.length);
+  const el = document.getElementById('footerQuote');
+  if (!el) return;
+  el.textContent = quotes[idx];
+  setInterval(() => {
+    el.style.opacity = 0;
+    setTimeout(() => {
+      idx = (idx + 1) % quotes.length;
+      el.textContent = quotes[idx];
+      el.style.transition = 'opacity 260ms ease';
+      el.style.opacity = 1;
+    }, 260);
+  }, 4000);
+})();
+</script>
+</body>
+</html>
