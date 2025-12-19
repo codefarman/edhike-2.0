@@ -74,7 +74,7 @@ export default function Navbar() {
     <>
       <AppBar position="fixed" elevation={0} sx={{ bgcolor: "white", borderBottom: "1px solid #eee" }}>
         <Toolbar sx={{ minHeight: 90, px: { xs: 3, lg: 10 }, justifyContent: "space-between" }}>
-          
+
           {/* Logo */}
           <Link href="/" underline="none">
             <img src="/logos/edhike-text-logo.png" alt="EdHike" style={{ height: 35 }} />
@@ -156,7 +156,7 @@ export default function Navbar() {
                   <Popper
                     open={openDropdown === item.dropdown}
                     anchorEl={anchorEl}
-                    placement="bottom-start" 
+                    placement="bottom-start"
                     modifiers={[{ name: "offset", options: { offset: [0, 10] } }]}
                     sx={{ zIndex: 1300 }}
                   >
@@ -255,37 +255,53 @@ export default function Navbar() {
           <List>
             {menuItems.map((item) => (
               <Box key={item.label}>
-                <ListItemButton
-                  onClick={() => {
-                    if (item.dropdown) {
-                      setMobileDropdown((prev) => ({ ...prev, [item.dropdown]: !prev[item.dropdown] }));
-                    } else {
-                      setMobileOpen(false);
+                {/* MAIN ITEM */}
+                {item.dropdown ? (
+                  <ListItemButton
+                    onClick={() =>
+                      setMobileDropdown((prev) => ({
+                        ...prev,
+                        [item.dropdown]: !prev[item.dropdown],
+                      }))
                     }
-                  }}
-                  sx={{
-                    py: 2,
-                    color: PURPLE,
-                    fontWeight: 300,
-                  }}
-                >
-                  <ListItemText primary={item.label} />
-                  {item.dropdown && (
+                    sx={{ py: 2, color: PURPLE }}
+                  >
+                    <ListItemText primary={item.label} />
                     <ExpandMoreIcon
                       sx={{
                         transform: mobileDropdown[item.dropdown] ? "rotate(180deg)" : "rotate(0deg)",
                         transition: "0.3s",
                       }}
                     />
-                  )}
-                </ListItemButton>
+                  </ListItemButton>
+                ) : (
+                  <ListItemButton
+                    component="a"
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    sx={{ py: 2, color: PURPLE }}
+                  >
+                    <ListItemText primary={item.label} />
+                  </ListItemButton>
+                )}
 
+                {/* STUDY ABROAD DROPDOWN */}
                 {item.dropdown === "study" && (
-                  <Collapse in={mobileDropdown.study}>
-                    <Box sx={{ pl: 3, pb: 2 }}>
+                  <Collapse in={mobileDropdown.study} timeout="auto" unmountOnExit>
+                    <Box sx={{ pl: 3 }}>
                       {STUDY_ABROAD_COUNTRIES.map((c) => (
-                        <ListItemButton key={c.name} onClick={() => setMobileOpen(false)}>
-                          <img src={`https://flagcdn.com/32x24/${c.code}.png`} alt="" style={{ marginRight: 12, borderRadius: 3 }} />
+                        <ListItemButton
+                          key={c.name}
+                          component="a"
+                          href={`/study-abroad/${c.name.toLowerCase().replace(/\s+/g, "-")}`}
+                          onClick={() => setMobileOpen(false)}
+                          sx={{ py: 1.2 }}
+                        >
+                          <img
+                            src={`https://flagcdn.com/32x24/${c.code}.png`}
+                            alt=""
+                            style={{ marginRight: 12, borderRadius: 3 }}
+                          />
                           <ListItemText primary={c.name} />
                         </ListItemButton>
                       ))}
@@ -293,11 +309,18 @@ export default function Navbar() {
                   </Collapse>
                 )}
 
+                {/* COURSES DROPDOWN */}
                 {item.dropdown === "courses" && (
-                  <Collapse in={mobileDropdown.courses}>
-                    <Box sx={{ pl: 3, pb: 2 }}>
+                  <Collapse in={mobileDropdown.courses} timeout="auto" unmountOnExit>
+                    <Box sx={{ pl: 3 }}>
                       {PROGRAMS.map((prog) => (
-                        <ListItemButton key={prog} onClick={() => setMobileOpen(false)}>
+                        <ListItemButton
+                          key={prog}
+                          component="a"
+                          href={`/courses/${prog.toLowerCase().replace(/\s+/g, "-")}`}
+                          onClick={() => setMobileOpen(false)}
+                          sx={{ py: 1.2 }}
+                        >
                           <ListItemText primary={prog} />
                         </ListItemButton>
                       ))}
@@ -307,6 +330,7 @@ export default function Navbar() {
               </Box>
             ))}
           </List>
+
         </Box>
       </Drawer>
 

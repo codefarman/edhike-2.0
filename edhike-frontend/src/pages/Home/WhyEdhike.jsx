@@ -149,8 +149,8 @@ export default function WhyEdhike() {
 
 
   return (
-    <Box sx={{ position: "relative", overflow: "hidden", mt: { xs: -2 } }}>
-      <Box sx={{ textAlign: "center", py: { xs: 2, md: 5, lg: 8 }, bgcolor: "#fafafa" }}>
+    <Box sx={{ position: "relative", overflow: "hidden", mt: { xs: -1 } }}>
+      <Box sx={{ textAlign: "center", py: { xs: 1, md: 5, lg: 8 }, bgcolor: "#fafafa" }}>
         <FadeInUp>
           <Typography
             variant="h3"
