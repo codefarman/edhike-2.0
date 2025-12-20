@@ -108,44 +108,107 @@ const PANEL_DATA = [
 
 export default function WhyEdhike() {
   const { openLeadPopup } = useLeadPopup();
-  useEffect(() => {
-    const panels = gsap.utils.toArray(".panel-content");
+  // useEffect(() => {
+  //   const panels = gsap.utils.toArray(".panel-content");
 
-    panels.forEach((content) => {
-      gsap.fromTo(
-        content,
-        {
+  //   panels.forEach((content) => {
+  //     gsap.fromTo(
+  //       content,
+  //       {
+  //         autoAlpha: 0,
+  //         y: 60,
+  //       },
+  //       {
+  //         autoAlpha: 1,
+  //         y: 0,
+  //         duration: 0.9,
+  //         ease: "power3.out",
+  //         scrollTrigger: {
+  //           trigger: content,
+  //           start: "top 75%",
+  //           toggleActions: "play none none none",
+  //         },
+  //       }
+  //     );
+  //   });
+
+  //   // floating cards – very light
+  //   gsap.utils.toArray(".floating-card").forEach((card, i) => {
+  //     gsap.to(card, {
+  //       y: 10,
+  //       duration: 3 + i * 0.4,
+  //       repeat: -1,
+  //       yoyo: true,
+  //       ease: "sine.inOut",
+  //     });
+  //   });
+
+  //   ScrollTrigger.refresh();
+  // }, []);
+useEffect(() => {
+    const header = document.querySelector("header");
+    const navbarHeight = header ? header.offsetHeight : 90;
+
+    const panels = gsap.utils.toArray(".panel");
+
+    panels.forEach((panel, i) => {
+      const content = panel.querySelector(".panel-content");
+      const nextPanel = panels[i + 1];
+      const nextContent = nextPanel?.querySelector(".panel-content");
+
+      if (nextContent) {
+        gsap.set(nextContent, {
           autoAlpha: 0,
-          y: 60,
-        },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: content,
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-    });
+          yPercent: 40,
+          scale: 0.9,
+        });
 
-    // floating cards – very light
-    gsap.utils.toArray(".floating-card").forEach((card, i) => {
-      gsap.to(card, {
-        y: 10,
-        duration: 3 + i * 0.4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: panel,
+              start: `top ${navbarHeight}px`,
+              end: `+=${panel.offsetHeight}`,
+              scrub: 1,
+            },
+          })
+          .to(
+            content,
+            {
+              autoAlpha: 0,
+              yPercent: -20,
+              scale: 0.95,
+              ease: "power2.out",
+            },
+            0
+          )
+          .to(
+            nextContent,
+            {
+              autoAlpha: 1,
+              yPercent: 0,
+              scale: 1,
+              ease: "power2.out",
+            },
+            0
+          );
+      }
+
+      const cards = panel.querySelectorAll(".floating-card");
+      cards.forEach((card, idx) => {
+        gsap.to(card, {
+          y: "random(-15, 15)",
+          rotation: "random(-4, 4)",
+          duration: 4 + idx,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
       });
     });
 
     ScrollTrigger.refresh();
-  }, []);
-
+  }, [])
 
 
   return (
