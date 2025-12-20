@@ -57,7 +57,7 @@ export default function Programs() {
     <Box component="section" sx={{ py: { xs: 8, md: 12 }, bgcolor: "white" }}>
       <Container maxWidth="xl">
 {/* Heading */}
-<FadeInUp>
+<FadeInUp delay={0.1}>
   <Box sx={{ textAlign: "center", mb: { xs: 3, md: 6 } }}>
     <Typography
       variant="subtitle2"
@@ -76,7 +76,7 @@ export default function Programs() {
     lineHeight: { xs: 1.2, md: 1.3 },
   }}
 >
-  <TextReveal delay={0.2}>
+  <FadeInUp delay={0.2}>
     {''}
     <Box
       component="span"
@@ -89,12 +89,13 @@ export default function Programs() {
     >
       Accelerate Your Career with the Right Program
     </Box>
-  </TextReveal>
+  </FadeInUp>
 </Typography>
-
+     <FadeInUp delay={0.3}>
     <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 700, mx: "auto", fontSize: { xs: "0.7rem", md: "1rem" }, mt:-1 }}>
       Industry-aligned programs designed for working professionals ready to lead and innovate.
     </Typography>
+    </FadeInUp>
   </Box>
 </FadeInUp>
 

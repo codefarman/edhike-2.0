@@ -13,7 +13,7 @@ export default function ComparisonTool() {
     <Box component="section" sx={{ py: { xs: 8, md: 10 }, bgcolor: "white", mt:-12, mb: -5 }}>
       <Container maxWidth="sm">
         {/* Compact Heading */}
-        <FadeInUp>
+        <FadeInUp >
           <Box sx={{ textAlign: "center", mb: { xs: 5, md: 6 } }}>
             <Typography
               variant="subtitle2"
@@ -28,6 +28,7 @@ export default function ComparisonTool() {
               Smart Decision Tool
             </Typography>
 
+            <FadeInUp delay={0.2}>
             <Typography
               variant="h4"
               sx={{
@@ -43,7 +44,9 @@ export default function ComparisonTool() {
                Compare Programs Head-to-Head
               </Box>
             </Typography>
+            </FadeInUp>
 
+            <FadeInUp delay={0.2}>
             <Typography
               variant="body2"
               color="text.secondary"
@@ -55,11 +58,12 @@ export default function ComparisonTool() {
             >
               Find the perfect program in seconds.
             </Typography>
+            </FadeInUp>
           </Box>
         </FadeInUp>
 
         {/* Very Small Card */}
-        <FadeInUp delay={0.3}>
+        <FadeInUp delay={0.2}>
           <ScaleIn delay={0.2}>
             <Box sx={{ maxWidth: { xs: 200, md: 250, lg:300 }, mx: "auto" }}>
               <Card

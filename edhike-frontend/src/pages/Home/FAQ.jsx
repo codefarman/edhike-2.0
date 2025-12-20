@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Box, Container, Typography, Accordion, AccordionSummary, AccordionDetails, Button } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
 
-
 import { 
   FadeInUp, 
   ScaleIn, 
@@ -16,7 +15,6 @@ import { useLeadPopup } from "../../context/LeadPopupContext";
 const RED = "#E31E24";
 const PURPLE = "#5829A7";
 const GRADIENT = `linear-gradient(135deg, ${RED}, ${PURPLE})`;
-
 
 const FAQ_ITEMS = [
   {
@@ -51,20 +49,20 @@ const FAQ_ITEMS = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
-    const { openLeadPopup } = useLeadPopup();
+      const { openLeadPopup } = useLeadPopup();
 
   const handleChange = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <Box component="section" sx={{ py: { xs: 4, md: 10 }, bgcolor: "white" }}>
+    <Box component="section" sx={{ py: { xs: 4, md: 6, lg: 8 }, mt: { xs: -4, md: 0, lg: 0 }, bgcolor: "white" }}>
       <Container maxWidth="md">
         <FadeInUp>
           <Box sx={{ textAlign: "center", mb: { xs: 3, md: 5 } }}>
             <Typography
               variant="subtitle2"
-              sx={{ color: RED, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, fontSize: { xs: "0.7rem", md: "0.875rem" }, mb:-2 }}
+              sx={{ color: RED, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, fontSize: { xs: "0.7rem", md: "0.875rem", lg: "0.9rem" }, mb:-2 }}
             >
               Frequently Asked Questions
             </Typography>
@@ -106,7 +104,7 @@ export default function FAQ() {
                         bgcolor: "transparent",
                         boxShadow: "none",
                         borderRadius: 3,
-                        mb: { xs: 0.8, md: 1.5 },
+                        mb: { xs: 0.3, md: 1,  lg:1 },
                         border: `1px solid ${isOpen ? PURPLE : "#eee"}`,
                         "&:before": { display: "none" },
                         transition: "all 0.4s",
@@ -135,9 +133,9 @@ export default function FAQ() {
                       >
                         <Typography
                           variant="h6"
-                          fontWeight={700}
+                          fontWeight={600}
                           sx={{
-                            fontSize: { xs: "0.8rem", md: "1.1rem" },
+                            fontSize: { xs: "0.8rem", md: "1rem" , lg: "1rem" },
                             color: isOpen ? PURPLE : "#111",
                             lineHeight: 1.3,
                           }}
@@ -167,7 +165,7 @@ export default function FAQ() {
         </StaggerContainer>
 
         <FadeInUp delay={0.4}>
-          <Box sx={{ textAlign: "center", mt: { xs: 4, md: 9 } }}>
+          <Box sx={{ textAlign: "center", mt: { xs: 2, md: 3, lg: 4 } }}>
             <Typography 
               variant="body2" 
               color="text.secondary" 
@@ -180,8 +178,8 @@ export default function FAQ() {
             </Typography>
             <BounceIn>
               <Button
-                onClick={openLeadPopup}
                 variant="contained"
+                onClick={openLeadPopup}
                 sx={{
                   backgroundImage: GRADIENT,
                   bgcolor: "transparent",
@@ -190,7 +188,7 @@ export default function FAQ() {
                   py: { xs: 1.5, md: 2 },
                   borderRadius: 4,
                   fontWeight: 800,
-                  fontSize: { xs: "0.8rem", md: "1.2rem" },
+                  fontSize: { xs: "0.7rem", md: "0.6rem", lg: "0.9rem" },
                   boxShadow: "0 12px 35px rgba(227,30,36,0.3)",
                   "&:hover": { 
                     backgroundImage: GRADIENT,

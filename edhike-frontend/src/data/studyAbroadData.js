@@ -3,6 +3,7 @@ export const DESTINATIONS = [
   "United Kingdom",
   "Canada",
   "Germany",
+  "India",
   "Ireland",
   "France",
   "Australia",
@@ -12,6 +13,7 @@ export const DESTINATIONS = [
   "Spain",
   "Switzerland",
   "UAE",
+
 ];
 
 export const INTAKE_YEARS = ["2026", "2027"];

@@ -200,7 +200,7 @@ export default function Syllabus() {
             sx={{ maxWidth: 1200, mx: "auto" }}
           >
             {/* ================= LEFT : SYLLABUS ================= */}
-            <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }} xs={12} md={6}>
               <FadeInUp>
                 <Typography
                   sx={{

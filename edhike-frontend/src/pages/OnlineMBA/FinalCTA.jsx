@@ -17,11 +17,11 @@ const GRADIENT = `linear-gradient(135deg, ${RED}, ${PURPLE})`;
 
 export default function FinalCTA() {
       const { openLeadPopup } = useLeadPopup();
-  const handleCTA = () => {
-    document
-      .getElementById("lead-form")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
+  // const handleCTA = () => {
+  //   document
+  //     .getElementById("lead-form")
+  //     ?.scrollIntoView({ behavior: "smooth" });
+  // };
 
   return (
     <Box
