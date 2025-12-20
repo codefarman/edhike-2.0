@@ -98,93 +98,103 @@ export default function Syllabus() {
   const [skillSet, setSkillSet] = useState(1);
 
   return (
-    <Box component="section" sx={{ py: { xs: 5, md: 10 }, bgcolor: "#fff" }}>
+    <Box component="section" sx={{ py: { xs: 1, md: 2, lg: 2 },  bgcolor: "#fff" }}>
       <Container maxWidth="lg">
         {/* WHAT WE ENSURE - BEAUTIFUL COMPACT CARDS */}
-        <FadeInUp>
-          <Typography
-            align="center"
+        {/* WHAT WE ENSURE – COMPACT, EQUAL SIZE CARDS */}
+<FadeInUp>
+  <Typography
+    align="center"
+    sx={{
+      fontSize: { xs: "1.6rem", md: "2.4rem" },
+      fontWeight: 900,
+      mb: { xs: 4, md: 6 },
+      background: GRADIENT,
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    }}
+  >
+    What We Ensure
+  </Typography>
+</FadeInUp>
+
+<Grid container spacing={{ xs: 1.5, md: 2 }} justifyContent="center">
+  {ENSURE_ITEMS.map((item, i) => (
+    <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2.2 }} key={item.title}>
+      <FadeInUp delay={i * 0.08}>
+        <Card
+          sx={{
+            height: "100%",
+            minHeight: { xs: 130, md: 130 , lg: 130 },
+            borderRadius: 3,
+            textAlign: "center",
+            px: { xs: 1.5, md: 2, lg: 3 },
+            py: { xs: 2, md: 2.5, lg: 3 },
+            border: "1px solid #eee",
+            boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+            transition: "0.25s ease",
+            "&:hover": {
+              transform: "translateY(-4px)",
+              boxShadow: "0 12px 30px rgba(227,30,36,0.15)",
+              borderColor: RED,
+            },
+          }}
+        >
+          {/* ICON */}
+          <Box
             sx={{
-              fontSize: { xs: "1.9rem", md: "2.8rem" },
-              fontWeight: 900,
-              mb: { xs: 6, md: 10 },
+              width: 42,
+              height: 42,
+              mx: "auto",
+              mb: 0.2,
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               background: GRADIENT,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
+              color: "#fff",
+              fontSize: 22,
             }}
           >
-            What We Ensure
+            {item.icon}
+          </Box>
+
+          {/* TITLE */}
+          <Typography
+            sx={{
+              fontWeight: 800,
+              fontSize: { xs: "0.8rem", md: "0.9rem" },
+              lineHeight: 1.25,
+              mb: 0.4,
+              color: PURPLE,
+            }}
+          >
+            {item.title}
           </Typography>
-        </FadeInUp>
 
-        <Grid container spacing={{ xs: 2, md: 3 }} justifyContent="center">
-          {ENSURE_ITEMS.map((item, i) => (
-            <Grid item xs={12} sm={6} md={4} lg={2.4} key={item.title}>
-              <FadeInUp delay={i * 0.1}>
-                <Card
-                  sx={{
-                    height: "100%",
-                    borderRadius: 4,
-                    textAlign: "center",
-                    p: { xs: 2, md: 3 },
-                    boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
-                    border: `2px solid transparent`,
-                    background: `linear-gradient(#fff, #fff) padding-box, ${GRADIENT} border-box`,
-                    transition: "0.3s",
-                    "&:hover": {
-                      transform: "translateY(-10px)",
-                      boxShadow: "0 20px 50px rgba(227,30,36,0.15)",
-                    },
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: { xs: 48, md: 60 },
-                      height: { xs: 48, md: 60 },
-                      mx: "auto",
-                      mb: 1.5,
-                      borderRadius: "50%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      background: GRADIENT,
-                      color: "#fff",
-                      fontSize: { xs: 24, md: 30 },
-                    }}
-                  >
-                    {item.icon}
-                  </Box>
+          {/* DESCRIPTION */}
+          <Typography
+            sx={{
+              fontSize: { xs: "0.7rem", md: "0.8rem" },
+              color: "text.secondary",
+              lineHeight: 1.3,
+            }}
+          >
+            {item.desc}
+          </Typography>
+        </Card>
+      </FadeInUp>
+    </Grid>
+  ))}
+</Grid>
 
-                  <Typography
-                    fontWeight={700}
-                    sx={{
-                      mb: 0.5,
-                      fontSize: { xs: "0.8rem", md: "0.95rem" },
-                      color: PURPLE,
-                    }}
-                  >
-                    {item.title}
-                  </Typography>
-
-                  <Typography
-                    color="text.secondary"
-                    sx={{ fontSize: { xs: "0.7rem", md: "0.85rem" } }}
-                  >
-                    {item.desc}
-                  </Typography>
-
-                </Card>
-              </FadeInUp>
-            </Grid>
-          ))}
-        </Grid>
 
 
         {/* SYLLABUS + SKILLS ROW */}
-        <Box sx={{ mt: 14 , mb: 4 }}>
+        <Box sx={{ mt: 7 , mb: 4 }}>
           <Grid
             container
-            spacing={30}
+            spacing={{ xs: 4, md: 6 , lg: 25 }}
             justifyContent="center"
             alignItems="flex-start"
             sx={{ maxWidth: 1200, mx: "auto" }}
@@ -194,9 +204,9 @@ export default function Syllabus() {
               <FadeInUp>
                 <Typography
                   sx={{
-                    fontSize: "2.2rem",
+                    fontSize: { xs: "1.1rem" , md: "1.8rem", lg: "2rem" },
                     fontWeight: 900,
-                    mb: 3,
+                    mb: 2,
                     color: RED,
                   }}
                 >
@@ -204,15 +214,16 @@ export default function Syllabus() {
                 </Typography>
 
                 {/* YEAR TOGGLE */}
-                <Stack direction="row" spacing={2} mb={4}>
+                <Stack direction="row" spacing={2} mb={1}>
                   <Button
                     onClick={() => setYear(1)}
                     variant={year === 1 ? "contained" : "outlined"}
                     sx={{
-                      px: 3,
+                      px: 2,
                       py: 0.8,
                       borderRadius: 50,
-                      fontWeight: 700,
+                      fontWeight: 500,
+                      fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" },
                       bgcolor: year === 1 ? PURPLE : "transparent",
                       color: year === 1 ? "#fff" : PURPLE,
                     }}
@@ -224,10 +235,11 @@ export default function Syllabus() {
                     onClick={() => setYear(2)}
                     variant={year === 2 ? "contained" : "outlined"}
                     sx={{
-                      px: 3,
+                      px: 2,
                       py: 0.8,
                       borderRadius: 50,
-                      fontWeight: 700,
+                      fontWeight: 500,
+                      fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" },
                       bgcolor: year === 2 ? PURPLE : "transparent",
                       color: year === 2 ? "#fff" : PURPLE,
                     }}
@@ -237,7 +249,7 @@ export default function Syllabus() {
                 </Stack>
 
                 {/* SEMESTER CARDS */}
-                <Stack spacing={4}>
+                <Stack spacing={0}>
                   {[0, 1].map((idx) => {
                     const semTitle =
                       year === 1
@@ -262,6 +274,7 @@ export default function Syllabus() {
                         key={semTitle}
                         sx={{
                           p: 3,
+                          mb: -2,
                           borderRadius: 4,
                           boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
                         }}
@@ -269,8 +282,8 @@ export default function Syllabus() {
                         <Typography
                           sx={{
                             fontWeight: 800,
-                            mb: 2,
-                            fontSize: "1.2rem",
+                            mb: 1,
+                            fontSize: { xs: "1rem", md: "1.2rem", lg: "1.3rem" },
                             color: PURPLE,
                           }}
                         >
@@ -282,7 +295,7 @@ export default function Syllabus() {
                             <Typography
                               component="li"
                               key={s}
-                              sx={{ fontSize: "0.95rem" }}
+                              sx={{ fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" }, color: "text.secondary" }}
                             >
                               {s}
                             </Typography>
@@ -300,10 +313,10 @@ export default function Syllabus() {
               <FadeInUp delay={0.1}>
                 <Typography
                   sx={{
-                    fontSize: "2.2rem",
+                    fontSize: { xs: "1.1rem" , md: "1.8rem", lg: "2rem" },
                     fontWeight: 900,
                     mb: 3,
-                    color: "#0f172a",
+                    color: "#5829A7",
                   }}
                 >
                   Skills You’ll Master
@@ -319,6 +332,7 @@ export default function Syllabus() {
                       py: 0.8,
                       borderRadius: 50,
                       fontWeight: 700,
+                      fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" },
                       bgcolor: skillSet === 1 ? RED : "transparent",
                       color: skillSet === 1 ? "#fff" : PURPLE,
                     }}
@@ -334,6 +348,7 @@ export default function Syllabus() {
                       py: 0.8,
                       borderRadius: 50,
                       fontWeight: 700,
+                      fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" },
                       bgcolor: skillSet === 2 ? RED : "transparent",
                       color: skillSet === 2 ? "#fff" : PURPLE,
                     }}
@@ -350,15 +365,15 @@ export default function Syllabus() {
                         sx={{
                           display: "flex",
                           justifyContent: "space-between",
-                          mb: 0.8,
+                          mb: 0.6,
                         }}
                       >
-                        <Typography sx={{ fontSize: "0.95rem", fontWeight: 700 }}>
+                        <Typography sx={{ fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" }, fontWeight: 700 }}>
                           {skill.label}
                         </Typography>
                         <Typography
                           sx={{
-                            fontSize: "0.9rem",
+                            fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" },
                             fontWeight: 800,
                             color: RED,
                           }}

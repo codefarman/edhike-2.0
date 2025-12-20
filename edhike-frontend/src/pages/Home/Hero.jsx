@@ -16,7 +16,7 @@ import { FadeInUp, FadeInRight, ScaleIn } from "../../components/Animation/Motio
 // import { useNavigate } from "react-router-dom";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
-import { globalSearch } from "../../api/search.js";
+// import { globalSearch } from "../../api/search.js";
 
 
 
@@ -34,28 +34,30 @@ export default function Hero() {
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
 
 
-  const [searchOptions, setSearchOptions] = useState([]);
-  const [searchLoading, setSearchLoading] = useState(false);
 
-  const handleSearch = async (value) => {
-    if (!value || value.length < 2) {
-      setSearchOptions([]);
-      return;
-    }
+  // const [searchOptions, setSearchOptions] = useState([]);
+  // const [searchLoading, setSearchLoading] = useState(false);
 
-    setSearchLoading(true);
-    try {
-      const results = await globalSearch(value);
-      setSearchOptions(results);
-    } catch (e) {
-      console.error("Search error", e);
-    } finally {
-      setSearchLoading(false);
-    }
-  };
+  // const handleSearch = async (value) => {
+  //   if (!value || value.length < 2) {
+  //     setSearchOptions([]);
+  //     return;
+  //   }
+
+  //   setSearchLoading(true);
+  //   try {
+  //     const results = await globalSearch(value);
+  //     setSearchOptions(results);
+  //   } catch (e) {
+  //     console.error("Search error", e);
+  //   } finally {
+  //     setSearchLoading(false);
+  //   }
+  // };
 
 
 
@@ -91,6 +93,18 @@ export default function Hero() {
       setLoading(false);
     }
   };
+
+  const redirectToSearch = () => {
+  if (!searchValue || !searchValue.trim()) return;
+
+  // ✅ Trim + normalize happens HERE
+  const q = encodeURIComponent(searchValue.trim().toLowerCase());
+
+  window.location.href = `https://www.edhike.in/search?q=${q}`;
+};
+
+
+
 
   return (
     <Box
@@ -190,48 +204,42 @@ export default function Hero() {
                 }}
                 onClick={() => document.getElementById("hero-search")?.focus()}
               >
-                <Autocomplete
-                  freeSolo
-                  fullWidth
-                  options={searchOptions}
-                  loading={searchLoading}
-                  getOptionLabel={(option) => option?.title || ""}
-                  onInputChange={(_, value) => handleSearch(value)}
-                  onChange={(_, value) => {
-                    if (value?.slug) {
-                      window.location.href = value.slug;
-                    }
-                  }}
+                <TextField
+  fullWidth
+  variant="standard"
+  placeholder="Search Online MBA, Universities, Programs…"
+  value={searchValue}
+  onChange={(e) => setSearchValue(e.target.value)}
+  onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      redirectToSearch();
+    }
+  }}
+  // disabled={!searchValue.trim()} 
+  InputProps={{
+    disableUnderline: true,
+    startAdornment: (
+      <Search
+  sx={{
+    color: "#666",
+    fontSize: 24,
+    mr: 1,
+    cursor: searchValue.trim() ? "pointer" : "not-allowed",
+    opacity: searchValue.trim() ? 1 : 0.4,
+  }}
+  onClick={() => {
+    if (searchValue.trim()) {
+      redirectToSearch();
+    }
+  }}
+/>
 
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      variant="standard"
-                      placeholder="Search Online MBA, Universities, Programs…"
-                      InputProps={{
-                        ...params.InputProps,
-                        disableUnderline: true,
-                        startAdornment: (
-                          <Search sx={{ color: "#666", fontSize: 24, mr: 1 }} />
-                        ),
-                        endAdornment: (
-                          <>
-                            {searchLoading && <CircularProgress size={18} />}
-                            {params.InputProps.endAdornment}
-                          </>
-                        ),
-                      }}
-                    />
-                  )}
-                  renderOption={(props, option) => (
-                    <li {...props}>
-                      <Stack direction="row" spacing={1} alignItems="center">
-                        <Typography fontWeight={500}>{option.title}</Typography>
-                        <Chip size="small" label={option.type} />
-                      </Stack>
-                    </li>
-                  )}
-                />
+    ),
+  }}
+/>
+
+
 
               </Box>
             </FadeInUp>

@@ -13,7 +13,7 @@ const RED = "#E31E24";
 const PURPLE = "#5829A7";
 const GRADIENT = `linear-gradient(135deg, ${RED}, ${PURPLE})`;
 
-const PANEL_HEIGHT = "80vh";
+// const PANEL_HEIGHT = "80vh";
 
 const AnalyticsIcon = () => (
   <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
@@ -149,7 +149,7 @@ export default function WhyEdhike() {
 
 
   return (
-    <Box sx={{ position: "relative", overflow: "hidden", mt: { xs: -1 } }}>
+    <Box sx={{ position: "relative", overflow: "hidden", mt: { xs: -1, lg: -10 } }}>
       <Box sx={{ textAlign: "center", py: { xs: 1, md: 5, lg: 8 }, bgcolor: "#fafafa" }}>
         <FadeInUp>
           <Typography
@@ -180,12 +180,21 @@ export default function WhyEdhike() {
             key={i}
             className="panel"
             sx={{
-              height: PANEL_HEIGHT,
+              height: {
+                xs: "52vh",
+                sm: "65vh",
+                md: "80vh",
+              },
+              minHeight: {
+                xs: 380,
+                md: 500,
+              },
               bgcolor: panel.bg,
               position: "relative",
               overflow: "hidden",
             }}
           >
+
             <Box
               className="panel-content"
               sx={{
@@ -243,29 +252,36 @@ export default function WhyEdhike() {
 
                   <StaggerContainer delayChildren={0.3}>
                     <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: { xs: "center", md: "flex-start" },
-                        gap: { xs: 4, md: 6 },
-                        mt: 4,
-                        flexWrap: "wrap",
-                      }}
-                    >
+  sx={{
+    display: "grid",
+    gridTemplateColumns: { xs: "1fr 1fr", md: "auto auto" },
+    justifyContent: { xs: "center", md: "flex-start" },
+    gap: { xs: 3, md: 6 },
+    mt: { xs: 3, md: 4 },
+  }}
+>
+
                       {panel.stats.map((stat, idx) => (
                         <StaggerItem key={idx}>
                           <Box sx={{ textAlign: "center" }}>
                             <Typography
-                              variant="h4"
-                              fontWeight={800}
-                              sx={{ color: "#ffffff" }}
-                            >
+  sx={{
+    fontSize: { xs: "1.6rem", md: "2.2rem" },
+    fontWeight: 800,
+    color: "#fff",
+  }}
+>
+
                               {stat.value}
                             </Typography>
 
                             <Typography
-                              variant="body2"
-                              sx={{ color: "rgba(255,255,255,0.75)" }}
-                            >
+  sx={{
+    fontSize: { xs: "0.75rem", md: "0.9rem" },
+    color: "rgba(255,255,255,0.75)",
+  }}
+>
+
                               {stat.label}
                             </Typography>
 
@@ -326,7 +342,7 @@ export default function WhyEdhike() {
                   </FadeInRight>
 
                   {/* Floating cards */}
-                  {panel.cards.map((card, idx) => {
+                  {/* {panel.cards.map((card, idx) => {
                     const isTop = card.position === "top";
 
                     return (
@@ -389,7 +405,7 @@ export default function WhyEdhike() {
                         )}
                       </Box>
                     );
-                  })}
+                  })} */}
 
                 </Box>
               </Box>

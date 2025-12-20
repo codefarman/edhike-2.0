@@ -15,17 +15,19 @@ import {
   FadeInRight,
   ScaleIn,
 } from "../../components/Animation/Motion";
+import { useLeadPopup } from "../../context/LeadPopupContext";
 
 const RED = "#E31E24";
 const PURPLE = "#5829A7";
 const GRADIENT = `linear-gradient(135deg, ${RED}, ${PURPLE})`;
 
 export default function Hero() {
+      const { openLeadPopup } = useLeadPopup();
   return (
     <Box
       component="section"
       sx={{
-        pt: { xs: 8, md: 16, lg: 18 },
+        pt: { xs: 6, md: 16, lg: 18 },
         pb: { xs: 10, md: 18 },
         mb: { xs: -6, md: -10 },
         bgcolor: "#fafafa",
@@ -100,12 +102,13 @@ export default function Hero() {
             <FadeInUp delay={0.35}>
               <Box
                 sx={{
-                  display: { xs: "block", md: "none" }, 
+ 
                   mb: 2,
                 }}
               >
                 <Button
                   size="small"
+                  onClick={openLeadPopup}
                   sx={{
                     textTransform: "none",
                     fontSize: "0.7rem",

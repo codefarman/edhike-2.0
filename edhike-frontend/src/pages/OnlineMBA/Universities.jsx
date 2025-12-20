@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { ArrowOutward } from "@mui/icons-material";
 import { FadeInUp } from "../../components/Animation/Motion";
+import { useLeadPopup } from "../../context/LeadPopupContext";
 
 const RED = "#E31E24";
 const PURPLE = "#5829A7";
@@ -82,15 +83,16 @@ const COMPANIES = [
 ];
 
 export default function Universities() {
+      const { openLeadPopup } = useLeadPopup();
   return (
-    <Box component="section" sx={{ py: { xs: 8, md: 12 }, bgcolor: "#fff" }}>
+    <Box component="section" sx={{ py: { xs: 2, md: 4, lg: 2 }, bgcolor: "#fff" }}>
       <Container maxWidth="xl">
         {/* UNIVERSITIES - COMPACT + COLOR-ENHANCED */}
         <FadeInUp>
           <Typography
             align="center"
             sx={{
-              fontSize: { xs: "1.8rem", md: "2.6rem" },
+              fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
               fontWeight: 900,
               mb: { xs: 5, md: 8 },
               background: GRADIENT,
@@ -102,17 +104,17 @@ export default function Universities() {
           </Typography>
         </FadeInUp>
 
-        <Grid container spacing={{ xs: 1, md: 2 }} justifyContent="center">
+        <Grid container spacing={{ xs: 1, md: 2, lg: 2 }} mt={{ xs: -2, md: -2, lg: -2 }} justifyContent="center">
           {UNIVERSITIES.map((uni, index) => (
-            <Grid item xs={6} sm={4} md={3} lg={2.4} key={uni.name}>
+            <Grid size={{ xs: 6, sm: 4, md: 2.4, lg: 1.4 }}  key={uni.name}>
               <FadeInUp delay={index * 0.02}>
                 <Card
                   sx={{
-                    p: { xs: 1, md: 1.8 },
+                    p: { xs: 1, md: 1.8, lg: 1 }, // 🔥 smaller padding mobile
                     borderRadius: 3,
                     textAlign: "center",
                     height: "100%",
-                    minHeight: { xs: 150, md: 190 }, // 🔥 SAME SIZE MOBILE
+                    minHeight: { xs: 150, md: 150 , lg: 150 }, // 🔥 SAME SIZE MOBILE
                     border: "1px solid #eee",
                     boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
                     display: "flex",
@@ -123,11 +125,11 @@ export default function Universities() {
                   {/* LOGO WRAPPER */}
                   <Box
                     sx={{
-                      height: { xs: 36, md: 46 },
+                      height: { xs: 36, md: 46 , lg: 50}, // 🔥 smaller mobile
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      mb: 0.6,
+                      mb: 0.2,
                     }}
                   >
                     <Box
@@ -144,8 +146,8 @@ export default function Universities() {
 
                   <Typography
                     sx={{
-                      fontSize: { xs: "0.68rem", md: "0.85rem" },
-                      fontWeight: 700,
+                      fontSize: { xs: "0.68rem", md: "0.7rem", lg: "0.8rem" }, // 🔥 smaller
+                      fontWeight: 700,                      
                       color: PURPLE,
                       lineHeight: 1.2,
                       display: "-webkit-box",
@@ -183,15 +185,17 @@ export default function Universities() {
         </Grid>
 
 
-        <Box textAlign="center" mt={8}>
+        <Box textAlign="center" mt={5}>
           <Button
             variant="contained"
             size="large"
+            onClick={openLeadPopup}
             sx={{
-              px: 5,
+              px: 3,
               py: 1.5,
               borderRadius: 50,
               fontWeight: 700,
+              fontSize: { xs: "0.6rem", md: "0.8rem", lg: "0.9rem" }, // 🔥 smaller
               background: GRADIENT,
               color: "#fff",
               boxShadow: "0 8px 25px rgba(227,30,36,0.3)",
@@ -207,10 +211,10 @@ export default function Universities() {
           <Typography
             align="center"
             sx={{
-              fontSize: { xs: "1.7rem", md: "2.4rem" },
-              fontWeight: 900,
-              mt: 12,
-              mb: 6,
+              fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
+              fontWeight: 800,
+              mt: 4,
+              mb: 2,
               background: GRADIENT,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -222,7 +226,7 @@ export default function Universities() {
 
         <Grid container spacing={{ xs: 1.2, md: 2.5 }} justifyContent="center">
           {SPECIALIZATIONS.map((spec, i) => (
-            <Grid item xs={6} sm={4} md={3} key={spec}>
+            <Grid size={{ xs: 6, sm: 2, md: 2, lg: 2 }} key={spec}>
               <FadeInUp delay={0.2 + i * 0.02}>
                 <Card
                   sx={{
@@ -252,15 +256,17 @@ export default function Universities() {
           ))}
         </Grid>
 
-        <Box textAlign="center" mt={7}>
+        <Box textAlign="center" mt={5}>
           <Button
             variant="contained"
             size="large"
+            onClick={openLeadPopup}
             sx={{
-              px: 5,
+              px: 3,
               py: 1.5,
               borderRadius: 50,
               fontWeight: 700,
+              fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" }, // 🔥 smaller
               background: GRADIENT,
               color: "#fff",
               boxShadow: "0 8px 25px rgba(227,30,36,0.3)",
@@ -276,10 +282,10 @@ export default function Universities() {
           <Typography
             align="center"
             sx={{
-              fontSize: { xs: "1.7rem", md: "2.4rem" },
-              fontWeight: 900,
-              mt: 12,
-              mb: 6,
+              fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
+              fontWeight: 800,
+              mt: 4,
+              mb: 2,
               background: GRADIENT,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -291,37 +297,37 @@ export default function Universities() {
 
         <Grid container spacing={3} justifyContent="center">
           {CAREERS.map((career, i) => (
-            <Grid item xs={6} sm={4} md={3} key={career.role}>
+            <Grid size={{ xs: 6, sm: 2, md: 2, lg: 2 }} key={career.role}>
               <FadeInUp delay={0.3 + i * 0.02}>
                 <Card
-  sx={{
-    p: { xs: 1.5, md: 3 }, // 🔥 reduced
-    textAlign: "center",
-    borderRadius: 4,
-    border: "1px solid #f0f0f0",
-  }}
->
-  <Typography
-    fontWeight={700}
-    sx={{
-      fontSize: { xs: "0.8rem", md: "1.05rem" },
-      mb: 0.5,
-      color: PURPLE,
-      lineHeight: 1.2,
-    }}
-  >
-    {career.role}
-  </Typography>
-  <Typography
-    sx={{
-      color: RED,
-      fontWeight: 600,
-      fontSize: { xs: "0.75rem", md: "1rem" },
-    }}
-  >
-    {career.salary}
-  </Typography>
-</Card>
+                  sx={{
+                    p: { xs: 1.5, md: 3 }, // 🔥 reduced
+                    textAlign: "center",
+                    borderRadius: 4,
+                    border: "1px solid #f0f0f0",
+                  }}
+                >
+                  <Typography
+                    fontWeight={700}
+                    sx={{
+                      fontSize: { xs: "0.8rem", md: "1.05rem" },
+                      mb: 0.5,
+                      color: PURPLE,
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {career.role}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: RED,
+                      fontWeight: 600,
+                      fontSize: { xs: "0.75rem", md: "1rem" },
+                    }}
+                  >
+                    {career.salary}
+                  </Typography>
+                </Card>
 
               </FadeInUp>
             </Grid>
@@ -333,10 +339,10 @@ export default function Universities() {
           <Typography
             align="center"
             sx={{
-              fontSize: { xs: "1.7rem", md: "2.4rem" },
-              fontWeight: 900,
-              mt: 12,
-              mb: 6,
+              fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
+              fontWeight: 800,
+              mt: 4,
+              mb: 2,
               background: GRADIENT,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -348,49 +354,50 @@ export default function Universities() {
 
         <Grid container spacing={3} justifyContent="center">
           {COMPANIES.map((company, i) => (
-            <Grid item xs={6} sm={4} md={3} key={company}>
+            <Grid size={{ xs: 6, sm: 2, md: 2, lg: 2 }} key={company}>
               <FadeInUp delay={0.4 + i * 0.02}>
                 <Card
-  sx={{
-    p: { xs: 1.2, md: 2.5 }, // 🔥 reduced
-    textAlign: "center",
-    borderRadius: 4,
-    border: "1px solid #f0f0f0",
-  }}
->
-  <Typography
-    fontWeight={700}
-    sx={{
-      fontSize: { xs: "0.75rem", md: "1.05rem" },
-      color: PURPLE,
-    }}
-  >
-    {company}
-  </Typography>
-</Card>
+                  sx={{
+                    p: { xs: 1.2, md: 2.5 }, // 🔥 reduced
+                    textAlign: "center",
+                    borderRadius: 4,
+                    border: "1px solid #f0f0f0",
+                  }}
+                >
+                  <Typography
+                    fontWeight={700}
+                    sx={{
+                      fontSize: { xs: "0.75rem", md: "1.05rem" },
+                      color: PURPLE,
+                    }}
+                  >
+                    {company}
+                  </Typography>
+                </Card>
 
               </FadeInUp>
             </Grid>
           ))}
         </Grid>
 
-        <Box textAlign="center" mt={10}>
+        <Box textAlign="center" mt={5}>
           <Button
+          onClick={openLeadPopup}
             variant="contained"
             size="large"
             sx={{
-              px: 7,
-              py: 2,
+              px: 3,
+              py: 1,
               borderRadius: 50,
               fontWeight: 800,
-              fontSize: "1.1rem",
+              fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" },
               background: GRADIENT,
               color: "#fff",
               boxShadow: "0 10px 30px rgba(227,30,36,0.3)",
               "&:hover": { transform: "translateY(-3px)", boxShadow: "0 18px 40px rgba(227,30,36,0.4)" },
             }}
           >
-            Book Call Now
+            Get Free Career Guidance
           </Button>
         </Box>
       </Container>
