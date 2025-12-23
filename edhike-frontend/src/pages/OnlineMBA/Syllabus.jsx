@@ -23,6 +23,11 @@ import { Chip } from "@mui/material";
 const RED = "#E31E24";
 const PURPLE = "#5829A7";
 const GRADIENT = `linear-gradient(135deg, ${RED}, ${PURPLE})`;
+const SYLLABUS_FONT = {
+  item: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" },
+  heading: { xs: "0.75rem", md: "0.85rem", lg: "0.95rem" },
+};
+
 
 const ENSURE_ITEMS = [
   { icon: <School />, title: "100% Free Counselling", desc: "Expert guidance at no cost" },
@@ -37,13 +42,13 @@ const year1Sem1 = [
   "Business Communication (WAC)",
   "Managerial Economics",
   "Financial Accounting",
-  "Data Visualisation (Excel/Tableau)",
+  "Data Visualisation (Excel / Tableau)",
   "Organisational Behaviour",
   "Marketing Management",
 ];
 
 const year1Sem2 = [
-  "Business Research Methods (R / Python)",
+  "Business Research Methods (R / R / Python)",
   "Operation Management",
   "Human Resource Management",
   "Management Accounting",
@@ -52,24 +57,59 @@ const year1Sem2 = [
   "Business Communication (VAC)",
 ];
 
-const year2Sem3 = [
-  "Strategic Management",
-  "Term Paper",
-  "Electives (Choose Specialization)",
-];
 
-const year2Sem4 = [
-  "International Business Management",
-  "Project",
-  "Electives (Continue Specialization)",
-];
+const year2Sem3 = {
+  core: [
+    "Strategic Management",
+    "Term Paper",
+  ],
+  electives: [
+    "Digital Marketing",
+    "Finance",
+    "Marketing",
+    "Human Resources",
+    "Analytics & DS",
+    "BFSI",
+    "FinTech",
+    "Operations Management",
+    "International Business",
+    "Information System Management",
+    "Project Management",
+    "Supply Chain Management",
+    "Retail Management",
+  ],
+};
 
-const electives = [
-  "Digital Marketing", "Finance", "Marketing", "Human Resources",
-  "Analytics & DS", "BFSI", "FinTech", "Operations Management",
-  "International Business", "Information System Management",
-  "Project Management", "Supply Chain Management", "Retail Management",
-];
+
+const year2Sem4 = {
+  core: [
+    "International Business Management",
+    "Project",
+  ],
+  electives: [
+    "Digital Marketing",
+    "Finance",
+    "Marketing",
+    "Human Resources",
+    "Analytics & DS",
+    "BFSI",
+    "FinTech",
+    "Operations Management",
+    "International Business",
+    "Information System Management",
+    "Project Management",
+    "Supply Chain Management",
+    "Retail Management",
+  ],
+};
+
+
+// const electives = [
+//   "Digital Marketing", "Finance", "Marketing", "Human Resources",
+//   "Analytics & DS", "BFSI", "FinTech", "Operations Management",
+//   "International Business", "Information System Management",
+//   "Project Management", "Supply Chain Management", "Retail Management",
+// ];
 
 const skillSet1 = [
   { label: "Strategic Thinking", value: 90 },
@@ -98,103 +138,103 @@ export default function Syllabus() {
   const [skillSet, setSkillSet] = useState(1);
 
   return (
-    <Box component="section" sx={{ py: { xs: 1, md: 2, lg: 2 },  bgcolor: "#fff" }}>
+    <Box component="section" sx={{ py: { xs: 1, md: 2, lg: 2 }, bgcolor: "#fff" }}>
       <Container maxWidth="lg">
         {/* WHAT WE ENSURE - BEAUTIFUL COMPACT CARDS */}
         {/* WHAT WE ENSURE – COMPACT, EQUAL SIZE CARDS */}
-<FadeInUp>
-  <Typography
-    align="center"
-    sx={{
-      fontSize: { xs: "1.6rem", md: "2.4rem" },
-      fontWeight: 900,
-      mb: { xs: 4, md: 6 },
-      background: GRADIENT,
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-    }}
-  >
-    What We Ensure
-  </Typography>
-</FadeInUp>
-
-<Grid container spacing={{ xs: 1.5, md: 2 }} justifyContent="center">
-  {ENSURE_ITEMS.map((item, i) => (
-    <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2.2 }} key={item.title}>
-      <FadeInUp delay={i * 0.08}>
-        <Card
-          sx={{
-            height: "100%",
-            minHeight: { xs: 130, md: 130 , lg: 130 },
-            borderRadius: 3,
-            textAlign: "center",
-            px: { xs: 1.5, md: 2, lg: 3 },
-            py: { xs: 2, md: 2.5, lg: 3 },
-            border: "1px solid #eee",
-            boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
-            transition: "0.25s ease",
-            "&:hover": {
-              transform: "translateY(-4px)",
-              boxShadow: "0 12px 30px rgba(227,30,36,0.15)",
-              borderColor: RED,
-            },
-          }}
-        >
-          {/* ICON */}
-          <Box
+        <FadeInUp>
+          <Typography
+            align="center"
             sx={{
-              width: 42,
-              height: 42,
-              mx: "auto",
-              mb: 0.2,
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              fontSize: { xs: "1.6rem", md: "2.4rem" },
+              fontWeight: 900,
+              mb: { xs: 4, md: 6 },
               background: GRADIENT,
-              color: "#fff",
-              fontSize: 22,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
             }}
           >
-            {item.icon}
-          </Box>
-
-          {/* TITLE */}
-          <Typography
-            sx={{
-              fontWeight: 800,
-              fontSize: { xs: "0.8rem", md: "0.9rem" },
-              lineHeight: 1.25,
-              mb: 0.4,
-              color: PURPLE,
-            }}
-          >
-            {item.title}
+            What We Ensure
           </Typography>
+        </FadeInUp>
 
-          {/* DESCRIPTION */}
-          <Typography
-            sx={{
-              fontSize: { xs: "0.7rem", md: "0.8rem" },
-              color: "text.secondary",
-              lineHeight: 1.3,
-            }}
-          >
-            {item.desc}
-          </Typography>
-        </Card>
-      </FadeInUp>
-    </Grid>
-  ))}
-</Grid>
+        <Grid container spacing={{ xs: 1.5, md: 2 }} justifyContent="center">
+          {ENSURE_ITEMS.map((item, i) => (
+            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2.2 }} key={item.title}>
+              <FadeInUp delay={i * 0.08}>
+                <Card
+                  sx={{
+                    height: "100%",
+                    minHeight: { xs: 130, md: 130, lg: 130 },
+                    borderRadius: 3,
+                    textAlign: "center",
+                    px: { xs: 1.5, md: 2, lg: 3 },
+                    py: { xs: 2, md: 2.5, lg: 3 },
+                    border: "1px solid #eee",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+                    transition: "0.25s ease",
+                    "&:hover": {
+                      transform: "translateY(-4px)",
+                      boxShadow: "0 12px 30px rgba(227,30,36,0.15)",
+                      borderColor: RED,
+                    },
+                  }}
+                >
+                  {/* ICON */}
+                  <Box
+                    sx={{
+                      width: 42,
+                      height: 42,
+                      mx: "auto",
+                      mb: 0.2,
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      background: GRADIENT,
+                      color: "#fff",
+                      fontSize: 22,
+                    }}
+                  >
+                    {item.icon}
+                  </Box>
+
+                  {/* TITLE */}
+                  <Typography
+                    sx={{
+                      fontWeight: 800,
+                      fontSize: { xs: "0.8rem", md: "0.9rem" },
+                      lineHeight: 1.25,
+                      mb: 0.4,
+                      color: PURPLE,
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+
+                  {/* DESCRIPTION */}
+                  <Typography
+                    sx={{
+                      fontSize: { xs: "0.7rem", md: "0.8rem" },
+                      color: "text.secondary",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {item.desc}
+                  </Typography>
+                </Card>
+              </FadeInUp>
+            </Grid>
+          ))}
+        </Grid>
 
 
 
         {/* SYLLABUS + SKILLS ROW */}
-        <Box sx={{ mt: 7 , mb: 4 }}>
+        <Box sx={{ mt: 7, mb: 4 }}>
           <Grid
             container
-            spacing={{ xs: 4, md: 6 , lg: 25 }}
+            spacing={{ xs: 4, md: 6, lg: 25 }}
             justifyContent="center"
             alignItems="flex-start"
             sx={{ maxWidth: 1200, mx: "auto" }}
@@ -204,7 +244,7 @@ export default function Syllabus() {
               <FadeInUp>
                 <Typography
                   sx={{
-                    fontSize: { xs: "1.1rem" , md: "1.8rem", lg: "2rem" },
+                    fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
                     fontWeight: 900,
                     mb: 2,
                     color: RED,
@@ -283,23 +323,101 @@ export default function Syllabus() {
                           sx={{
                             fontWeight: 800,
                             mb: 1,
-                            fontSize: { xs: "1rem", md: "1.2rem", lg: "1.3rem" },
+                            fontSize: SYLLABUS_FONT.heading,
                             color: PURPLE,
                           }}
                         >
                           {semTitle}
                         </Typography>
 
+
                         <Stack component="ul" spacing={1} sx={{ pl: 2, m: 0 }}>
-                          {subjects.map((s) => (
-                            <Typography
-                              component="li"
-                              key={s}
-                              sx={{ fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" }, color: "text.secondary" }}
-                            >
-                              {s}
-                            </Typography>
-                          ))}
+                          {Array.isArray(subjects) ? (
+                            subjects.map((s) => (
+                              <Typography
+                                component="li"
+                                key={s}
+                                sx={{
+                                  fontSize: SYLLABUS_FONT.item,
+                                  lineHeight: 1.5,
+                                  color: "text.secondary",
+                                }}
+                              >
+                                {s}
+                              </Typography>
+
+                            ))
+                          ) : (
+                            <>
+                              {/* Core Subjects */}
+                              <Typography
+                                sx={{
+                                  fontWeight: 700,
+                                  fontSize: SYLLABUS_FONT.item,
+                                  mt: 1,
+                                  mb: 0.5,
+                                  color: "text.primary",
+                                }}
+                              >
+                                Core Subjects:
+                              </Typography>
+
+                              <Stack component="ul" sx={{ pl: 2 }}>
+                                {subjects.core.map((s) => (
+                                  <Typography
+                                    component="li"
+                                    key={s}
+                                    sx={{
+                                      fontSize: SYLLABUS_FONT.item,
+                                      lineHeight: 1.5,
+                                      color: "text.secondary",
+                                    }}
+                                  >
+                                    {s}
+                                  </Typography>
+
+                                ))}
+                              </Stack>
+
+                              {/* Electives */}
+                              <Typography
+                                sx={{
+                                  fontWeight: 700,
+                                  fontSize: SYLLABUS_FONT.item,
+                                  mt: 1.5,
+                                  mb: 0.5,
+                                  color: "text.primary",
+                                }}
+                              >
+                                Electives / Specializations Subjects
+                                <Typography
+                                  component="span"
+                                  sx={{ fontWeight: 400, fontSize: SYLLABUS_FONT.item }}
+                                >
+                                  {" "} (Choose any 13)
+                                </Typography>
+                              </Typography>
+
+
+                              <Stack component="ul" sx={{ pl: 2 }}>
+                                {subjects.electives.map((e) => (
+                                  <Typography
+                                    component="li"
+                                    key={e}
+                                    sx={{
+                                      fontSize: SYLLABUS_FONT.item,
+                                      lineHeight: 1.5,
+                                      color: "text.secondary",
+                                    }}
+                                  >
+                                    {e}
+                                  </Typography>
+
+                                ))}
+                              </Stack>
+                            </>
+                          )}
+
                         </Stack>
                       </Card>
                     );
@@ -313,7 +431,7 @@ export default function Syllabus() {
               <FadeInUp delay={0.1}>
                 <Typography
                   sx={{
-                    fontSize: { xs: "1.1rem" , md: "1.8rem", lg: "2rem" },
+                    fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
                     fontWeight: 900,
                     mb: 3,
                     color: "#5829A7",

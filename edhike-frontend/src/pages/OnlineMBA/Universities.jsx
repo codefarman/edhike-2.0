@@ -41,19 +41,20 @@ const UNIVERSITIES = [
 
 
 const SPECIALIZATIONS = [
-  "Finance Management",
-  "HR Management",
-  "Marketing and Sales",
-  "Business Analytics",
-  "Data Science",
-  "IT Management",
-  "Operations Management",
-  "Healthcare Management",
-  "International Business Management",
-  "AI and Machine Learning (Dual)",
-  "Project Management",
-  "Digital Marketing",
+  { label: "Finance Management", slug: "finance-management" },
+  { label: "HR Management", slug: "hr-management" },
+  { label: "Marketing and Sales", slug: "marketing-and-sales" },
+  { label: "Business Analytics", slug: "business-analytics" },
+  { label: "Data Science", slug: "data-science" },
+  { label: "IT Management", slug: "it-management" },
+  { label: "Operations Management", slug: "operations-management" },
+  { label: "Healthcare Management", slug: "healthcare-management" },
+  { label: "International Business Management", slug: "international-business-management" },
+  { label: "AI and Machine Learning (Dual)", slug: "ai-and-machine-learning-dual" },
+  { label: "Project Management", slug: "project-management" },
+  { label: "Digital Marketing", slug: "digital-marketing" },
 ];
+
 
 const CAREERS = [
   { role: "Portfolio Manager", salary: "5 LPA to 37.2 LPA" },
@@ -83,7 +84,7 @@ const COMPANIES = [
 ];
 
 export default function Universities() {
-      const { openLeadPopup } = useLeadPopup();
+  const { openLeadPopup } = useLeadPopup();
   return (
     <Box component="section" sx={{ py: { xs: 2, md: 4, lg: 2 }, bgcolor: "#fff" }}>
       <Container maxWidth="xl">
@@ -106,7 +107,7 @@ export default function Universities() {
 
         <Grid container spacing={{ xs: 1, md: 2, lg: 2 }} mt={{ xs: -2, md: -2, lg: -2 }} justifyContent="center">
           {UNIVERSITIES.map((uni, index) => (
-            <Grid size={{ xs: 6, sm: 4, md: 2.4, lg: 1.4 }}  key={uni.name}>
+            <Grid size={{ xs: 6, sm: 4, md: 2.4, lg: 1.4 }} key={uni.name}>
               <FadeInUp delay={index * 0.02}>
                 <Card
                   sx={{
@@ -114,7 +115,7 @@ export default function Universities() {
                     borderRadius: 3,
                     textAlign: "center",
                     height: "100%",
-                    minHeight: { xs: 150, md: 150 , lg: 150 }, // 🔥 SAME SIZE MOBILE
+                    minHeight: { xs: 150, md: 150, lg: 150 }, // 🔥 SAME SIZE MOBILE
                     border: "1px solid #eee",
                     boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
                     display: "flex",
@@ -125,7 +126,7 @@ export default function Universities() {
                   {/* LOGO WRAPPER */}
                   <Box
                     sx={{
-                      height: { xs: 36, md: 46 , lg: 50}, // 🔥 smaller mobile
+                      height: { xs: 36, md: 46, lg: 50 }, // 🔥 smaller mobile
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -147,7 +148,7 @@ export default function Universities() {
                   <Typography
                     sx={{
                       fontSize: { xs: "0.68rem", md: "0.7rem", lg: "0.8rem" }, // 🔥 smaller
-                      fontWeight: 700,                      
+                      fontWeight: 700,
                       color: PURPLE,
                       lineHeight: 1.2,
                       display: "-webkit-box",
@@ -226,35 +227,45 @@ export default function Universities() {
 
         <Grid container spacing={{ xs: 1.2, md: 2.5 }} justifyContent="center">
           {SPECIALIZATIONS.map((spec, i) => (
-            <Grid size={{ xs: 6, sm: 2, md: 2, lg: 2 }} key={spec}>
+            <Grid size={{ xs: 6, sm: 2, md: 2, lg: 2 }} key={spec.slug}>
               <FadeInUp delay={0.2 + i * 0.02}>
                 <Card
+                  onClick={() =>
+                    window.location.href = `https://www.edhike.in/online-mba-specialization/${spec.slug}`
+                  }
                   sx={{
-                    p: { xs: 1.2, md: 2.5 }, // 🔥 smaller mobile
+                    p: { xs: 1.2, md: 2.5 },
                     borderRadius: 3,
                     border: "1px solid #eee",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                      transform: "translateY(-4px)",
+                      boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
+                      borderColor: "#5829A7",
+                    },
                   }}
                 >
                   <Typography
                     fontWeight={600}
                     sx={{
-                      fontSize: { xs: "0.75rem", md: "1rem" }, // 🔥 smaller
+                      fontSize: { xs: "0.75rem", md: "1rem" },
                       color: PURPLE,
                       textAlign: "center",
                       lineHeight: 1.2,
                     }}
                   >
-                    {spec}
+                    {spec.label}
                   </Typography>
                 </Card>
-
               </FadeInUp>
             </Grid>
           ))}
         </Grid>
+
 
         <Box textAlign="center" mt={5}>
           <Button
@@ -382,7 +393,7 @@ export default function Universities() {
 
         <Box textAlign="center" mt={5}>
           <Button
-          onClick={openLeadPopup}
+            onClick={openLeadPopup}
             variant="contained"
             size="large"
             sx={{

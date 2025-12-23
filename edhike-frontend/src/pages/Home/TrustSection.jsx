@@ -39,7 +39,8 @@ export default function TrustSection() {
     <Box
       component="section"
       sx={{
-        py: { xs: 8, md: 10 },
+        py: { xs: 8, md: 10,  },
+        mt: {lg:7},
         bgcolor: "white",
         borderTop: "1px solid #eee",
         overflow: "hidden",

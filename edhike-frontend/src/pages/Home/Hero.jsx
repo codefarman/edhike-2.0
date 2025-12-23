@@ -110,8 +110,8 @@ export default function Hero() {
     <Box
       component="section"
       sx={{
-        pt: { xs: 8, md: 16 },
-        pb: { xs: 10, md: 20 },
+        pt: { xs: 4, md: 5 , lg:7},
+        pb: { xs: 3, md: 4 },
         mb: { lg: -10, md: -10, xs: -5 },
         bgcolor: "#fafafa",
         position: "relative",
@@ -140,7 +140,7 @@ export default function Hero() {
               <Typography
                 variant="h1"
                 sx={{
-                  fontSize: { xs: "1.5rem", md: "2.5rem", lg: "3.5rem" },
+                  fontSize: { xs: "1.6rem", md: "2.5rem", lg: "3.5rem" },
                   fontWeight: 900,
                   lineHeight: 1.05,
                   mt: 3,
@@ -291,7 +291,7 @@ export default function Hero() {
             </FadeInUp>
           </Grid>
           {/* RIGHT: Form */}
-          <Grid item xs={12} lg={5}>
+          <Grid size = {{xs:12, lg:5}} mt={{lg:8}} >
             <FadeInRight delay={0.4}>
               <Box
                 sx={{

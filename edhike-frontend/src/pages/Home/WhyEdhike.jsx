@@ -224,7 +224,7 @@ export default function WhyEdhike() {
               background: GRADIENT,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-              fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
+              fontSize: { xs: "1.2rem", md: "1.8rem", lg: "2rem" },
             }}
           >
             Your Journey to Career Growth Begins with EdHike

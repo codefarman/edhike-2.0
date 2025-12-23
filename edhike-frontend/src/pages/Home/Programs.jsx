@@ -54,7 +54,7 @@ export default function Programs() {
   const isMobile = useMediaQuery(theme.breakpoints.down("lg")); 
 
   return (
-    <Box component="section" sx={{ py: { xs: 8, md: 12 }, bgcolor: "white" }}>
+    <Box component="section" sx={{ py: { xs: 3, md: 5 }, mb: {xs: 4}, bgcolor: "white" }}>
       <Container maxWidth="xl">
 {/* Heading */}
 <FadeInUp delay={0.1}>
@@ -84,7 +84,7 @@ export default function Programs() {
         background: GRADIENT,
         WebkitBackgroundClip: "text",
         WebkitTextFillColor: "transparent",
-        fontSize:{ xs: "0.9rem", md: "1.6rem", lg: "2rem"},
+        fontSize:{ xs: "1rem", md: "1.6rem", lg: "2rem"},
       }}
     >
       Accelerate Your Career with the Right Program

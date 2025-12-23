@@ -70,7 +70,7 @@ export default function Testimonials() {
               sx={{
                 mt: 1,
                 fontWeight: 800,
-                fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
+                fontSize: { xs: "1.2rem", md: "1.8rem", lg: "2rem" },
                 background: GRADIENT,
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",

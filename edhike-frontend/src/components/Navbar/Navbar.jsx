@@ -20,6 +20,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+
 
 const RED = "#E31E24";
 const PURPLE = "#5829A7";
@@ -59,6 +61,7 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState("");
   const [closeTimer, setCloseTimer] = useState(null);
 
+  
   const menuItems = [
     { label: "Study Abroad", href: "/study-abroad", dropdown: "study" },
     { label: "Online MBA", href: "/online-mba" },

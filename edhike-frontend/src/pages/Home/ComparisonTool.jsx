@@ -33,9 +33,9 @@ export default function ComparisonTool() {
               variant="h4"
               sx={{
                 mt: { xs: 1, md: 1.5 },
-                mb: { xs: 1.5, md: 2 },
+                mb: { xs: 1, md: 2 },
                 fontWeight: 900,
-                fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
+                fontSize: { xs: "1.2rem", md: "1.8rem", lg: "2rem" },
                 lineHeight: 1.2,
               }}
             >
@@ -65,10 +65,10 @@ export default function ComparisonTool() {
         {/* Very Small Card */}
         <FadeInUp delay={0.2}>
           <ScaleIn delay={0.2}>
-            <Box sx={{ maxWidth: { xs: 200, md: 250, lg:300 }, mx: "auto" }}>
+            <Box sx={{ maxWidth: { xs: 200, md: 250, lg:300 }, mt: {xs: -4}, mx: "auto" }}>
               <Card
                 component="a"
-                href="https://edhike-form.vercel.app/"
+              
                 rel="noopener noreferrer"
                 sx={{
                   display: "block",
@@ -123,6 +123,7 @@ export default function ComparisonTool() {
 
                 <Button
                   variant="contained"
+                  href="https://edhike-form.vercel.app/"
                   sx={{
                     backgroundImage: GRADIENT,
                     bgcolor: "transparent",
