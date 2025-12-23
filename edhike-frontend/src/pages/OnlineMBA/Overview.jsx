@@ -30,7 +30,7 @@ const GRADIENT = `linear-gradient(135deg, ${RED}, ${PURPLE})`;
 
 export default function Overview() {
     return (
-        <Box component="section" sx={{ py: { xs: 8, md: 14 }, bgcolor: "#fafafa" }}>
+        <Box component="section" sx={{ py: { xs: 8, md: 14 },mt:{xs:-8 ,  lg: -8},  bgcolor: "#fafafa" }}>
             <Container maxWidth="lg">
                 {/* TOP SUMMARY */}
                 <FadeInUp>

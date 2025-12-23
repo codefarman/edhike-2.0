@@ -28,7 +28,7 @@ export default function Hero() {
       component="section"
       sx={{
         pt: { xs: 6, md: 16, lg: 18 },
-        pb: { xs: 10, md: 18 },
+        pb: { xs: 4, md: 6 , lg: 8 },
         mb: { xs: -6, md: -10 },
         bgcolor: "#fafafa",
         position: "relative",
@@ -263,14 +263,14 @@ export default function Hero() {
               >
                 {/* Gradient Glow */}
                 <Box
-                  sx={{
-                    position: "absolute",
-                    inset: "-12%",
-                    background: GRADIENT,
-                    opacity: 0.10,
-                    filter: "blur(50px)",
-                    zIndex: 0,
-                  }}
+                  // sx={{
+                  //   position: "absolute",
+                  //   inset: "-12%",
+                  //   background: GRADIENT,
+                  //   opacity: 0.10,
+                  //   // filter: "blur(50px)",
+                  //   zIndex: 0,
+                  // }}
                 />
 
                 {/* Image Card */}

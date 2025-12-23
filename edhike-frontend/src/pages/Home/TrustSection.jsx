@@ -119,7 +119,7 @@ export default function TrustSection() {
               sx={{
                 display: "flex",
                 gap: { xs: 3, md: 4 },
-                animation: "scroll 25s linear infinite",
+                animation: "scroll 20s linear infinite",
                 "&:hover": { animationPlayState: "paused" },
               }}
             >
@@ -150,7 +150,7 @@ export default function TrustSection() {
                       src={logo}
                       alt="University Logo"
                       sx={{
-                        maxHeight: { xs: 28, md: 34 },
+                        maxHeight: { xs: 34, md: 40, lg: 50 },
                         maxWidth: "90%",
                         objectFit: "contain",
                         
