@@ -44,7 +44,7 @@ export default function Footer() {
 
   const socialLinks = [
     { Icon: LinkedIn, url: "https://www.linkedin.com/company/edhike-in/" },
-    { Icon: Facebook, url: "https://www.facebook.com/edhikeeducation" }, 
+    { Icon: Facebook, url: "https://www.facebook.com/edhikeeducation" },
     { Icon: Instagram, url: "https://www.instagram.com/edhike_education" },
     { Icon: YouTube, url: "https://www.youtube.com/@Edhike_Education-dg8iu" },
   ];
@@ -217,13 +217,18 @@ export default function Footer() {
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                   <Mail sx={{ color: PURPLE, fontSize: 18 }} />
                   <Link
-                    href="info@edhike.in"
+                    href="mailto:info@edhike.in?subject=Inquiry%20from%20EdHike%20Website&body=Hi%20EdHike%20Team,"
                     underline="none"
-                    sx={{ color: "#666", fontSize: "0.95rem", "&:hover": { color: PURPLE } }}
+                    sx={{
+                      color: "#666",
+                      fontSize: "0.95rem",
+                      "&:hover": { color: PURPLE },
+                    }}
                   >
                     info@edhike.in
                   </Link>
                 </Box>
+
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                   <LocationOn sx={{ color: PURPLE, fontSize: 18 }} />
                   <Typography variant="body2" sx={{ color: "#666", fontSize: "0.95rem" }}>
