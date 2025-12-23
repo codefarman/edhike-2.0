@@ -56,7 +56,7 @@ export default function FAQ() {
   };
 
   return (
-    <Box component="section" sx={{ py: { xs: 4, md: 6, lg: 8 }, mt: { xs: -4, md: 0, lg: 0 }, bgcolor: "white" }}>
+    <Box id="faq" component="section" sx={{ py: { xs: 4, md: 6, lg: 8 }, mt: { xs: -4, md: 0, lg: 0 }, bgcolor: "white" }}>
       <Container maxWidth="md">
         <FadeInUp>
           <Box sx={{ textAlign: "center", mb: { xs: 3, md: 5 } }}>

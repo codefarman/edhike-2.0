@@ -56,7 +56,7 @@ const TESTIMONIALS = [...BASE_TESTIMONIALS, ...BASE_TESTIMONIALS, ...BASE_TESTIM
 
 export default function Testimonials() {
   return (
-    <Box component="section" sx={{ py: { xs: 4, md: 8, lg: 12 }, bgcolor: "white", overflow: "hidden" }}>
+    <Box id="testimonials" component="section" sx={{ py: { xs: 4, md: 8, lg: 12 }, bgcolor: "white", overflow: "hidden" }}>
       <Container maxWidth="xl">
         {/* Heading */}
         <FadeInUp delay={0.1}>

@@ -126,7 +126,7 @@ export default function Programs() {
 
 
   return (
-    <Box component="section" sx={{ py: { xs: 3, md: 5 }, mb: { xs: 4 }, bgcolor: "white" }}>
+    <Box id="programs" component="section" sx={{ py: { xs: 3, md: 5 }, mb: { xs: 4 }, bgcolor: "white" }}>
       <Container maxWidth="lg">
         {/* Heading */}
         <FadeInUp delay={0.1}>
