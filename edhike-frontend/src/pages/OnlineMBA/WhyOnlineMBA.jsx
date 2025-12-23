@@ -79,7 +79,7 @@ export default function WhyOnlineMBA() {
                     sx={{
                       borderRadius: 3,
                       textAlign: "center",
-                      p: 1.5,
+                      p: 1,
                       height: "100%",
                       border: "1px solid #eee",
                       transition: "0.25s",
@@ -124,7 +124,7 @@ export default function WhyOnlineMBA() {
 
           {/* COMPACT BENEFIT LIST */}
             <FadeInUp delay={0.3}>
-                  <Stack spacing={2} mt={2}>
+                  <Stack spacing={2} mt={4}>
                       {[
                           { icon: <Insights />, title: "Industry Expertise & Business Acumen", desc: "Gain comprehensive knowledge of business operations across diverse industries and develop cross-functional understanding of organizational dynamics" },
                           { icon: <Psychology />, title: "Entrepreneurial & Leadership Development", desc: "Build essential entrepreneurial skills through practical insights, proven methodologies, and valuable business tools for launching or scaling ventures" },

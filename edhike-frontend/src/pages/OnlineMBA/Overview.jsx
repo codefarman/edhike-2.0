@@ -154,7 +154,7 @@ export default function Overview() {
 
                 {/* DESCRIPTION */}
                 <FadeInUp delay={0.3}>
-                    <Typography sx={{ mt: 5, mb: 6, lineHeight: 1.9, fontSize: { xs: "0.8rem", md: "1.05rem" }, color: "text.secondary" }}>
+                    <Typography sx={{ mt: 5, mb: 6, lineHeight: 1.9, fontSize: { xs: "0.8rem", md: "1.05rem" }, color: "text.secondary", textAlign: "center" }}>
                         An Online MBA is a two-year postgraduate program costing INR 30,000-8,00,000, offering flexible learning for working professionals. The curriculum covers business fundamentals, strategic thinking, and leadership skills essential for real-world challenges. MBA graduates can earn up to 77% more than bachelor's degree holders, with specializations in finance, analytics, and digital business providing strongest returns. This format enables career advancement without income sacrifice, making it a high-ROI investment for ambitious professionals seeking leadership roles.
                     </Typography>
                 </FadeInUp>
@@ -187,8 +187,40 @@ export default function Overview() {
                         alignItems="stretch"
                         sx={{ flexWrap: { xs: "wrap", md: "nowrap" } }}
                     >
+                        {[
+                        {title:' Career Impact Career Impact',description:"The numbers tell a compelling story: MBA graduates consistently out-earn Bachelor's degree holders, with salary premiums exceeding 77% potentially.Whether you're targeting leadership roles in Operations, Finance, Marketing,or emerging fields like Business Analytics and Digital Strategy, an MBAaccelerates your trajectory."},
+                        {title:' High-Growth Specializations',description:"Focus areas with strongest career potential include Finance, Management,Business Analytics, Digital Marketing, Supply Chain Operations, &Entrepreneurship. These specializations align with evolving market demandsand offer superior advancement opportunities."}
+                        ].map((item,index)=>(
+                            <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }} key={index}>
+                            <Paper
+                                elevation={6}
+                                sx={{
+                                    p: { xs: 4, md: 5 },
+                                    borderRadius: 6,
+                                    bgcolor: "#fff",
+                                    width: "100%",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    border: `3px solid transparent`,
+                                    background: `linear-gradient(#fff, #fff) padding-box, ${GRADIENT} border-box`,
+                                }}
+                            >
+                                <Typography
+                                    variant="h6"
+                                    fontWeight={900}
+                                    sx={{ mb: 1, textAlign: "center", color: PURPLE }}
+                                >
+                                    {item.title}
+                                </Typography>
+
+                                <Typography color="text.secondary" sx={ { lineHeight: 1.8, fontSize: { xs: "0.8rem", md: "1rem" },textAlign:'center' } }>
+                                    {item.description}
+                                </Typography>
+                            </Paper>
+                        </Grid>
+                        ))}
                         {/* Card 1 */}
-                        <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }}>
+                        {/* <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }}>
                             <Paper
                                 elevation={6}
                                 sx={{
@@ -219,10 +251,10 @@ export default function Overview() {
                                     accelerates your trajectory.
                                 </Typography>
                             </Paper>
-                        </Grid>
+                        </Grid> */}
 
                         {/* Card 2 */}
-                        <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }}>
+                        {/* <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }}>
                             <Paper
                                 elevation={6}
                                 sx={{
@@ -245,14 +277,14 @@ export default function Overview() {
                                     High-Growth Specializations
                                 </Typography>
 
-                                <Typography color="text.secondary" sx={{ lineHeight: 1.8, fontSize: { xs: "0.8rem", md: "1rem" }, }}>
+                                 <Typography color="text.secondary" sx={ { lineHeight: 1.8, fontSize: { xs: "0.8rem", md: "1rem" } } }>
                                     Focus areas with strongest career potential include Finance, Management,
                                     Business Analytics, Digital Marketing, Supply Chain Operations, &
                                     Entrepreneurship. These specializations align with evolving market demands
                                     and offer superior advancement opportunities.
                                 </Typography>
                             </Paper>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
 
 
