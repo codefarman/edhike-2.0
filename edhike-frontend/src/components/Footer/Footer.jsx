@@ -217,13 +217,14 @@ export default function Footer() {
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                   <Mail sx={{ color: PURPLE, fontSize: 18 }} />
                   <Link
-                    href="mailto:info@edhike.in?subject=Inquiry%20from%20EdHike%20Website&body=Hi%20EdHike%20Team,"
+                    href="mailto:info@edhike.in?subject=Enquiry%20for..&body=Hi%20EdHike%20Team,"
                     underline="none"
                     sx={{
                       color: "#666",
                       fontSize: "0.95rem",
                       "&:hover": { color: PURPLE },
                     }}
+                    
                   >
                     info@edhike.in
                   </Link>

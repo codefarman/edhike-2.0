@@ -79,7 +79,7 @@ export default function ComparisonTool() {
                   boxShadow: "0 15px 40px rgba(0,0,0,0.1)",
                   border: "2px solid #eee",
                   textAlign: "center",
-                  transition: "all 0.4s",
+                  transition: "all 0.5s",
                   "&:hover": {
                     transform: "translateY(-10px)",
                     boxShadow: "0 25px 60px rgba(88,41,167,0.15)",
@@ -135,7 +135,7 @@ export default function ComparisonTool() {
                     fontSize: { xs: "0.7rem", md: "1.05rem" },
                     boxShadow: "0 10px 30px rgba(227,30,36,0.3)",
                     "&:hover": {
-                      transform: "translateY(-3px)",
+                      transform: "translateY(-1px)",
                       boxShadow: "0 18px 45px rgba(227,30,36,0.4)",
                     },
                   }}

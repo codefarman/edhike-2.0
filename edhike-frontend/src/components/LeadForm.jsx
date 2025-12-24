@@ -1,3 +1,4 @@
+// src/LeadForm.jsx
 import {
   Box,
   TextField,
@@ -5,275 +6,282 @@ import {
   Button,
   Stack,
   Typography,
-  Fade,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  useMediaQuery,
 } from "@mui/material";
 import { useState } from "react";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import {
-  DESTINATIONS,
-  INTAKE_MONTHS,
-  INTAKE_YEARS,
-  INTERESTS,
-} from "../data/studyAbroadData";
 
-const RED = "#E31E24";
-const PURPLE = "#5829A7";
-const GRADIENT = `linear-gradient(135deg, ${RED}, ${PURPLE})`;
+import { INTERESTS } from "../data/globalFormData";
+import { FORM_SCHEMAS } from "./Forms/formSchemas";
+import SearchableStateCity from "./Forms/SearchableStateCity";
 
-/* Compact dropdown */
-const COMPACT_MENU_PROPS = {
+/* ================= GLOBAL FIELD STYLE ================= */
+const compactFieldSx = {
+  width: "100%",
+  "& .MuiInputBase-input": {
+    fontSize: "0.85rem",
+    padding: "8.5px 12px",
+  },
+  "& .MuiInputLabel-root": {
+    fontSize: "0.8rem",
+    transform: "translate(14px, 10px) scale(1)",
+  },
+  "& .MuiInputLabel-shrink": {
+    fontSize: "0.7rem",
+    transform: "translate(14px, -6px) scale(1)",
+  },
+};
+
+const compactMenuProps = {
   PaperProps: {
     sx: {
-      maxHeight: { xs: 200, md: 260 },
-      mt: 0.5,
-      borderRadius: 2,
+      maxHeight: 220,
+      "& .MuiMenuItem-root": {
+        fontSize: "0.85rem",
+        minHeight: 32,
+        py: 0.8,
+      },
     },
   },
 };
+/* ===================================================== */
 
-/* 🔒 unified field styling */
-const FIELD_SX = {
-  "& .MuiInputBase-input": {
-    fontSize: "0.85rem",
-    py: 1.1,
-  },
-  "& .MuiInputLabel-root": {
-    fontSize: "0.85rem",
-  },
-  "& .MuiFormHelperText-root": {
-    fontSize: "0.7rem",
-  },
-};
+export default function LeadForm() {
+  const [interest, setInterest] = useState("");
+  const [location, setLocation] = useState({ state: "", city: "" });
+  const [submitted, setSubmitted] = useState(false);
 
-export default function LeadForm({ onClose }) {
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState(false);
+  const isMobile = useMediaQuery("(max-width:600px)");
+  const fields = FORM_SCHEMAS[interest] || [];
 
-  /* ---------- VALIDATION ---------- */
-  const validate = (data) => {
-    const err = {};
+  const intakeYearField = fields.find((f) => f.name === "intakeYear");
+  const intakeMonthField = fields.find((f) => f.name === "intakeMonth");
 
-    if (!data.get("interest")) err.interest = "Required";
-
-    const name = data.get("name")?.trim();
-    if (!name) err.name = "Required";
-    else if (!/^[a-zA-Z\s]{2,}$/.test(name))
-      err.name = "Only letters allowed";
-
-    const phone = data.get("phone")?.trim();
-    if (!phone) err.phone = "Required";
-    else if (!/^[6-9]\d{9}$/.test(phone))
-      err.phone = "Invalid number";
-
-    const email = data.get("email")?.trim();
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-      err.email = "Invalid email";
-
-    return err;
-  };
-
-  /* ---------- SUBMIT ---------- */
-  const handleSubmit = async (e) => {
+  /* ---------- FAST SUBMIT (NO DELAY UI) ---------- */
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors({});
 
+    // ✅ SHOW THANK YOU IMMEDIATELY
+    setTimeout(() => {
+      setSubmitted(true);
+    }, 1000);
+    
+
+    // ✅ SEND DATA IN BACKGROUND
     const formData = new FormData(e.currentTarget);
-    const validationErrors = validate(formData);
+    formData.append("interest", interest);
 
-    if (Object.keys(validationErrors).length) {
-      setErrors(validationErrors);
-      return;
-    }
+    if (location.state) formData.append("state", location.state);
+    if (location.city) formData.append("city", location.city);
 
-    setLoading(true);
-
-    try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbxjA0qBsjMkyt90ft5UGsAngDWfuE66KmflPS7x3aPgwhELWjKO1hqN8byM9izZ2VwdnQ/exec",
-        { method: "POST", body: formData }
-      );
-
-      setSuccess(true);
-
-      // auto-close after 2.5s
-      setTimeout(() => onClose?.(), 2500);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+    fetch(
+      "https://script.google.com/macros/s/AKfycbzy5UxXCXQldEAPIvo8fATGReypvG-Wnv59kehCNn5hhCsB_bBYAK0KxDT1ETPb35OhWw/exec",
+      {
+        method: "POST",
+        body: formData,
+      }
+    ).catch(() => {
+      // silent fail – do not block UI
+    });
   };
 
-  /* ---------- SUCCESS CARD ---------- */
-  if (success) {
+  /* ================= THANK YOU UI ================= */
+  if (submitted) {
     return (
-      <Fade in>
-        <Box textAlign="center" py={4}>
-          <CheckCircleIcon sx={{ fontSize: 60, color: "#22c55e" }} />
-          <Typography fontWeight={800} mt={2}>
-            Thank You!
-          </Typography>
-          <Typography fontSize="0.85rem" color="text.secondary" mt={1}>
-            Our expert will contact you shortly.
-          </Typography>
-        </Box>
-      </Fade>
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: 380,
+          mx: "auto",
+          py: 5,
+          px: 0,
+          textAlign: "center",
+        }}
+      >
+        <Typography fontSize="1.2rem" fontWeight={700} mb={1}>
+          🎉 Thank You!
+        </Typography>
+        <Typography fontSize="0.85rem" color="text.secondary">
+          Our experts will contact you shortly.
+        </Typography>
+      </Box>
     );
   }
 
+  /* ================= FORM ================= */
   return (
-    <Box component="form" onSubmit={handleSubmit} noValidate>
-      {/* HEADER */}
-      <Typography
-        sx={{
-          fontSize: "1rem",
-          fontWeight: 800,
-          textAlign: "center",
-          mb: 0.4,
-          background: GRADIENT,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}
-      >
+    <Box
+      sx={{
+        width: "100%",
+        maxWidth: { xs: "100%", sm: 380 },
+        mx: "auto",
+        px: { xs: 0, sm: 2 },
+        py: 2,
+        overflowX: "hidden",
+      }}
+    >
+      <Typography fontWeight={700} fontSize="0.95rem" textAlign="center" mb={1}>
         Free Expert Counselling
       </Typography>
 
-      <Typography
-        sx={{
-          fontSize: "0.72rem",
-          textAlign: "center",
-          color: "text.secondary",
-          mb: 2,
-        }}
-      >
-        One form • Multiple global opportunities
-      </Typography>
-
-      <Stack spacing={1.2}>
-        <TextField
-          select
-          name="interest"
-          label="Interested In"
-          required
-          size="small"
-          error={!!errors.interest}
-          helperText={errors.interest}
-          sx={FIELD_SX}
-          SelectProps={{ MenuProps: COMPACT_MENU_PROPS }}
-        >
-          {INTERESTS.map((v) => (
-            <MenuItem key={v} value={v} sx={{ fontSize: "0.85rem" }}>
-              {v}
-            </MenuItem>
-          ))}
-        </TextField>
-
-        <TextField
-          select
-          name="destination"
-          label="Preferred Destination"
-          size="small"
-          sx={FIELD_SX}
-          SelectProps={{ MenuProps: COMPACT_MENU_PROPS }}
-        >
-          {DESTINATIONS.map((v) => (
-            <MenuItem key={v} value={v} sx={{ fontSize: "0.85rem" }}>
-              {v}
-            </MenuItem>
-          ))}
-        </TextField>
-
-        <Stack direction="row" spacing={1}>
+      <Box component="form" onSubmit={handleSubmit} noValidate>
+        <Stack spacing={1}>
+          {/* INTEREST */}
           <TextField
             select
-            name="intakeYear"
-            label="Year"
+            label="Interested In"
             size="small"
-            fullWidth
-            sx={FIELD_SX}
-            SelectProps={{ MenuProps: COMPACT_MENU_PROPS }}
+            required
+            value={interest}
+            sx={compactFieldSx}
+            SelectProps={{ MenuProps: compactMenuProps }}
+            onChange={(e) => {
+              setInterest(e.target.value);
+              setLocation({ state: "", city: "" });
+            }}
           >
-            {INTAKE_YEARS.map((v) => (
-              <MenuItem key={v} value={v} sx={{ fontSize: "0.85rem" }}>
-                {v}
-              </MenuItem>
+            {INTERESTS.map((i) => (
+              <MenuItem key={i} value={i}>{i}</MenuItem>
             ))}
           </TextField>
 
-          <TextField
-            select
-            name="intakeMonth"
-            label="Month"
-            size="small"
+          {/* DYNAMIC FIELDS */}
+          {interest && (
+            <>
+              {fields
+                .filter(
+                  (f) =>
+                    !["intakeYear", "intakeMonth", "stateCity"].includes(f.name)
+                )
+                .map((f) => {
+                  if (f.type === "select") {
+                    return (
+                      <TextField
+                        key={f.name}
+                        select
+                        name={f.name}
+                        label={f.label}
+                        size="small"
+                        required
+                        sx={compactFieldSx}
+                        SelectProps={{ MenuProps: compactMenuProps }}
+                      >
+                        {f.options.map((o) => (
+                          <MenuItem key={o} value={o}>{o}</MenuItem>
+                        ))}
+                      </TextField>
+                    );
+                  }
+
+                  if (f.type === "radio") {
+                    return (
+                      <Box key={f.name}>
+                        <Typography fontSize="0.7rem" mb={0.3}>
+                          {f.label} *
+                        </Typography>
+                        <RadioGroup name="enrolledBefore" row>
+                          {f.options.map((o) => (
+                            <FormControlLabel
+                              key={o}
+                              value={o}
+                              control={<Radio size="small" />}
+                              label={<Typography fontSize="0.75rem">{o}</Typography>}
+                            />
+                          ))}
+                        </RadioGroup>
+                      </Box>
+                    );
+                  }
+
+                  if (f.type === "textarea") {
+                    return (
+                      <TextField
+                        key={f.name}
+                        name="message"
+                        label={f.label}
+                        size="small"
+                        multiline
+                        rows={2}
+                        required
+                        sx={compactFieldSx}
+                      />
+                    );
+                  }
+
+                  return null;
+                })}
+
+              {/* INTAKE YEAR + MONTH */}
+              {intakeYearField && intakeMonthField && (
+                <Stack direction={isMobile ? "column" : "row"} spacing={1}>
+                  <TextField
+                    select
+                    name="intakeYear"
+                    label={intakeYearField.label}
+                    size="small"
+                    required
+                    fullWidth
+                    sx={compactFieldSx}
+                    SelectProps={{ MenuProps: compactMenuProps }}
+                  >
+                    {intakeYearField.options.map((o) => (
+                      <MenuItem key={o} value={o}>{o}</MenuItem>
+                    ))}
+                  </TextField>
+
+                  <TextField
+                    select
+                    name="intakeMonth"
+                    label={intakeMonthField.label}
+                    size="small"
+                    required
+                    fullWidth
+                    sx={compactFieldSx}
+                    SelectProps={{ MenuProps: compactMenuProps }}
+                  >
+                    {intakeMonthField.options.map((o) => (
+                      <MenuItem key={o} value={o}>{o}</MenuItem>
+                    ))}
+                  </TextField>
+                </Stack>
+              )}
+
+              {/* STATE + CITY */}
+              {fields.some((f) => f.type === "stateCity") && (
+                <SearchableStateCity onChange={setLocation} />
+              )}
+            </>
+          )}
+
+          {/* USER INFO */}
+          <TextField name="name" label="Name" size="small" required sx={compactFieldSx} />
+          <TextField name="phone" label="Phone" size="small" required sx={compactFieldSx} />
+          <TextField name="email" label="Email" size="small" required sx={compactFieldSx} />
+
+          <Button
+            type="submit"
             fullWidth
-            sx={FIELD_SX}
-            SelectProps={{ MenuProps: COMPACT_MENU_PROPS }}
+            sx={{
+              mt: 0.5,
+              py: 1,
+              fontSize: "0.85rem",
+              fontWeight: 700,
+              borderRadius: 2,
+              textTransform: "none",
+              background: "linear-gradient(135deg,#E31E24,#7B2FF7)",
+              color: "#fff",
+            }}
           >
-            {INTAKE_MONTHS.map((v) => (
-              <MenuItem key={v} value={v} sx={{ fontSize: "0.85rem" }}>
-                {v}
-              </MenuItem>
-            ))}
-          </TextField>
+            Start My Journey
+          </Button>
+
+          <Typography fontSize="0.65rem" textAlign="center" color="text.secondary">
+            🔒 100% Private • Free Counselling
+          </Typography>
         </Stack>
-
-        <TextField
-          name="name"
-          label="Full Name"
-          required
-          size="small"
-          error={!!errors.name}
-          helperText={errors.name}
-          sx={FIELD_SX}
-        />
-
-        <TextField
-          name="phone"
-          label="Phone Number"
-          required
-          size="small"
-          error={!!errors.phone}
-          helperText={errors.phone}
-          inputProps={{ maxLength: 10 }}
-          sx={FIELD_SX}
-        />
-
-        <TextField
-          name="email"
-          label="Email (optional)"
-          size="small"
-          error={!!errors.email}
-          helperText={errors.email}
-          sx={FIELD_SX}
-        />
-
-        <Button
-          type="submit"
-          disabled={loading}
-          sx={{
-            mt: 1,
-            py: 1,
-            fontSize: "0.9rem",
-            fontWeight: 800,
-            borderRadius: 2,
-            background: GRADIENT,
-            color: "#fff",
-          }}
-        >
-          {loading ? "Submitting…" : "Get Free Counselling"}
-        </Button>
-
-        <Typography
-          sx={{
-            fontSize: "0.65rem",
-            textAlign: "center",
-            color: "text.secondary",
-          }}
-        >
-          Your data is safe. No spam. Ever.
-        </Typography>
-      </Stack>
+      </Box>
     </Box>
   );
 }

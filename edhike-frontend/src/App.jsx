@@ -24,33 +24,27 @@
 
 
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// Pages
-import Home from "./pages/Home/Home";
-import OnlineMBA from "./pages/OnlineMBA/OnlineMBA";
+import { BrowserRouter } from "react-router-dom";
 
 // Layout
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 
+// Routes
+import AppRoutes from "./routes/AppRoutes";
+
 const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/online-mba" element={<OnlineMBA />} />
-        
-      </Routes>
-
+      <AppRoutes />
       <Footer />
     </BrowserRouter>
   );
 };
 
 export default App;
+
 
 
 

@@ -5,7 +5,7 @@ import WhyEdHike from './WhyEdhike'
 import Programs from './Programs'
 import ComparisonTool from './ComparisonTool'
 import Testimonials from './Testimonials'
-import LeadCTA from '../../components/Form/LeadCTA'
+import LeadCTA from '../../components/Forms/LeadCTA'
 import FAQ from './FAQ'
 
 
