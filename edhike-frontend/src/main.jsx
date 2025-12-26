@@ -11,20 +11,14 @@ import posthog from 'posthog-js'
 
 // Initialize PostHog ONCE
 
+
 posthog.init(
-
-  'POSTHOG_KEY',
-
+  import.meta.env.VITE_POSTHOG_KEY,
   {
-
-    api_host: 'https://app.posthog.com', // or eu.posthog.com
-
+    api_host: 'https://us.i.posthog.com',
     autocapture: true,
-
     capture_pageview: true
-
   }
-
 )
 
 createRoot(document.getElementById("root")).render(

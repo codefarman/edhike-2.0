@@ -1,19 +1,24 @@
-import { Box, Container, Typography, Button, Stack } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Stack,
+  Chip,
+} from "@mui/material";
 import {
   FadeInUp,
-  TextReveal,
-  ScaleIn,
   StaggerContainer,
   StaggerItem,
   BounceIn,
-} from "../Animation/Motion"; 
+  TextReveal,
+} from "../Animation/Motion";
 import {
   GRADIENT,
-  GRADIENT_LIGHT,
   CTA_PRIMARY,
   RED,
   PURPLE,
-  SHADOW_MEDIUM,
+  SHADOW_SOFT,
 } from "../../theme/brand";
 
 const HeroSection = ({ hero }) => {
@@ -22,116 +27,106 @@ const HeroSection = ({ hero }) => {
       sx={{
         position: "relative",
         overflow: "hidden",
-        minHeight: { xs: "80vh", md: "90vh" },
+        py: { xs: 6, md: 8 }, // Reduced vertical padding
+        background: "#fafafa",
+        minHeight: { xs: "85vh", md: "80vh" }, // Less tall overall
         display: "flex",
         alignItems: "center",
-        background: GRADIENT,
-        py: { xs: 8, md: 12 },
       }}
     >
-      {/* Decorative Background Shapes */}
+      {/* Fewer, larger subtle blobs for creative depth – no images */}
       <Box
         sx={{
           position: "absolute",
-          top: -100,
-          right: -100,
-          width: { xs: 300, md: 600 },
-          height: { xs: 300, md: 600 },
-          borderRadius: "50%",
-          background: `radial-gradient(circle, ${RED}22, transparent 70%)`,
-          opacity: 0.6,
-          pointerEvents: "none",
-        }}
-      />
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: -150,
-          left: -150,
+          top: { xs: -60, md: -120 },
+          left: { xs: -100, md: -200 },
           width: { xs: 400, md: 800 },
           height: { xs: 400, md: 800 },
           borderRadius: "50%",
-          background: `radial-gradient(circle, ${PURPLE}18, transparent 70%)`,
-          opacity: 0.5,
-          pointerEvents: "none",
+          background: `radial-gradient(circle, ${PURPLE}22, transparent 65%)`,
+          opacity: 0.35,
+        }}
+      />
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: { xs: -100, md: -200 },
+          right: { xs: -150, md: -300 },
+          width: { xs: 500, md: 1000 },
+          height: { xs: 500, md: 1000 },
+          borderRadius: "50%",
+          background: `radial-gradient(circle, ${RED}20, transparent 70%)`,
+          opacity: 0.4,
         }}
       />
 
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+      <Container maxWidth="md" sx={{ position: "relative", zIndex: 2 }}>
         <StaggerContainer delayChildren={0.1}>
-          <Stack spacing={{ xs: 3, md: 5 }} alignItems="flex-start" maxWidth={800}>
-            {/* Main Heading with Cinematic Text Reveal */}
+          <Stack spacing={{ xs: 2.5, md: 4 }} alignItems="center" textAlign="center"> {/* Tighter spacing */}
+
+            {/* Compact tag */}
+            <StaggerItem>
+              <FadeInUp>
+                <Chip
+                  label="Find Your Perfect Program"
+                  sx={{
+                    background: `${RED}12`,
+                    color: RED,
+                    fontWeight: 600,
+                    borderRadius: 50,
+                    px: { xs: 2.5, md: 3 },
+                    py: { xs: 1, md: 1.2 },
+                    fontSize: { xs: "0.85rem", md: "0.95rem" },
+                  }}
+                />
+              </FadeInUp>
+            </StaggerItem>
+
+            {/* Smaller headline with preserved impact */}
             <StaggerItem>
               <Typography
                 variant="h1"
-                fontWeight={800}
                 sx={{
-                  fontSize: { xs: "2.8rem", md: "4.5rem" },
-                  lineHeight: { xs: 1.1, md: 1.05 },
-                  color: "white",
-                  textShadow: "0 4px 20px rgba(0,0,0,0.3)",
+                  fontSize: { xs: "2.4rem", sm: "3.2rem", md: "4rem", lg: "4.5rem" }, // Reduced sizes
+                  fontWeight: 800,
+                  lineHeight: { xs: 1.15, md: 1.1 },
                 }}
               >
-                <TextReveal delay={0.3}>{hero.main_heading}</TextReveal>
+                <TextReveal delay={0.3}>
+                  <Box component="span" sx={{ color: PURPLE }}>Discover the Right</Box>
+                  <br />
+                  <Box component="span" sx={{ color: RED }}>Program for Your Future</Box>
+                </TextReveal>
               </Typography>
             </StaggerItem>
 
-            {/* Subheading */}
+            {/* Shorter, smaller description */}
             <StaggerItem>
               <FadeInUp delay={0.4}>
                 <Typography
-                  variant="h4"
-                  fontWeight={600}
+                  color="text.secondary"
                   sx={{
-                    color: "rgba(255,255,255,0.95)",
-                    mb: 2,
+                    fontSize: { xs: "1rem", md: "1.15rem" },
+                    maxWidth: 700,
+                    lineHeight: 1.6,
                   }}
                 >
-                  {hero.subheading}
+                  Earn Industry-recognized Degrees and Certifications Online — just as credible as Campus-Based Learning.
                 </Typography>
               </FadeInUp>
             </StaggerItem>
 
-            {/* Description */}
+            {/* Slightly smaller CTA */}
             <StaggerItem>
-              <FadeInUp delay={0.6}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1.1rem", md: "1.3rem" },
-                    color: "rgba(255,255,255,0.85)",
-                    maxWidth: 600,
-                    lineHeight: 1.7,
-                  }}
-                >
-                  {hero.description}
-                </Typography>
-              </FadeInUp>
-            </StaggerItem>
-
-            {/* CTA Button with Bounce Entrance */}
-            <StaggerItem>
-              <BounceIn delay={0.8}>
+              <BounceIn delay={0.6}>
                 <Button
                   size="large"
                   sx={{
                     ...CTA_PRIMARY,
-                    py: 1.8,
-                    px: 5,
-                    fontSize: "1.1rem",
-                    background: GRADIENT,
-                    backgroundSize: "200% 200%",
-                    animation: "gradientShift 6s ease infinite",
-                    "@keyframes gradientShift": {
-                      "0%": { backgroundPosition: "0% 50%" },
-                      "50%": { backgroundPosition: "100% 50%" },
-                      "100%": { backgroundPosition: "0% 50%" },
-                    },
-                    "&:hover": {
-                      transform: "translateY(-4px)",
-                      boxShadow: SHADOW_MEDIUM.replace("0.25", "0.4"),
-                    },
-                    transition: "all 0.3s ease",
+                    px: { xs: 5, md: 6 },
+                    py: { xs: 1.8, md: 2 },
+                    fontSize: { xs: "1.1rem", md: "1.2rem" },
+                    borderRadius: 50,
                   }}
                 >
                   Get Free Counselling
@@ -139,27 +134,41 @@ const HeroSection = ({ hero }) => {
               </BounceIn>
             </StaggerItem>
 
-            {/* Trust Indicators (Optional but powerful for education sites) */}
+            {/* Slimmer trust pills */}
             <StaggerItem>
-              <FadeInUp delay={1}>
-                <Stack
-                  direction="row"
-                  spacing={4}
-                  alignItems="center"
-                  sx={{ mt: 4 }}
-                >
-                  <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.8)" }}>
-                    ⭐ Trusted by 50,000+ students
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.8)" }}>
-                    •
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.8)" }}>
-                    🎓 100+ Top Universities
-                  </Typography>
-                </Stack>
-              </FadeInUp>
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                spacing={{ xs: 2, sm: 3 }}
+                justifyContent="center"
+              >
+                {[
+                  { title: "500+ Programs", subtitle: "UG, PG & Professional Courses" },
+                  { title: "Personalized Matching", subtitle: "Based on profile & aspirations" },
+                  { title: "95% Success Rate", subtitle: "Students placed in dream programs" },
+                ].map((item, i) => (
+                  <Box
+                    key={i}
+                    sx={{
+                      background: "#fff",
+                      borderRadius: 6,
+                      px: { xs: 3, md: 4 },
+                      py: { xs: 2, md: 2.5 },
+                      boxShadow: SHADOW_SOFT,
+                      minWidth: { xs: 260, sm: 200 },
+                      textAlign: "center",
+                    }}
+                  >
+                    <Typography variant="subtitle1" fontWeight={700}>
+                      {item.title}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {item.subtitle}
+                    </Typography>
+                  </Box>
+                ))}
+              </Stack>
             </StaggerItem>
+
           </Stack>
         </StaggerContainer>
       </Container>

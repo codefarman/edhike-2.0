@@ -36,7 +36,7 @@ export default function Hero() {
       }}
     >
       <Container maxWidth="xl">
-        <Grid container spacing={{ xs: 4, lg: 10 }} alignItems="center" mt={{ xs: 2, md: 1, lg: -10 }}>
+        <Grid container spacing={{ xs: 4,md: 6, lg: 10 }} alignItems="center" mt={{ xs: 2, md: 1, lg: -10 }}>
           {/* LEFT CONTENT */}
           <Grid item xs={12} lg={7} pl={{ lg: 5 }}>
             <FadeInUp delay={0.1}>

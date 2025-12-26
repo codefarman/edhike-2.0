@@ -682,56 +682,89 @@ function ProgramCard({ prog }) {
       </Box>
 
       {/* CONTENT */}
-      <Box sx={{ px: 2, pt: 1.4, pb: 1.2, flexGrow: 1 }}>
-        <Typography fontWeight={700} sx={{ fontSize: "0.9rem", mb: 0.6 }}>
-          {prog.title}
-        </Typography>
+      {/* CONTENT */}
+<Box sx={{ px: 2, pt: 1.4, pb: 1.2, flexGrow: 1 }}>
 
-        <Typography sx={{ fontSize: "0.7rem" }}>
-          <b>Duration:</b> {prog.summary.duration}
-        </Typography>
+  {/* TITLE */}
+  <Typography
+    fontWeight={700}
+    sx={{
+      fontSize: "0.9rem",
+      mb: 0.6,
+      color: RED, // 🔥 red title (matches image)
+    }}
+  >
+    {prog.title}
+  </Typography>
 
-        <Typography sx={{ fontSize: "0.7rem" }}>
-          <b>Format:</b> {prog.summary.format}
-        </Typography>
+  {/* META */}
+  <Typography sx={{ fontSize: "0.7rem", mb: 0.3 }}>
+    <Box component="span" sx={{ color: PURPLE, fontWeight: 600 }}>
+      Duration:
+    </Box>{" "}
+    <Box component="span" sx={{ color: "text.secondary" }}>
+      {prog.summary.duration}
+    </Box>
+  </Typography>
 
-        <Typography sx={{ fontSize: "0.7rem", mb: 0.6 }}>
-          <b>Career Roles:</b> {prog.summary.roles}
-        </Typography>
+  <Typography sx={{ fontSize: "0.7rem", mb: 0.3 }}>
+    <Box component="span" sx={{ color: PURPLE, fontWeight: 600 }}>
+      Format:
+    </Box>{" "}
+    <Box component="span" sx={{ color: "text.secondary" }}>
+      {prog.summary.format}
+    </Box>
+  </Typography>
 
-        <Typography
-          sx={{
-            fontSize: "0.72rem",
-            color: "text.secondary",
-            lineHeight: 1.45,
-            WebkitLineClamp: 3,
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-            mb: 2,
-          }}
-        >
-          {prog.summary.description}
-        </Typography>
+  <Typography sx={{ fontSize: "0.7rem", mb: 0.6 }}>
+    <Box component="span" sx={{ color: PURPLE, fontWeight: 600 }}>
+      Career Roles:
+    </Box>{" "}
+    <Box component="span" sx={{ color: "text.secondary" }}>
+      {prog.summary.roles}
+    </Box>
+  </Typography>
 
-        <Box
-          component="button"
-          onClick={() => navigate(`/programs/${prog.slug}`)}
-          sx={{
-            background: GRADIENT,
-            color: "#fff",
-            border: "none",
-            borderRadius: 50,
-            px: 2.2,
-            py: 0.55,
-            fontSize: "0.7rem",
-            fontWeight: 700,
-            cursor: "pointer",
-          }}
-        >
-          Learn more
-        </Box>
-      </Box>
+  {/* DESCRIPTION */}
+  <Typography
+    sx={{
+      fontSize: "0.72rem",
+      color: "text.secondary",
+      lineHeight: 1.45,
+      display: "-webkit-box",
+      WebkitLineClamp: 3,
+      WebkitBoxOrient: "vertical",
+      overflow: "hidden",
+      mb: 2,
+    }}
+  >
+    {prog.summary.description}
+  </Typography>
+
+  {/* BUTTON */}
+  <Box
+    component="button"
+    onClick={() => navigate(`/programs/${prog.slug}`)}
+    sx={{
+      background: GRADIENT,
+      color: "#fff",
+      border: "none",
+      borderRadius: 50,
+      px: 2.2,
+      py: 0.55,
+      fontSize: "0.7rem",
+      fontWeight: 700,
+      cursor: "pointer",
+      transition: "transform 0.25s ease",
+      "&:hover": {
+        transform: "scale(1.06)",
+      },
+    }}
+  >
+    Learn more
+  </Box>
+</Box>
+
     </Card>
   );
 }
