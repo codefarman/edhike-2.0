@@ -16,6 +16,7 @@ import { useState } from "react";
 import { INTERESTS } from "../data/globalFormData";
 import { FORM_SCHEMAS } from "./Forms/formSchemas";
 import SearchableStateCity from "./Forms/SearchableStateCity";
+import posthog from 'posthog-js'
 
 /* ================= GLOBAL FIELD STYLE ================= */
 const compactFieldSx = {
@@ -63,13 +64,21 @@ export default function LeadForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ✅ SHOW THANK YOU IMMEDIATELY
+    posthog.capture('form_submit', {
+
+    page: 'contact_ab_test',
+
+    variant: 'vercel'
+
+  })
+
+    // SHOW THANK YOU IMMEDIATELY
     setTimeout(() => {
       setSubmitted(true);
     }, 1000);
     
 
-    // ✅ SEND DATA IN BACKGROUND
+    // SEND DATA IN BACKGROUND
     const formData = new FormData(e.currentTarget);
     formData.append("interest", interest);
 
@@ -77,7 +86,7 @@ export default function LeadForm() {
     if (location.city) formData.append("city", location.city);
 
     fetch(
-      "https://script.google.com/macros/s/AKfycbzy5UxXCXQldEAPIvo8fATGReypvG-Wnv59kehCNn5hhCsB_bBYAK0KxDT1ETPb35OhWw/exec",
+      "https://script.google.com/macros/s/AKfycbxqlJBsu21RFP_qt6ECy1tTd8FgdjBCTyfBEs9WTLAiRKJIlaBqk0f2k3IoZbe_yeKdHw/exec",
       {
         method: "POST",
         body: formData,

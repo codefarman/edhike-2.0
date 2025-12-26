@@ -49,7 +49,7 @@ export default function WhyOnlineMBA() {
         <FadeInUp>
           <Typography
             sx={{
-              fontSize:{ xs: "1rem", md: "1.6rem", lg: "2rem"},
+              fontSize:{ xs: "1.2rem", md: "1.6rem", lg: "2rem"},
               fontWeight: 900,
               textAlign: "center",
               mb: 1,
@@ -63,7 +63,7 @@ export default function WhyOnlineMBA() {
 
           <Typography
             color="text.secondary"
-            sx={{ textAlign: "center", maxWidth: 720, mx: "auto", mb: 4, fontSize: { xs: "0.8rem", md: "1rem" } }}
+            sx={{ textAlign: "center", maxWidth: 720, mx: "auto", mb: 4, fontSize: { xs: "0.85rem", md: "1rem" } }}
           >
             A strategic degree designed for working professionals to accelerate growth,
             leadership skills, and earning potential.
@@ -108,11 +108,11 @@ export default function WhyOnlineMBA() {
                         {item.icon}
                       </Box>
 
-                      <Typography fontWeight={800} sx={{ fontSize: { xs: "0.8rem", md: "0.875rem", lg: "0.9rem" }, color: PURPLE }}>
+                      <Typography fontWeight={800} sx={{ fontSize: { xs: "0.85rem", md: "0.9rem", lg: "1rem" }, color: PURPLE }}>
                         {item.title}
                       </Typography>
 
-                      <Typography sx={{ fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.8rem" }, color: "text.secondary", mt: 0.5 }}>
+                      <Typography sx={{ fontSize: { xs: "0.75rem", md: "0.8rem", lg: "0.8rem" }, color: "text.secondary", mt: 0.5 }}>
                         {item.desc}
                       </Typography>
                     </CardContent>
@@ -136,10 +136,10 @@ export default function WhyOnlineMBA() {
                           <Stack key={item.title} direction="row" spacing={3} alignItems="flex-start">
                               <Box sx={{ color: RED, mt: 0.5, fontSize: { xs: 12, md: 15 } }}>{item.icon}</Box>
                               <Box>
-                                  <Typography fontWeight={800} sx={{ mb: 0, color: PURPLE, fontSize: { xs: "0.9rem", md: "1rem" } }}>
+                                  <Typography fontWeight={800} sx={{ mb: 0, color: PURPLE, fontSize: { xs: "0.95rem", md: "1rem" } }}>
                                       ▸ {item.title}
                                   </Typography>
-                                  <Typography color="text.secondary" sx={{ fontSize: { xs: "0.8rem", md: "1rem" } }}>
+                                  <Typography color="text.secondary" sx={{ fontSize: { xs: "0.85rem", md: "1rem" } }}>
                                       {item.desc}
                                   </Typography>
                               </Box>
@@ -154,7 +154,7 @@ export default function WhyOnlineMBA() {
           <Box sx={{ mt: 5 }}>
             <Typography
               align="center"
-              sx={{ fontSize: { xs: "1rem", md: "1.5rem", lg: "2rem" }, fontWeight: 900, mb: 2, background: GRADIENT, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+              sx={{ fontSize: { xs: "1.2rem", md: "1.5rem", lg: "2rem" }, fontWeight: 900, mb: 2, background: GRADIENT, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
             >
               What We Ensure
             </Typography>
@@ -175,10 +175,10 @@ export default function WhyOnlineMBA() {
                     <Box sx={{ color: RED, fontSize: { xs: 15, md: 24 }, mb: 0 }}>
                       {item.icon}
                     </Box>
-                    <Typography fontWeight={800} sx={{ fontSize: { xs: "0.8rem", md: "0.875rem", lg: "0.9rem"  }, mb: 0.2, color: PURPLE }}>
+                    <Typography fontWeight={800} sx={{ fontSize: { xs: "0.85rem", md: "0.875rem", lg: "0.9rem"  }, mb: 0.2, color: PURPLE }}>
                       {item.title}
                     </Typography>
-                    <Typography fontSize={{ xs: "0.7rem", md: "0.8rem", lg: "0.8rem" }} color="text.secondary">
+                    <Typography fontSize={{ xs: "0.75rem", md: "0.8rem", lg: "0.8rem" }} color="text.secondary">
                       {item.desc}
                     </Typography>
                   </Card>

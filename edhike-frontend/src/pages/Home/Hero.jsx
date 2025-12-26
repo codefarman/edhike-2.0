@@ -113,7 +113,7 @@ export default function Hero() {
         pt: { xs: 4, md: 5 , lg:7},
         pb: { xs: 3, md: 4 },
         mb: { lg: -10, md: -10, xs: -5 },
-        bgcolor: "#fafafa",
+        bgcolor: "white",
         position: "relative",
         overflow: "hidden",
       }}
@@ -297,7 +297,7 @@ export default function Hero() {
                 sx={{
                   bgcolor: "white",
                   borderRadius: 4,
-                  boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
+                  boxShadow: "0 10px 40px rgba(0,0,0,0.12)",
                   border: `1px solid #eee`,
                   p: { xs: 2.5, md: 4 },
                   ml: "auto",

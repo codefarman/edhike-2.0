@@ -1,14 +1,3 @@
-// import { StrictMode } from 'react'
-// import { createRoot } from 'react-dom/client'
-// import './index.css'
-// import App from './App.jsx'
-
-// createRoot(document.getElementById('root')).render(
-//   <StrictMode>
-//     <App />
-//   </StrictMode>,
-// )
-
 
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
@@ -18,6 +7,25 @@ import App from "./App.jsx";
 import theme from "./theme";
 import { LeadPopupProvider } from "./context/LeadPopupContext";
 import LeadPopup from "./components/LeadPopup";
+import posthog from 'posthog-js'
+
+// Initialize PostHog ONCE
+
+posthog.init(
+
+  'POSTHOG_KEY',
+
+  {
+
+    api_host: 'https://app.posthog.com', // or eu.posthog.com
+
+    autocapture: true,
+
+    capture_pageview: true
+
+  }
+
+)
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -32,20 +40,3 @@ createRoot(document.getElementById("root")).render(
 
 
 
-// import { StrictMode } from "react";
-// import { createRoot } from "react-dom/client";
-// import { BrowserRouter } from "react-router-dom";
-// import { ThemeProvider } from "@mui/material";
-// import "./index.css";
-// import App from "./App.jsx";
-// import theme from "./theme";
-
-// createRoot(document.getElementById("root")).render(
-//   <StrictMode>
-//     <ThemeProvider theme={theme}>
-//       <BrowserRouter>
-//         <App />
-//       </BrowserRouter>
-//     </ThemeProvider>
-//   </StrictMode>
-// );

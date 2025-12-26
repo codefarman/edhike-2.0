@@ -24,8 +24,8 @@ const RED = "#E31E24";
 const PURPLE = "#5829A7";
 const GRADIENT = `linear-gradient(135deg, ${RED}, ${PURPLE})`;
 const SYLLABUS_FONT = {
-  item: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" },
-  heading: { xs: "0.75rem", md: "0.85rem", lg: "0.95rem" },
+  item: { xs: "0.8rem", md: "0.9rem", lg: "0.9rem" },
+  heading: { xs: "0.9rem", md: "0.9rem", lg: "1rem" },
 };
 
 
@@ -140,13 +140,13 @@ export default function Syllabus() {
   return (
     <Box component="section" sx={{ py: { xs: 1, md: 2, lg: 2 }, bgcolor: "#fff" }}>
       <Container maxWidth="lg">
-        {/* WHAT WE ENSURE - BEAUTIFUL COMPACT CARDS */}
+        
         {/* WHAT WE ENSURE – COMPACT, EQUAL SIZE CARDS */}
         <FadeInUp>
           <Typography
             align="center"
             sx={{
-              fontSize: { xs: "1.6rem", md: "2.4rem" },
+              fontSize: { xs: "1.3rem", md: "2.4rem" },
               fontWeight: 900,
               mb: { xs: 4, md: 6 },
               background: GRADIENT,
@@ -203,7 +203,7 @@ export default function Syllabus() {
                   <Typography
                     sx={{
                       fontWeight: 800,
-                      fontSize: { xs: "0.8rem", md: "0.9rem" },
+                      fontSize: { xs: "0.85rem", md: "0.9rem" },
                       lineHeight: 1.25,
                       mb: 0.4,
                       color: PURPLE,
@@ -215,7 +215,7 @@ export default function Syllabus() {
                   {/* DESCRIPTION */}
                   <Typography
                     sx={{
-                      fontSize: { xs: "0.7rem", md: "0.8rem" },
+                      fontSize: { xs: "0.75rem", md: "0.8rem" },
                       color: "text.secondary",
                       lineHeight: 1.3,
                     }}
@@ -431,7 +431,7 @@ export default function Syllabus() {
               <FadeInUp delay={0.1}>
                 <Typography
                   sx={{
-                    fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
+                    fontSize: { xs: "1.15rem", md: "1.8rem", lg: "2rem" },
                     fontWeight: 900,
                     mb: 3,
                     color: "#5829A7",
@@ -486,12 +486,12 @@ export default function Syllabus() {
                           mb: 0.6,
                         }}
                       >
-                        <Typography sx={{ fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" }, fontWeight: 700 }}>
+                        <Typography sx={{ fontSize: { xs: "0.75rem", md: "0.8rem", lg: "0.9rem" }, fontWeight: 700 }}>
                           {skill.label}
                         </Typography>
                         <Typography
                           sx={{
-                            fontSize: { xs: "0.7rem", md: "0.8rem", lg: "0.9rem" },
+                            fontSize: { xs: "0.75rem", md: "0.8rem", lg: "0.9rem" },
                             fontWeight: 800,
                             color: RED,
                           }}

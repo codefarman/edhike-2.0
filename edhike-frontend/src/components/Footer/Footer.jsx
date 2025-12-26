@@ -30,7 +30,7 @@ export default function Footer() {
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "Programs", href: "#programs" },
-    { name: "Compare Tool", href:"https://edhike-form.vercel.app/" },
+    { name: "Compare Tool", href:"#compare" },
     { name: "Success Stories", href: "#testimonials" },
     { name: "FAQ", href: "#faq" },
   ];

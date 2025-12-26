@@ -30,7 +30,7 @@ const PANEL_DATA = [
     subtitle: "Build confidence with structured lessons created by industry professionals.",
     stats: [{ value: "60+", label: "Hours of guided learning" }, { value: "82%", label: "Success improvement" }],
     cta: "Start your learning journey",
-    mainImage: "https://www.justinmind.com/wp-content/uploads/2018/12/6-best-practices-for-Dashboard-Design-Justinmind-header.png",
+    mainImage: "/why/banner1.png",
     cards: [
       {
         icon: "URL_1",
@@ -147,75 +147,84 @@ export default function WhyEdhike() {
   }, []);
 
 
-// useEffect(() => {
-//     const header = document.querySelector("header");
-//     const navbarHeight = header ? header.offsetHeight : 90;
+  // useEffect(() => {
+  //     const header = document.querySelector("header");
+  //     const navbarHeight = header ? header.offsetHeight : 90;
 
-//     const panels = gsap.utils.toArray(".panel");
+  //     const panels = gsap.utils.toArray(".panel");
 
-//     panels.forEach((panel, i) => {
-//       const content = panel.querySelector(".panel-content");
-//       const nextPanel = panels[i + 1];
-//       const nextContent = nextPanel?.querySelector(".panel-content");
+  //     panels.forEach((panel, i) => {
+  //       const content = panel.querySelector(".panel-content");
+  //       const nextPanel = panels[i + 1];
+  //       const nextContent = nextPanel?.querySelector(".panel-content");
 
-//       if (nextContent) {
-//         gsap.set(nextContent, {
-//           autoAlpha: 0,
-//           yPercent: 40,
-//           scale: 0.9,
-//         });
+  //       if (nextContent) {
+  //         gsap.set(nextContent, {
+  //           autoAlpha: 0,
+  //           yPercent: 40,
+  //           scale: 0.9,
+  //         });
 
-//         gsap
-//           .timeline({
-//             scrollTrigger: {
-//               trigger: panel,
-//               start: `top ${navbarHeight}px`,
-//               end: `+=${panel.offsetHeight}`,
-//               scrub: 1,
-//             },
-//           })
-//           .to(
-//             content,
-//             {
-//               autoAlpha: 0,
-//               yPercent: -20,
-//               scale: 0.95,
-//               ease: "power2.out",
-//             },
-//             0
-//           )
-//           .to(
-//             nextContent,
-//             {
-//               autoAlpha: 1,
-//               yPercent: 0,
-//               scale: 1,
-//               ease: "power2.out",
-//             },
-//             0
-//           );
-//       }
+  //         gsap
+  //           .timeline({
+  //             scrollTrigger: {
+  //               trigger: panel,
+  //               start: `top ${navbarHeight}px`,
+  //               end: `+=${panel.offsetHeight}`,
+  //               scrub: 1,
+  //             },
+  //           })
+  //           .to(
+  //             content,
+  //             {
+  //               autoAlpha: 0,
+  //               yPercent: -20,
+  //               scale: 0.95,
+  //               ease: "power2.out",
+  //             },
+  //             0
+  //           )
+  //           .to(
+  //             nextContent,
+  //             {
+  //               autoAlpha: 1,
+  //               yPercent: 0,
+  //               scale: 1,
+  //               ease: "power2.out",
+  //             },
+  //             0
+  //           );
+  //       }
 
-//       const cards = panel.querySelectorAll(".floating-card");
-//       cards.forEach((card, idx) => {
-//         gsap.to(card, {
-//           y: "random(-15, 15)",
-//           rotation: "random(-4, 4)",
-//           duration: 4 + idx,
-//           repeat: -1,
-//           yoyo: true,
-//           ease: "sine.inOut",
-//         });
-//       });
-//     });
+  //       const cards = panel.querySelectorAll(".floating-card");
+  //       cards.forEach((card, idx) => {
+  //         gsap.to(card, {
+  //           y: "random(-15, 15)",
+  //           rotation: "random(-4, 4)",
+  //           duration: 4 + idx,
+  //           repeat: -1,
+  //           yoyo: true,
+  //           ease: "sine.inOut",
+  //         });
+  //       });
+  //     });
 
-//     ScrollTrigger.refresh();
-//   }, [])
+  //     ScrollTrigger.refresh();
+  //   }, [])
 
 
   return (
-    <Box sx={{ position: "relative", overflow: "hidden", mt: { xs: -1, lg: -10 } }}>
-      <Box sx={{ textAlign: "center", py: { xs: 1, md: 5, lg: 8 }, bgcolor: "#fafafa" }}>
+    <Box
+      sx={{
+        position: "relative",
+        overflow: "hidden",
+        mt: { xs: -1, lg: -10 },
+        width: "100%",
+        maxWidth: "100vw",
+      }}
+    >
+
+      <Box sx={{ textAlign: "center", py: { xs: 1, md: 5, lg: 8 }, bgcolor: "white" }}>
         <FadeInUp>
           <Typography
             variant="h3"
@@ -245,6 +254,8 @@ export default function WhyEdhike() {
             key={i}
             className="panel"
             sx={{
+              width: "100vw",
+              marginLeft: "calc(50% - 50vw)", 
               height: {
                 xs: "52vh",
                 sm: "65vh",
@@ -259,6 +270,7 @@ export default function WhyEdhike() {
               overflow: "hidden",
             }}
           >
+
 
             <Box
               className="panel-content"
@@ -317,35 +329,35 @@ export default function WhyEdhike() {
 
                   <StaggerContainer delayChildren={0.3}>
                     <Box
-  sx={{
-    display: "grid",
-    gridTemplateColumns: { xs: "1fr 1fr", md: "auto auto" },
-    justifyContent: { xs: "center", md: "flex-start" },
-    gap: { xs: 3, md: 6 },
-    mt: { xs: 3, md: 4 },
-  }}
->
+                      sx={{
+                        display: "grid",
+                        gridTemplateColumns: { xs: "1fr 1fr", md: "auto auto" },
+                        justifyContent: { xs: "center", md: "flex-start" },
+                        gap: { xs: 3, md: 6 },
+                        mt: { xs: 3, md: 4 },
+                      }}
+                    >
 
                       {panel.stats.map((stat, idx) => (
                         <StaggerItem key={idx}>
                           <Box sx={{ textAlign: "center" }}>
                             <Typography
-  sx={{
-    fontSize: { xs: "1.6rem", md: "2.2rem" },
-    fontWeight: 800,
-    color: "#fff",
-  }}
->
+                              sx={{
+                                fontSize: { xs: "1.6rem", md: "2.2rem" },
+                                fontWeight: 800,
+                                color: "#fff",
+                              }}
+                            >
 
                               {stat.value}
                             </Typography>
 
                             <Typography
-  sx={{
-    fontSize: { xs: "0.75rem", md: "0.9rem" },
-    color: "rgba(255,255,255,0.75)",
-  }}
->
+                              sx={{
+                                fontSize: { xs: "0.75rem", md: "0.9rem" },
+                                color: "rgba(255,255,255,0.75)",
+                              }}
+                            >
 
                               {stat.label}
                             </Typography>
@@ -358,7 +370,7 @@ export default function WhyEdhike() {
 
                   <FadeInUp delay={0.5}>
                     <Button
-                      onClick={openLeadPopup}   // 🔥 THIS IS THE KEY
+                      onClick={openLeadPopup}   
                       variant="contained"
                       size="large"
                       sx={{
@@ -388,7 +400,7 @@ export default function WhyEdhike() {
                     position: "relative",
                     width: "50%",
                     justifyContent: "center",
-                    overflow: "visible", // 🔥 VERY IMPORTANT
+                    overflow: "visible", 
                   }}
                 >
 
@@ -399,9 +411,10 @@ export default function WhyEdhike() {
                       alt={panel.title}
                       sx={{
                         width: "100%",
-                        maxWidth: { md: 480, lg: 520 },
+                        maxWidth: { md: 590, lg: 620 },
                         borderRadius: "20px",
-                        boxShadow: "0 20px 50px rgba(0,0,0,0.5)",
+                        // height:{md:"25rem", }
+                        // boxShadow: "0 20px 50px rgba(0,0,0,0.5)",
                       }}
                     />
                   </FadeInRight>

@@ -50,7 +50,7 @@ export default function Overview() {
                     <Typography
                         align="center"
                         sx={{
-                             fontSize:{ xs: "1rem", md: "1.6rem", lg: "2rem"},
+                             fontSize:{ xs: "1.2rem", md: "1.6rem", lg: "2rem"},
                             fontWeight: 900,
                             background: GRADIENT,
                             WebkitBackgroundClip: "text",
@@ -83,7 +83,7 @@ export default function Overview() {
                                     px: 4,
                                     py: 1.8,
                                     borderRadius: 50,
-                                    fontSize: {xs: "0.7rem", md: "0.875rem"},
+                                    fontSize: {xs: "0.8rem", md: "0.875rem"},
                                     fontWeight: 600,
                                     bgcolor: "#fff",
                                     border: `2px solid transparent`,
@@ -97,7 +97,7 @@ export default function Overview() {
                 </FadeInUp>
 
                 <FadeInUp delay={0.2}>
-                    <Typography align="center" color="text.secondary" sx={{ fontSize: {xs: "0.8rem", md: "0.875rem"}, mb: 3 }}>
+                    <Typography align="center" color="text.secondary" sx={{ fontSize: {xs: "0.9rem", md: "0.875rem"}, mb: 3 }}>
                         Specific MBA Program designed for Next-Gen Professionals
                     </Typography>
                 </FadeInUp>
@@ -120,7 +120,7 @@ export default function Overview() {
                                 <Paper
                                     elevation={3}
                                     sx={{
-                                        fontSize: { xs: "0.7rem", md: "1rem" },
+                                        fontSize: { xs: "0.8rem", md: "1rem" },
                                         px: 2,            
                                         py: 2,          
                                         textAlign: "center",
@@ -140,10 +140,10 @@ export default function Overview() {
                                 >
 
                                     <Box sx={{ color: PURPLE, mb: 0 }}>{stat.icon}</Box>
-                                    <Typography fontWeight={800} sx={{ fontSize: { xs: "0.8rem", md: "1.2rem" } }}>
+                                    <Typography fontWeight={800} sx={{ fontSize: { xs: "0.9rem", md: "1.2rem" } }}>
                                         {stat.label}
                                     </Typography>
-                                    <Typography color="text.secondary" sx={{ fontSize: { xs: "0.7rem", md: "1rem" } }}>
+                                    <Typography color="text.secondary" sx={{ fontSize: { xs: "0.8rem", md: "1rem" } }}>
                                         {stat.value}
                                     </Typography>
                                 </Paper>
@@ -154,7 +154,7 @@ export default function Overview() {
 
                 {/* DESCRIPTION */}
                 <FadeInUp delay={0.3}>
-                    <Typography sx={{ mt: 5, mb: 6, lineHeight: 1.9, fontSize: { xs: "0.8rem", md: "1.05rem" }, color: "text.secondary", textAlign: "center" }}>
+                    <Typography sx={{ mt: 5, mb: 6, lineHeight: 1.9, fontSize: { xs: "0.85rem", md: "1.05rem" }, color: "text.secondary", textAlign: "center" }}>
                         An Online MBA is a two-year postgraduate program costing INR 30,000-8,00,000, offering flexible learning for working professionals. The curriculum covers business fundamentals, strategic thinking, and leadership skills essential for real-world challenges. MBA graduates can earn up to 77% more than bachelor's degree holders, with specializations in finance, analytics, and digital business providing strongest returns. This format enables career advancement without income sacrifice, making it a high-ROI investment for ambitious professionals seeking leadership roles.
                     </Typography>
                 </FadeInUp>
@@ -163,7 +163,7 @@ export default function Overview() {
                 <FadeInUp delay={0.3}>
                     <Typography
                         sx={{
-                             fontSize:{ xs: "1rem", md: "1.6rem", lg: "2rem"},
+                             fontSize:{ xs: "1.2rem", md: "1.6rem", lg: "2rem"},
                             fontWeight: 900,
                             textAlign: "center",
                             my: 10,
@@ -176,7 +176,7 @@ export default function Overview() {
                         What Makes Online MBAs Valuable
                     </Typography>
 
-                    <Typography color="text.secondary" sx={{ mb: 4, mt: -10, textAlign: "center", fontSize: { xs: "0.8rem", md: "1rem" } }}>
+                    <Typography color="text.secondary" sx={{ mb: 4, mt: -10, textAlign: "center", fontSize: { xs: "0.85rem", md: "1rem" } }}>
                         Online MBA programs are evolving beyond traditional business education. Expect cutting-edge curricula emphasizing:
                     </Typography>
 
@@ -213,7 +213,7 @@ export default function Overview() {
                                     {item.title}
                                 </Typography>
 
-                                <Typography color="text.secondary" sx={ { lineHeight: 1.8, fontSize: { xs: "0.8rem", md: "1rem" },textAlign:'center' } }>
+                                <Typography color="text.secondary" sx={ { lineHeight: 1.8, fontSize: { xs: "0.85rem", md: "1rem" },textAlign:'center' } }>
                                     {item.description}
                                 </Typography>
                             </Paper>
@@ -295,7 +295,7 @@ export default function Overview() {
                             mt: { xs: 2, md: 3, lg: 5 },
                             px: { xs: 2, md: 8 },
                             textAlign: "center",
-                            fontSize: { xs: "0.8rem", md: "1rem" },
+                            fontSize: { xs: "0.85rem", md: "1rem" },
                             fontStyle: "italic",
                         }}
                     >

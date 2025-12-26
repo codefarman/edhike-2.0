@@ -10,7 +10,7 @@ const GRADIENT = `linear-gradient(135deg, ${RED}, ${PURPLE})`;
 
 export default function ComparisonTool() {
   return (
-    <Box component="section" sx={{ py: { xs: 8, md: 10 }, bgcolor: "white", mt:-12, mb: -5 }}>
+    <Box id="compare" component="section" sx={{ py: { xs: 8, md: 10 }, bgcolor: "white", mt:-12, mb: -5 }}>
       <Container maxWidth="sm">
         {/* Compact Heading */}
         <FadeInUp >

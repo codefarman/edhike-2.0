@@ -93,7 +93,7 @@ export default function Universities() {
           <Typography
             align="center"
             sx={{
-              fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
+              fontSize: { xs: "1.2rem", md: "1.8rem", lg: "2rem" },
               fontWeight: 900,
               mb: { xs: 5, md: 8 },
               background: GRADIENT,
@@ -111,11 +111,11 @@ export default function Universities() {
               <FadeInUp delay={index * 0.02}>
                 <Card
                   sx={{
-                    p: { xs: 1, md: 1.8, lg: 1 }, // 🔥 smaller padding mobile
+                    p: { xs: 1, md: 1.8, lg: 1 }, 
                     borderRadius: 3,
                     textAlign: "center",
                     height: "100%",
-                    minHeight: { xs: 150, md: 150, lg: 150 }, // 🔥 SAME SIZE MOBILE
+                    minHeight: { xs: 150, md: 150, lg: 150 }, 
                     border: "1px solid #eee",
                     boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
                     display: "flex",
@@ -126,7 +126,7 @@ export default function Universities() {
                   {/* LOGO WRAPPER */}
                   <Box
                     sx={{
-                      height: { xs: 36, md: 46, lg: 50 }, // 🔥 smaller mobile
+                      height: { xs: 36, md: 46, lg: 50 }, 
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -147,7 +147,7 @@ export default function Universities() {
 
                   <Typography
                     sx={{
-                      fontSize: { xs: "0.68rem", md: "0.7rem", lg: "0.8rem" }, // 🔥 smaller
+                      fontSize: { xs: "0.73rem", md: "0.75rem", lg: "0.8rem" }, 
                       fontWeight: 700,
                       color: PURPLE,
                       lineHeight: 1.2,
@@ -162,7 +162,7 @@ export default function Universities() {
 
                   <Typography
                     sx={{
-                      fontSize: { xs: "0.68rem", md: "0.8rem" },
+                      fontSize: { xs: "0.7rem", md: "0.8rem" },
                       fontWeight: 700,
                       color: RED,
                     }}
@@ -172,7 +172,7 @@ export default function Universities() {
 
                   <Typography
                     sx={{
-                      fontSize: "0.6rem",
+                      fontSize: "0.65rem",
                       color: "text.secondary",
                     }}
                   >
@@ -212,7 +212,7 @@ export default function Universities() {
           <Typography
             align="center"
             sx={{
-              fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
+              fontSize: { xs: "1.2rem", md: "1.8rem", lg: "2rem" },
               fontWeight: 800,
               mt: 4,
               mb: 2,
@@ -252,7 +252,7 @@ export default function Universities() {
                   <Typography
                     fontWeight={600}
                     sx={{
-                      fontSize: { xs: "0.75rem", md: "1rem" },
+                      fontSize: { xs: "0.8rem", md: "1rem" },
                       color: PURPLE,
                       textAlign: "center",
                       lineHeight: 1.2,
@@ -293,7 +293,7 @@ export default function Universities() {
           <Typography
             align="center"
             sx={{
-              fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
+              fontSize: { xs: "1.2rem", md: "1.8rem", lg: "2rem" },
               fontWeight: 800,
               mt: 4,
               mb: 2,
@@ -312,7 +312,7 @@ export default function Universities() {
               <FadeInUp delay={0.3 + i * 0.02}>
                 <Card
                   sx={{
-                    p: { xs: 1.5, md: 3 }, // 🔥 reduced
+                    p: { xs: 1.5, md: 3 }, 
                     textAlign: "center",
                     borderRadius: 4,
                     border: "1px solid #f0f0f0",
@@ -321,7 +321,7 @@ export default function Universities() {
                   <Typography
                     fontWeight={700}
                     sx={{
-                      fontSize: { xs: "0.8rem", md: "1.05rem" },
+                      fontSize: { xs: "0.85rem", md: "1.05rem" },
                       mb: 0.5,
                       color: PURPLE,
                       lineHeight: 1.2,
@@ -350,7 +350,7 @@ export default function Universities() {
           <Typography
             align="center"
             sx={{
-              fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" },
+              fontSize: { xs: "1.2rem", md: "1.8rem", lg: "2rem" },
               fontWeight: 800,
               mt: 4,
               mb: 2,
@@ -378,7 +378,7 @@ export default function Universities() {
                   <Typography
                     fontWeight={700}
                     sx={{
-                      fontSize: { xs: "0.75rem", md: "1.05rem" },
+                      fontSize: { xs: "0.8rem", md: "1.05rem" },
                       color: PURPLE,
                     }}
                   >

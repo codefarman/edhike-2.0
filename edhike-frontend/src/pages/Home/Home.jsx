@@ -14,18 +14,18 @@ const Home = () => {
     <div>
 
      
-      <div className="page-padding">
+      {/* <div className="page-paddin"> */}
         <Hero />
         <TrustSection />
         <Programs />
         <ComparisonTool />
-      </div>     
+      {/* </div>      */}
       <WhyEdHike />      
-      <div className="page-padding">
+      {/* <div className="page-paddin"> */}
         <Testimonials />
         <LeadCTA />
         <FAQ />
-      </div>
+      {/* </div> */}
 
     </div>
   )

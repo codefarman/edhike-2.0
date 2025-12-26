@@ -50,7 +50,8 @@ const PROGRAMS = [
   "MBA Programs",
   "Software Technology",
   "Digital Marketing",
-  "Leadership & Management",
+  "Management & Leadership",
+  "Master's Program (Global MBA)"
 ];
 
 export default function Navbar() {
@@ -65,7 +66,7 @@ export default function Navbar() {
   const menuItems = [
     { label: "Study Abroad", href: "/study-abroad", dropdown: "study" },
     { label: "Online MBA", href: "/online-mba" },
-    { label: "Courses", href: "/courses", dropdown: "courses" },
+    { label: "Programs", href: "/programs", dropdown: "programs" },
     { label: "About", href: "/about" },
     { label: "Contact Us", href: "/contact" },
   ];
@@ -75,7 +76,7 @@ export default function Navbar() {
 
   return (
     <>
-      <AppBar position="fixed" elevation={0} sx={{ bgcolor: "white", borderBottom: "1px solid #eee" }}>
+      <AppBar className="navbar" position="fixed" elevation={0} sx={{ bgcolor: "white", borderBottom: "1px solid #eee" }}>
         <Toolbar sx={{ minHeight: 90, px: { xs: 3, lg: 10 }, justifyContent: "space-between" }}>
 
           {/* Logo */}
@@ -211,7 +212,7 @@ export default function Navbar() {
                           </Box>
                         )}
 
-                        {item.dropdown === "courses" && (
+                        {item.dropdown === "programs" && (
                           <Box sx={{ py: 1 }}>
                             {PROGRAMS.map((prog) => (
                               <Box
@@ -313,14 +314,14 @@ export default function Navbar() {
                 )}
 
                 {/* COURSES DROPDOWN */}
-                {item.dropdown === "courses" && (
+                {item.dropdown === "programs" && (
                   <Collapse in={mobileDropdown.courses} timeout="auto" unmountOnExit>
                     <Box sx={{ pl: 3 }}>
                       {PROGRAMS.map((prog) => (
                         <ListItemButton
                           key={prog}
                           component="a"
-                          href={`/courses/${prog.toLowerCase().replace(/\s+/g, "-")}`}
+                          href={`/programs/${prog.toLowerCase().replace(/\s+/g, "-")}`}
                           onClick={() => setMobileOpen(false)}
                           sx={{ py: 1.2 }}
                         >

@@ -62,7 +62,7 @@ export default function FAQ() {
           <Box sx={{ textAlign: "center", mb: { xs: 3, md: 5 } }}>
             <Typography
               variant="subtitle2"
-              sx={{ color: RED, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, fontSize: { xs: "0.7rem", md: "0.875rem", lg: "0.9rem" }, mb:-2 }}
+              sx={{ color: RED, fontWeight: 800, textTransform: "uppercase", letterSpacing: 1, fontSize: { xs: "0.7rem", md: "0.875rem", lg: "0.9rem" }, mb:-2 }}
             >
               Frequently Asked Questions
             </Typography>
@@ -77,13 +77,13 @@ export default function FAQ() {
                 lineHeight: 1.2,
               }}
             >
-              <TextReveal delay={0.2}>{' '}</TextReveal>{" "}
-              <Box component="span" sx={{ background: GRADIENT, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontSize: { xs: "1.1rem", md: "1.8rem", lg: "2rem" } }}>
-                <TextReveal delay={0.1}> We've Got Answers</TextReveal>
+              {/* <TextReveal delay={0.2}>{' '}</TextReveal>{" "} */}
+              <Box component="span" sx={{ background: GRADIENT, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontSize: { xs: "1.2rem", md: "1.8rem", lg: "2rem" } }}>
+                <TextReveal delay={0.1}>We've Got Answers</TextReveal>
               </Box>
             </Typography>
 
-            <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 600, mx: "auto", fontSize: { xs: "0.7rem", md: "1rem", lg: "1.1rem" }, mt:-1 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 600, mx: "auto", fontSize: { xs: "0.8rem", md: "1rem", lg: "1.1rem" }, mt:-1 }}>
               Everything you need to confidently take your next career step.
             </Typography>
           </Box>

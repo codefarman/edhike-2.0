@@ -20,6 +20,6 @@ export const INTAKE_MONTHS = [
   "July","August","September","October","November","December",
 ];
 
-export const ASPIRING_FOR = ["Under Graduate", "Post Graduate"];
+export const ASPIRING_FOR = ["Post Graduate", "Under Graduate"];
 
 export const ENROLLED_OPTIONS = ["Yes", "No"];

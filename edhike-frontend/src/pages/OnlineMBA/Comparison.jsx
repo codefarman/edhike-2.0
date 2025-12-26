@@ -52,7 +52,7 @@ export default function Comparison() {
                     <Typography
                         align="center"
                         sx={{
-                            fontSize: { xs: "1.1rem", md: "1.5rem", lg: "2rem" },
+                            fontSize: { xs: "1.2rem", md: "1.5rem", lg: "2rem" },
                             fontWeight: 900,
                             mb: 0,
                             background: GRADIENT,
@@ -70,7 +70,7 @@ export default function Comparison() {
                         color="text.secondary"
                         sx={{
                             mb: { xs: 2, md: 4, lg: 5 },
-                            fontSize: { xs: "0.8rem", md: "1rem",  lg: "1rem" },
+                            fontSize: { xs: "0.85rem", md: "1rem",  lg: "1rem" },
                             maxWidth: 820,
                             mx: "auto",
                         }}
@@ -203,7 +203,7 @@ export default function Comparison() {
                                             color: "#fff",
                                             px: 4,
                                             py: 0.6,
-                                            fontSize: "0.6rem",
+                                            fontSize: "0.65rem",
                                             fontWeight: 800,
                                         }}
                                     >
