@@ -13,7 +13,7 @@ const RED = "#E31E24";
 const PURPLE = "#5829A7";
 const GRADIENT = `linear-gradient(135deg, ${RED}, ${PURPLE})`;
 
-// const PANEL_HEIGHT = "80vh";
+// const PANEL_HEIGHTt = "80vh";
 
 const AnalyticsIcon = () => (
   <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
