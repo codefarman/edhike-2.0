@@ -6,7 +6,7 @@ import {
   StaggerContainer,
   StaggerItem,
   BounceIn,
-} from "../Animation/motion"; // Your Motion.jsx file
+} from "../Animation/Motion"; 
 import {
   GRADIENT,
   GRADIENT_LIGHT,
