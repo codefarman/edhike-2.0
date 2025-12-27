@@ -17,6 +17,7 @@ import { INTERESTS } from "../data/globalFormData";
 import { FORM_SCHEMAS } from "./Forms/formSchemas";
 import SearchableStateCity from "./Forms/SearchableStateCity";
 import posthog from 'posthog-js'
+import axios from "axios";
 
 /* ================= GLOBAL FIELD STYLE ================= */
 const compactFieldSx = {
@@ -64,19 +65,11 @@ export default function LeadForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    posthog.capture('form_submit', {
-
-    page: 'contact_ab_test',
-
-    variant: 'vercel'
-
-  })
-
     // SHOW THANK YOU IMMEDIATELY
     setTimeout(() => {
       setSubmitted(true);
     }, 1000);
-    
+
 
     // SEND DATA IN BACKGROUND
     const formData = new FormData(e.currentTarget);
@@ -84,16 +77,22 @@ export default function LeadForm() {
 
     if (location.state) formData.append("state", location.state);
     if (location.city) formData.append("city", location.city);
-
-    fetch(
-      "https://script.google.com/macros/s/AKfycbxqlJBsu21RFP_qt6ECy1tTd8FgdjBCTyfBEs9WTLAiRKJIlaBqk0f2k3IoZbe_yeKdHw/exec",
-      {
-        method: "POST",
-        body: formData,
+    try {
+      // No-op try-catch block
+      const response = axios.post("https://script.google.com/macros/s/AKfycbxqlJBsu21RFP_qt6ECy1tTd8FgdjBCTyfBEs9WTLAiRKJIlaBqk0f2k3IoZbe_yeKdHw/exec", formData);
+      if (response.ok) {
+        console.log("Form data sent successfully");
+        posthog.capture('form_submit', {
+          page: 'contact_ab_test',
+          variant: 'vercel',
+          experiment: 'contact_page_a-b_test'
+        })
       }
-    ).catch(() => {
-      // silent fail – do not block UI
-    });
+
+    }
+    catch (error) {
+      console.log("Error occurred while sending form data:", error);
+    }
   };
 
   /* ================= THANK YOU UI ================= */
@@ -294,3 +293,12 @@ export default function LeadForm() {
     </Box>
   );
 }
+
+
+
+
+
+
+
+
+// use react hook form

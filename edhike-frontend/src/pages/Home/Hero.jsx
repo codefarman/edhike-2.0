@@ -95,13 +95,13 @@ export default function Hero() {
   };
 
   const redirectToSearch = () => {
-  if (!searchValue || !searchValue.trim()) return;
+    if (!searchValue || !searchValue.trim()) return;
 
-  // ✅ Trim + normalize happens HERE
-  const q = encodeURIComponent(searchValue.trim().toLowerCase());
+    
+    const q = encodeURIComponent(searchValue.trim().toLowerCase());
 
-  window.location.href = `https://www.edhike.in/search?q=${q}`;
-};
+    window.location.href = `https://www.edhike.in/search?q=${q}`;
+  };
 
 
 
@@ -110,16 +110,23 @@ export default function Hero() {
     <Box
       component="section"
       sx={{
-        pt: { xs: 4, md: 5 , lg:7},
-        pb: { xs: 3, md: 4 },
-        mb: { lg: -10, md: -10, xs: -5 },
+        pt: { xs: 4, md: 0, lg: 0, xl:0 },
+        pb: { xs: 1, md: 1, lg:0, xl:0 },
+        mb: { xs: 0, md: 0, lg: -7 , xl:-8 } ,
+        mt:{ xs: 2, md: 1, lg: -1 , xl:-2 },
         bgcolor: "white",
         position: "relative",
         overflow: "hidden",
       }}
     >
       <Container maxWidth="xl">
-        <Grid container spacing={{ xs: 4, md:5, sm:5, lg: 10 }} alignItems="center" mt={{ xs: 2, md: 6, lg: -10 }}>
+        <Grid
+  container
+  spacing={{ xs: 4, md: 5, lg: 8, xl: 25 }}
+  alignItems="center"
+  mt={{ xs: 2, md: 4, lg: 6 }}
+>
+
           {/* LEFT: Main Content */}
           <Grid item xs={12} lg={7} pl={{ lg: 5 }}>
             <FadeInUp delay={0.1}>
@@ -140,7 +147,7 @@ export default function Hero() {
               <Typography
                 variant="h1"
                 sx={{
-                  fontSize: { xs: "1.6rem", md: "2.5rem", lg: "3.5rem" },
+                  fontSize: { xs: "1.6rem", md: "2.2rem", lg: "3.5rem" },
                   fontWeight: 900,
                   lineHeight: 1.05,
                   mt: 3,
@@ -168,12 +175,12 @@ export default function Hero() {
               <Typography
                 variant="h6"
                 sx={{
-                  fontSize: { xs: "0.8rem", md: "1.15rem", lg: "1.25rem" },
+                  fontSize: { xs: "0.8rem", md: "1.1rem", lg: "1.25rem" },
                   color: "gray",
                   maxWidth: 660,
                   lineHeight: 1.6,
                   fontWeight: 300,
-                  mb: 6,
+                  mb: 4,
                   mt: { xs: -2, md: 2, lg: 3 },
                 }}
               >
@@ -185,7 +192,7 @@ export default function Hero() {
             <FadeInUp delay={0.2}>
               <Box
                 sx={{
-                  mt: { xs: -2, md: 4, lg: 6 },
+                  mt: { xs: -2, md: 4, lg: 0 },
                   maxWidth: { md: 500, lg: 600, xl: 700, xs: 400 },
                   bgcolor: "white",
                   borderRadius: 10,
@@ -205,39 +212,39 @@ export default function Hero() {
                 onClick={() => document.getElementById("hero-search")?.focus()}
               >
                 <TextField
-  fullWidth
-  variant="standard"
-  placeholder="Search Online MBA, Universities, Programs…"
-  value={searchValue}
-  onChange={(e) => setSearchValue(e.target.value)}
-  onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      redirectToSearch();
-    }
-  }}
-  // disabled={!searchValue.trim()} 
-  InputProps={{
-    disableUnderline: true,
-    startAdornment: (
-      <Search
-  sx={{
-    color: "#666",
-    fontSize: 24,
-    mr: 1,
-    cursor: searchValue.trim() ? "pointer" : "not-allowed",
-    opacity: searchValue.trim() ? 1 : 0.4,
-  }}
-  onClick={() => {
-    if (searchValue.trim()) {
-      redirectToSearch();
-    }
-  }}
-/>
+                  fullWidth
+                  variant="standard"
+                  placeholder="Search Online MBA, Universities, Programs…"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      redirectToSearch();
+                    }
+                  }}
+                  // disabled={!searchValue.trim()} 
+                  InputProps={{
+                    disableUnderline: true,
+                    startAdornment: (
+                      <Search
+                        sx={{
+                          color: "#666",
+                          fontSize: 24,
+                          mr: 1,
+                          cursor: searchValue.trim() ? "pointer" : "not-allowed",
+                          opacity: searchValue.trim() ? 1 : 0.4,
+                        }}
+                        onClick={() => {
+                          if (searchValue.trim()) {
+                            redirectToSearch();
+                          }
+                        }}
+                      />
 
-    ),
-  }}
-/>
+                    ),
+                  }}
+                />
 
 
 
@@ -291,7 +298,7 @@ export default function Hero() {
             </FadeInUp>
           </Grid>
           {/* RIGHT: Form */}
-          <Grid size = {{xs:12, lg:5}} mt={{lg:8}} >
+          <Grid item xs={12} lg={5} mt={{ lg: 8 }} >
             <FadeInRight delay={0.4}>
               <Box
                 sx={{

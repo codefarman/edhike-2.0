@@ -576,7 +576,8 @@ export default function Programs() {
               <IconButton onClick={() => swiperRef.current?.slidePrev()} 
               sx={{ 
                 position: "absolute", 
-                top: "50%", left: -75, 
+                top: "50%", 
+                left: {xl:-75, lg:-50}, 
                 transform: "translateY(-50%)", 
                 bgcolor: "#fff", 
                 boxShadow: "0 10px 30px rgba(0,0,0,0.15)", 
@@ -592,7 +593,7 @@ export default function Programs() {
                 sx={{
                   position: "absolute",
                   top: "50%",
-                  right: { xs: -8, sm: -75 },
+                  right: { xs: -8, sm: -75,xl:-75, lg:-50 },
                   transform: "translateY(-50%)",
                   bgcolor: "#fff",
                   boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
@@ -744,7 +745,7 @@ function ProgramCard({ prog }) {
   {/* BUTTON */}
   <Box
     component="button"
-    onClick={() => navigate(`/programs/${prog.slug}`)}
+    onClick={() => navigate(`/programs?category=${prog.slug}`)}
     sx={{
       background: GRADIENT,
       color: "#fff",

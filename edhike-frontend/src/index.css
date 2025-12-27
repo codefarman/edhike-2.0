@@ -21,7 +21,7 @@ html, body {
   -moz-osx-font-smoothing: grayscale !important;
   text-rendering: optimizeLegibility !important;
   margin: 0; 
-  padding-top: 80px;     
+  /* padding-top: 80px;      */
   padding: 0;   
   width: 100%;
   max-width: 100%;

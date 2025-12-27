@@ -56,8 +56,8 @@ const TESTIMONIALS = [...BASE_TESTIMONIALS, ...BASE_TESTIMONIALS, ...BASE_TESTIM
 
 export default function Testimonials() {
   return (
-    <Box id="testimonials" component="section" sx={{ py: { xs: 4, md: 8, lg: 12 }, bgcolor: "white", overflow: "hidden" }}>
-      <Container maxWidth="xl">
+    <Box id="testimonials" component="section" sx={{ py: { xs: 4, md: 6, lg: 8 , xl:9 }, bgcolor: "white", overflow: "hidden" }}>
+      <Container maxWidth="lg">
         {/* Heading */}
         <FadeInUp delay={0.1}>
           <Box sx={{ textAlign: "center", mb: { xs: 5, md: 10 } }}>
@@ -98,6 +98,7 @@ export default function Testimonials() {
               sx={{
                 display: "flex",
                 gap: 3,
+                py: 2,
                 animation: "scroll 20s linear infinite",
                 "&:hover": { animationPlayState: "paused" },
                 "@keyframes scroll": {
@@ -126,7 +127,7 @@ export default function Testimonials() {
                       flexDirection: "column",
                       transition: "all 0.4s",
                       "&:hover": {
-                        transform: "translateY(-8px)",
+                        transform: "translateY(-4px)",
                         boxShadow: "0 20px 40px rgba(88,41,167,0.12)",
                         borderColor: PURPLE,
                       },

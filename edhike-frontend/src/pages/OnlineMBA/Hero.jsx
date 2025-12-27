@@ -29,16 +29,17 @@ export default function Hero() {
       sx={{
         pt: { xs: 6, md: 16, lg: 18 },
         pb: { xs: 4, md: 6 , lg: 8 },
-        mb: { xs: -6, md: -10 },
-        bgcolor: "#fafafa",
+        mb: { xs: 0, md: 0, lg: -7 , xl:-8 } ,
+        mt:{ xs: 2, md: 1, lg: -1 , xl:-2 },
+        bgcolor: "white",
         position: "relative",
         overflow: "hidden",
       }}
     >
       <Container maxWidth="xl">
-        <Grid container spacing={{ xs: 4,md: 6, lg: 10 }} alignItems="center" mt={{ xs: 2, md: 1, lg: -10 }}>
+        <Grid container spacing={{ xs: 4, md: 5, lg: 5, xl: 25 }} alignItems="center" mt={{ xs: 2, md: 1, lg: -10 }}>
           {/* LEFT CONTENT */}
-          <Grid item xs={12} lg={7} pl={{ lg: 5 }}>
+          <Grid item xs={12} lg={7} pl={{ lg: 2.5 }}>
             <FadeInUp delay={0.1}>
               <Chip
                 label="Online MBA for Working Professionals"
@@ -136,7 +137,7 @@ export default function Hero() {
             <FadeInUp delay={0.2}>
               <Stack
                 direction={{ xs: "column", sm: "row" }}
-                spacing={{ xs: 1, sm: 2, md: 3, lg: 4 }}
+                spacing={{ xs: 1, sm: 1, md: 1.5, lg: 2, xl:2.5 }}
                 sx={{ mt: -2 }}
               >
                 <ScaleIn delay={0.18}>
@@ -146,7 +147,7 @@ export default function Hero() {
                       alignItems: "center",
                       gap: 1.1,
                       bgcolor: "white",
-                      px: 2,
+                      px: 0.1,
                       py: 1.5,
                       borderRadius: 3,
                       boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
@@ -154,17 +155,17 @@ export default function Hero() {
                       minWidth: 150,
                     }}
                   >
-                    <TrendingUp sx={{ color: RED, fontSize: 22 }} />
+                    <TrendingUp sx={{ color: RED, fontSize: 20 }} />
                     <Box>
                       <Typography
                         fontWeight={700}
-                        sx={{ fontSize: { xs: "0.7rem", sm: "0.7rem", md: "0.7rem", lg: "0.85rem" }, color: PURPLE }}
+                        sx={{ fontSize: { xs: "0.7rem", sm: "0.7rem", md: "0.7rem", lg: "0.75rem" }, color: PURPLE }}
                       >
                         Career-Aligned MBA Options
                       </Typography>
                       <Typography
                         variant="caption"
-                        sx={{ color: "#666", fontSize: "0.68rem" }}
+                        sx={{ color: "#666", fontSize: "0.6rem" }}
                       >
                         Based on role, goals & industry
                       </Typography>
@@ -187,17 +188,17 @@ export default function Hero() {
                       minWidth: 150,
                     }}
                   >
-                    <School sx={{ color: PURPLE, fontSize: 22 }} />
+                    <School sx={{ color: PURPLE, fontSize: 20 }} />
                     <Box>
                       <Typography
                         fontWeight={700}
-                        sx={{ fontSize: { xs: "0.7rem", sm: "0.7rem", md: "0.7rem", lg: "0.85rem" }, color: PURPLE }}
+                        sx={{ fontSize: { xs: "0.7rem", sm: "0.7rem", md: "0.7rem", lg: "0.75rem" }, color: PURPLE }}
                       >
                         50+ UGC-Approved Universities
                       </Typography>
                       <Typography
                         variant="caption"
-                        sx={{ color: "#666", fontSize: "0.68rem" }}
+                        sx={{ color: "#666", fontSize: "0.6rem" }}
                       >
                         Top Online MBA programs in India
                       </Typography>
@@ -220,17 +221,17 @@ export default function Hero() {
                       minWidth: 150,
                     }}
                   >
-                    <CurrencyRupee sx={{ color: RED, fontSize: 22 }} />
+                    <CurrencyRupee sx={{ color: RED, fontSize: 20 }} />
                     <Box>
                       <Typography
                         fontWeight={700}
-                        sx={{ fontSize: { xs: "0.7rem", sm: "0.7rem", md: "0.7rem", lg: "0.85rem" }, color: PURPLE }}
+                        sx={{ fontSize: { xs: "0.7rem", sm: "0.7rem", md: "0.7rem", lg: "0.75rem" }, color: PURPLE }}
                       >
                         ROI-Focused Guidance
                       </Typography>
                       <Typography
                         variant="caption"
-                        sx={{ color: "#666", fontSize: "0.68rem" }}
+                        sx={{ color: "#666", fontSize: "0.6rem" }}
                       >
                         Fees, outcomes & long-term value
                       </Typography>
@@ -257,7 +258,7 @@ export default function Hero() {
                 sx={{
                   position: "relative",
                   width: "100%",
-                  maxWidth: 560,
+                  maxWidth: 500,
                   mx: "auto",
                 }}
               >

@@ -50,7 +50,7 @@ const PANEL_DATA = [
     subtitle: "Work on practical tasks that prepare you for real-world challenges.",
     stats: [{ value: "500+", label: "Project simulations" }, { value: "200+", label: "Industry mentors" }],
     cta: "Build real experience",
-    mainImage: "https://cdn.prod.website-files.com/60ffdd9e3c66d71b667eba0b/6685065bf0f6ca75f5d0ce48_eb2e0339-b724-446c-89e1-258be95dfc44.png",
+    mainImage: "/why/banner2.png",
     cards: [
       {
         icon: "URL_1",
@@ -70,7 +70,7 @@ const PANEL_DATA = [
     subtitle: "Showcase your expertise with credentials respected by employers.",
     stats: [{ value: "91%", label: "Positive career growth" }, { value: "4.7/5", label: "Career readiness rating" }],
     cta: "Become career-ready",
-    mainImage: "https://res.cloudinary.com/certifier/image/upload/v1706547868/Free_Digital_Badging_Templates_4fff531296.png",
+    mainImage: "/why/banner3.png",
     cards: [
       {
         icon: "URL_1",
@@ -90,7 +90,7 @@ const PANEL_DATA = [
     subtitle: "Move forward with learning pathways designed for ambitious professionals.",
     stats: [{ value: "120K+", label: "Learners empowered" }, { value: "70+", label: "Specialized tracks" }],
     cta: "Start your transformation",
-    mainImage: "https://images.academyocean.com/webflow/features/analytics_and_reporting/Dashboard.webp",
+    mainImage: "/why/banner4.png",
     cards: [
       {
         icon: "URL_1",
@@ -224,7 +224,7 @@ export default function WhyEdhike() {
       }}
     >
 
-      <Box sx={{ textAlign: "center", py: { xs: 1, md: 5, lg: 8 }, bgcolor: "white" }}>
+      <Box sx={{ textAlign: "center", py: { xs: 1, md: 5, lg: 6 }, bgcolor: "white" }}>
         <FadeInUp>
           <Typography
             variant="h3"

@@ -21,6 +21,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import { useNavigate } from "react-router-dom";
+import { programsData } from "../../data/programsData";
+
 
 
 const RED = "#E31E24";
@@ -61,6 +64,7 @@ export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openDropdown, setOpenDropdown] = useState("");
   const [closeTimer, setCloseTimer] = useState(null);
+  const navigate = useNavigate();
 
   
   const menuItems = [
@@ -212,25 +216,26 @@ export default function Navbar() {
                           </Box>
                         )}
 
-                        {item.dropdown === "programs" && (
-                          <Box sx={{ py: 1 }}>
-                            {PROGRAMS.map((prog) => (
-                              <Box
-                                key={prog}
-                                sx={{
-                                  px: 3,
-                                  py: 1.4,
-                                  "&:hover": { bgcolor: "#f9f9f9" },
-                                  cursor: "pointer",
-                                }}
-                              >
-                                <Typography variant="body2" sx={{ fontSize: "0.775rem" }}>
-                                  {prog}
-                                </Typography>
-                              </Box>
-                            ))}
-                          </Box>
-                        )}
+                        {programsData.map((prog) => (
+  <Box
+    key={prog.slug}
+    sx={{
+      px: 3,
+      py: 1.4,
+      "&:hover": { bgcolor: "#f9f9f9" },
+      cursor: "pointer",
+    }}
+    onClick={() => {
+      navigate(`/programs?category=${prog.slug}`);
+      setOpenDropdown("");
+    }}
+  >
+    <Typography variant="body2" sx={{ fontSize: "0.775rem" }}>
+      {prog.title}
+    </Typography>
+  </Box>
+))}
+
                       </Paper>
                     </ClickAwayListener>
                   </Popper>

@@ -9,16 +9,13 @@ import {
   FadeInUp,
   StaggerContainer,
   StaggerItem,
-  ScaleIn,
-} from "../Animation/Motion"; // Your Motion.jsx path
+} from "../Animation/Motion";
 import {
   PURPLE,
   RED,
-  SHADOW_SOFT,
 } from "../../theme/brand";
 
 const TrustStrip = ({ highlights = [] }) => {
-  // Default highlights (you can override by passing props)
   const defaultHighlights = [
     "UGC-Entitled Online Degrees",
     "Valid as Regular Campus Programs",
@@ -31,51 +28,54 @@ const TrustStrip = ({ highlights = [] }) => {
   return (
     <Box
       sx={{
-        py: { xs: 4, md: 5 },
+        py: { xs: 2, md: 0 },
         background: "linear-gradient(180deg, #fafafa 0%, #ffffff 100%)",
         borderY: "1px solid #eee",
       }}
     >
       <Container maxWidth="lg">
-        <StaggerContainer delayChildren={0.1} viewport={{ once: true, margin: "-100px" }}>
+        <StaggerContainer delayChildren={0.1} viewport={{ once: true }}>
+          {/* OUTER STACK */}
           <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={{ xs: 3, sm: 5 }}
+            direction={{ xs: "column", sm: "row" }}   // mobile vs desktop
+            spacing={{ xs: 2.5, sm: 4 }}
             justifyContent="center"
             alignItems="center"
-            textAlign="center"
+            sx={{
+              flexWrap: "nowrap",          // 🔥 KEY FIX
+            }}
           >
             {items.map((item, index) => (
               <StaggerItem key={index}>
+                {/* EACH ITEM */}
                 <Stack
                   direction="row"
-                  spacing={1.5}
+                  spacing={1.2}
                   alignItems="center"
                   sx={{
-                    minWidth: { xs: "100%", sm: "auto" },
+                    width: { xs: "100%", sm: "auto" },
                     px: { xs: 2, sm: 0 },
+                    whiteSpace: "nowrap",    // 🔥 text never wraps
                   }}
                 >
-                  {/* Subtle scale-in on icon for a gentle "approval" feel */}
-                  <ScaleIn delay={index * 0.08}>
-                    <CheckCircleOutlineIcon
-                      sx={{
-                        color: index % 2 === 0 ? PURPLE : RED,
-                        fontSize: { xs: 28, md: 32 },
-                        flexShrink: 0,
-                      }}
-                    />
-                  </ScaleIn>
+                  {/* ICON */}
+                  <CheckCircleOutlineIcon
+                    sx={{
+                      color: index % 2 === 0 ? PURPLE : RED,
+                      fontSize: { xs: 26, md: 30 },
+                      flexShrink: 0,
+                    }}
+                  />
 
-                  {/* FadeInUp text for smooth reveal */}
-                  <FadeInUp delay={index * 0.1}>
+                  {/* TEXT */}
+                  <FadeInUp delay={index * 0.08}>
                     <Typography
-                      variant="body1"
                       fontWeight={600}
                       sx={{
                         fontSize: { xs: "0.95rem", md: "1.05rem" },
                         color: "text.primary",
                         lineHeight: 1.4,
+                        whiteSpace: "nowrap", // 🔥 absolutely no wrapping
                       }}
                     >
                       {item}
