@@ -83,9 +83,9 @@ export default function LeadForm() {
       if (response.ok) {
         console.log("Form data sent successfully");
         posthog.capture('form_submit', {
-          page: 'contact_ab_test',
+          page: 'contact_page',
           variant: 'vercel',
-          experiment: 'contact_page_a-b_test'
+          experiment: 'contact-page-a-b-test'
         })
       }
 

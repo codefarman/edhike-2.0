@@ -249,7 +249,7 @@ export default function Hero() {
             xs={12}
             lg={6}
             sx={{
-              display: { xs: "none", md: "block" },
+              display: { xs: "none", md: "none", lg: "block" },
             }}
           >
 

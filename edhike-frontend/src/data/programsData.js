@@ -30,15 +30,15 @@ export const programsData = [
     },
 
     subPrograms: [
-     {
-  id: "ai-3",
-  slug: "iitb-ds-ai",
-  title: "Post Graduate Program in Data Science & AI",
-  institute: "IIT-B Bangalore",
-  duration: "13 Months",
-  image: "/images/ai-ml/iitb-ds-ai.jpg",
-  wixUrl: "https://www.edhike.in/best-online-programs/machine-learning-ai/pg-program-in-data-science-and-ai",
-},
+      {
+        id: "ai-3",
+        slug: "iitb-ds-ai",
+        title: "Post Graduate Program in Data Science & AI",
+        institute: "IIT-B Bangalore",
+        duration: "13 Months",
+        image: "https://static.wixstatic.com/media/0d481a_70df3272c41545b59c92c18f3289e77a~mv2.jpg/v1/fill/w_924,h_474,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1_11zon.jpg",
+        wixUrl: "https://www.edhike.in/best-online-programs/machine-learning-ai/pg-program-in-data-science-and-ai",
+      },
 
       {
         id: "ds-2",
@@ -47,7 +47,7 @@ export const programsData = [
         institute: "Liverpool Business School",
         duration: "18 Months",
         highlights: "UK degree, global curriculum",
-        image: "/images/data-science/liverpool-ds.jpg",
+        image: "https://static.wixstatic.com/media/0d481a_2d90668280954f01bd0295b3a76acaad~mv2.jpg/v1/fill/w_924,h_474,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/3_11zon.jpg",
         wixUrl: "https://www.edhike.in/data-science-analytics/master-of-science-in-data-science"
 
       },
@@ -58,7 +58,7 @@ export const programsData = [
         institute: "LIBA",
         duration: "12 Months",
         highlights: "Industry-aligned analytics",
-        image: "/images/data-science/liba-ba.jpg",
+        image: "https://static.wixstatic.com/media/0d481a_c26180051494452f861883cf4c4b004a~mv2.jpg/v1/fill/w_924,h_474,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/2_11zon.jpg",
         wixUrl: "https://www.edhike.in/data-science-analytics/exec-pg-prog-in-business-analytics"
       },
     ],
@@ -86,7 +86,7 @@ export const programsData = [
         title: "Post Graduate Program in Machine Learning & AI (Executive)",
         institute: "IIT-B Bangalore",
         duration: "12 Months",
-        image: "/images/ai-ml/iitb-ml.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/machine-learning-ai/pg-prog-in-ml-and-ai",
       },
       {
@@ -95,7 +95,7 @@ export const programsData = [
         title: "Master of Science in Machine Learning & AI",
         institute: "Liverpool John Moores University",
         duration: "12 Months",
-        image: "/images/ai-ml/liverpool-ml.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/machine-learning-ai/master-of-science-in-ml-and-ai",
       },
       {
@@ -104,7 +104,7 @@ export const programsData = [
         title: "Post Graduate Program in Data Science & AI",
         institute: "IIT-B Bangalore",
         duration: "13 Months",
-        image: "/images/ai-ml/iitb-ds-ai.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/machine-learning-ai/pg-program-in-data-science-and-ai",
       },
     ],
@@ -132,7 +132,7 @@ export const programsData = [
         title: "MBA (Master of Business Administration)",
         institute: "Online",
         duration: "24 Months",
-        image: "/images/mba/deakin-mba.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://edhike-2-0.vercel.app/online-mba",
       },
       {
@@ -141,7 +141,7 @@ export const programsData = [
         title: "MBA (Global)",
         institute: "Liverpool Business School",
         duration: "18 Months",
-        image: "/images/mba/liverpool-mba.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/master-programs/mba-liverpool-business-school",
       },
       {
@@ -150,7 +150,7 @@ export const programsData = [
         title: "MBA (Global)",
         institute: "Golden Gate University",
         duration: "15 Months",
-        image: "/images/mba/ggu-mba.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/master-programs/global-mba-ggu",
       },
       {
@@ -159,7 +159,7 @@ export const programsData = [
         title: "MBA (Master of Business Administration)",
         institute: "Deakin Business School",
         duration: "24 Months",
-        image: "/images/mba/deakin-mba.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/master-programs/mba-global-deakin-university",
       },
       {
@@ -168,7 +168,7 @@ export const programsData = [
         title: "Master in International Management (120 ECTS)",
         institute: "International University of Applied Science",
         duration: "24 Months",
-        image: "/images/mba/ggu-mba.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/mba-courses/master-in-international-management-120-ects",
       },
       {
@@ -177,7 +177,7 @@ export const programsData = [
         title: "Master of Business Administration (90 ECTS)",
         institute: "International University of Applied Science",
         duration: "18 Months",
-        image: "/images/mba/ggu-mba.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/mba-courses/mba-90-ects",
       },
     ],
@@ -205,7 +205,7 @@ export const programsData = [
         title: "Master of Science in Computer Science",
         institute: "IIT-B Bangalore",
         duration: "13 Months",
-        image: "/images/software/ms-cs.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/software-tech-courses/master-of-science-computer-science",
       },
       {
@@ -214,7 +214,7 @@ export const programsData = [
         title: "Executive PG Program in Software Development – Full Stack",
         institute: "IIT-B Bangalore",
         duration: "13 Months",
-        image: "/images/software/fullstack.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/software-tech-courses/full-stack-development",
       },
     ],
@@ -242,8 +242,8 @@ export const programsData = [
         title: "Advance Certificate in Digital Marketing & Communication",
         institute: "MICA",
         duration: "31–51 Weeks",
-        image: "/images/marketing/mica-dm.jpg",
-      wixUrl: "https://www.edhike.in/best-online-programs/marketing-courses/adv-certi-in-digital-marketing-and-communication"
+        image: "https://static.wixstatic.com/media/37b7c8_f2faf0e420ea4fe0859a01776994f53c~mv2.jpg/v1/crop/x_0,y_78,w_5000,h_3109/fill/w_692,h_408,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/map-lying-wooden-table.jpg",
+        wixUrl: "https://www.edhike.in/best-online-programs/marketing-courses/adv-certi-in-digital-marketing-and-communication"
       },
       {
         id: "dm-2",
@@ -251,8 +251,8 @@ export const programsData = [
         title: "Executive PG Program in Business Analytics",
         institute: "LIBA",
         duration: "12 Months",
-        image: "/images/marketing/liba-ba.jpg",
-      wixUrl: "https://www.edhike.in/data-science-analytics/exec-pg-prog-in-business-analytics"
+        image: "https://static.wixstatic.com/media/37b7c8_483c4a2d3df44eefbfacfb1c09bb5e07~mv2.png/v1/crop/x_0,y_132,w_5760,h_3576/fill/w_678,h_400,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Untitled%20design%20(5).png",
+        wixUrl: "https://www.edhike.in/data-science-analytics/exec-pg-prog-in-business-analytics"
       },
       {
         id: "dm-3",
@@ -260,7 +260,7 @@ export const programsData = [
         title: "Advance Certificate in Brand Communication Management",
         institute: "MICA",
         duration: "5 Months",
-        image: "/images/marketing/mica-brand.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_6d03a2441a174a48b6d6df50b21eaeda~mv2.jpeg/v1/crop/x_550,y_0,w_2900,h_1800/fill/w_692,h_408,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1695034802phpjdHbmw.jpeg",
         wixUrl: "https://www.edhike.in/best-online-programs/marketing-courses/adv-certi-in-brand-communication-and-management"
       },
     ],
@@ -288,8 +288,8 @@ export const programsData = [
         title: "Professional Certificate Program in HR Management & Analytics",
         institute: "IIM Kozhikode",
         duration: "5 Months",
-        image: "/images/leadership/iimk-hr.jpg",
-      wixUrl: "https://www.edhike.in/best-online-programs/management-courses/prof-certi-prog-in-hr-management-and-analytics"
+        image: "https://static.wixstatic.com/media/37b7c8_0451f84e94c04130a55425cb70fa2992~mv2.webp/v1/fill/w_702,h_416,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_iim-kozhikode.webp",
+        wixUrl: "https://www.edhike.in/best-online-programs/management-courses/prof-certi-prog-in-hr-management-and-analytics"
       },
       {
         id: "ml-2",
@@ -297,8 +297,8 @@ export const programsData = [
         title: "Executive Post Graduate Program in HR Management",
         institute: "LIBA",
         duration: "5 Months",
-        image: "/images/leadership/liba-hr.jpg",
-      wixUrl: "https://www.edhike.in/best-online-programs/management-courses/exec-pg-program-in-hr-management"
+        image: "https://static.wixstatic.com/media/37b7c8_3eae50bea79349acbbea47c1068ed308~mv2.jpg/v1/fill/w_702,h_416,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Loyola%20Institute.jpg",
+        wixUrl: "https://www.edhike.in/best-online-programs/management-courses/exec-pg-program-in-hr-management"
       },
       {
         id: "ml-3",
@@ -306,8 +306,8 @@ export const programsData = [
         title: "Post Graduate Certificate in Product Management",
         institute: "Duke Corporate Education",
         duration: "6–10 Months",
-        image: "/images/leadership/duke-pm.jpg",
-      wixUrl: "https://www.edhike.in/best-online-programs/management-courses/pg-certificate-in-product-management"
+        image: "https://static.wixstatic.com/media/37b7c8_e722511078924149bb69bca94b99f3e2~mv2.jpg/v1/fill/w_692,h_410,al_c,lg_1,q_80,enc_avif,quality_auto/Duke%20University.jpg",
+        wixUrl: "https://www.edhike.in/best-online-programs/management-courses/pg-certificate-in-product-management"
       },
       {
         id: "ml-4",
@@ -315,8 +315,8 @@ export const programsData = [
         title: "Global Master Certificate in Integrated Supply Chain Management",
         institute: "Michigan State University",
         duration: "6 Months",
-        image: "/images/leadership/duke-pm.jpg",
-      wixUrl: "https://www.edhike.in/best-online-programs/management-courses/global-master-certificate-in-integrated-supply-chain-management"
+        image: "https://static.wixstatic.com/media/37b7c8_cbcfc1223f1141dd97d064b77e371f0f~mv2.jpg/v1/fill/w_702,h_416,al_c,lg_1,q_80,enc_avif,quality_auto/Michigan%20State%20University.jpg",
+        wixUrl: "https://www.edhike.in/best-online-programs/management-courses/global-master-certificate-in-integrated-supply-chain-management"
       },
     ],
   },
@@ -343,7 +343,7 @@ export const programsData = [
         title: "MBA (Global)",
         institute: "Liverpool Business School",
         duration: "18 Months",
-        image: "/images/mba/liverpool-mba.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/master-programs/mba-liverpool-business-school",
       },
       {
@@ -352,7 +352,7 @@ export const programsData = [
         title: "MBA (Global)",
         institute: "Golden Gate University",
         duration: "15 Months",
-        image: "/images/mba/ggu-mba.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/master-programs/global-mba-ggu",
       },
       {
@@ -361,7 +361,7 @@ export const programsData = [
         title: "MBA (Master of Business Administration)",
         institute: "Deakin Business School",
         duration: "24 Months",
-        image: "/images/mba/deakin-mba.jpg",
+        image: "https://static.wixstatic.com/media/37b7c8_f6bb49fb776d4b83b28bee731318ce30~mv2.jpg/v1/crop/x_0,y_192,w_5616,h_3360/fill/w_712,h_424,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/christin-hume-mfB1B1s4sMc-unsplash%20(1).jpg",
         wixUrl: "https://www.edhike.in/best-online-programs/master-programs/mba-global-deakin-university",
       },
     ],

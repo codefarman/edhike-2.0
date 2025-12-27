@@ -20,7 +20,7 @@ posthog.init(import.meta.env.VITE_POSTHOG_KEY, {
 function handleABRedirect() {
 
   posthog.onFeatureFlags(() => {
-    const variant = posthog.getFeatureFlag('contact_page_a-b_test')
+    const variant = posthog.getFeatureFlag('contact-page-a-b-test')
     const currentUrl = window.location.href
     const wixUrl = 'https://www.edhike.in/contact-us-new-page'
 
